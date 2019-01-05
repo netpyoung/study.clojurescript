@@ -1,0 +1,4 @@
+task :default do
+  sh "boot prod"
+  sh "ls release"
+end

@@ -1,0 +1,30 @@
+{
+ ;; ref: https://github.com/boot-clj/boot-cljs/blob/master/docs/cljs.edn.md
+ :require [;; sample.dev
+           sample.main]
+
+ ;; This tells the cljs task to add a call to sample.main/main at the end of the compiled main.js file.
+ :init-fns [sample.main/main]
+
+
+ ;; ref: https://github.com/boot-clj/boot-cljs/blob/master/docs/compiler-options.md
+ :compiler-options
+ {
+  ;; :output-dir
+  ;; :output-to
+  ;; :main
+  :source-map true
+  ;; :modules
+  ;; :output-wrapper
+
+
+  ;; ref: https://stackoverflow.com/questions/26253958/understanding-relationship-between-clojurescript-and-google-closure-compiler
+  ;; `:optimizations :none`일때에는, `goog/base.js`을 추가시켜줘야 한다.
+  ;; :asset-path를 이용하면 `goog/base.js`를 자동으로 추가해준다.
+  :asset-path "js/main.out"
+
+  ;; :preloads - only work `:optimizations :none`
+  ;; :preloads             [sample.dev]
+  :parallel-build true
+  }
+ }
