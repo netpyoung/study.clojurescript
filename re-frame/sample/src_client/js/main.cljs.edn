@@ -1,0 +1,9 @@
+{:require
+ [sample.main]
+
+ :init-fns
+ [sample.main/main]
+
+ :compiler-options
+ {:asset-path "js/main.out"
+  :source-map true}}
