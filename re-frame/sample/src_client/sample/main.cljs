@@ -44,7 +44,7 @@
   ;;              :dispatch  [:an-event-id :param1]}
   ;;  :queue     <a collection of further interceptors>
   ;;  :stack     <a collection of interceptors already walked>}
-  (re-frame.core/->interceptor
+  (rf/->interceptor
    :id
    :trim-event-id
 

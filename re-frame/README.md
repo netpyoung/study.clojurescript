@@ -1,79 +1,136 @@
-# re-frame
-- `re-frame` is a pattern for writing SPAs in ClojureScript, using Reagent.
-- https://github.com/Day8/re-frame
+# re-frame ([repo][github-re-frame] / [README](https://github.com/Day8/re-frame/blob/master/docs/README.md))
+- [ClojureScript][clojurescript]로 작성된 [re-frame][github-re-frame]은 [SPA][wiki-spa]만들때 쓰는 패턴입니다.
+- [re-frame][github-re-frame]은 내부적으로 [reagent][github-reagent]를 활용합니다.
 - [Reaktor Talks: Esko Lahti, Developing Web Applications With Reagent/re-frame](https://www.youtube.com/watch?v=-yQreNDzvdw)
 
 
-https://opengisgal.wordpress.com/2018/05/19/re-frame-clojurescript-tutorial-for-beginners/
-
-
-
-
+- 간락한 개념.
 ```
-app-db ->
-  view ->
+DB ->
+  뷰 ->
     Reagent ->
       React ->
-        Dom ->
-          Render
-        <- raise `event`
-      <- queueing
-    <- handle `event`, raise `effect`
-  <- handle `effect`
-app-db
+        렌더링.
+        <- 이벤트 발생.
+      <- 이벤트 큐잉
+    <- 이벤트 처리 (인터셉터와 함께), 이펙트 발생.
+  <- 이펙터 처리.
+DB
 ```
 
+- 키워드로 보는 개념.
 ```
 app-db ->
   [:hiccup] ->
-    `r/render-component` ->
+    (r/render-component component dom-root) ->
+    (rf/subsribe query-id) ->
       React ->
         Dom ->
           Render
-        <- (`rf/dispatch` `event`)
-      <- [`event` ...]
-    <- (`rf/reg-event-fx` `event-id` [`interceptor` ...])
-  <- (`rf/reg-fx` `effect-id`)
-
+          <- (rf/dispatch event)
+          <- [event ...]
+        <- (rf/reg-event-fx event-id [interceptor ...] (fn [cofx event]))
+          <- rf.cofx/inject-db :before
+          <- (rf/->interceptor :before)
+          <- (fn [cofx event] ...)
+          <- (rf/->interceptor :after)
+          <- rf.fx/do-fx :after
+          <- [effect ...]
+    <- (rf/reg-fx effect-id (fn [event-value] ...)
+  <- (rf/reg-sub query-id (fn [db] ...))
+  <- (rf/reg-sub query-id (fn [db] ...))
 app-db
 ```
 
+## 용어설명
 
-### db
+### kind `reg-*`
+register handler
+:event-db
+:event-fx
+:event-ctx
+:sub
+:sub-raw
+:fx
+:cofx
+
+drawing board
+reg-view
+reg-interceptor
+
+(rf/reg-event-db
+   :event-id
+   (fn [db event]
+     (assoc db :some :thing)))
+
+(rf/reg
+  {:kind  :event-db
+   :id    :event-id
+   :fn    (fn [db event]
+            (assoc db :some :thing))})
+
+(rf/reg
+  [{:kind :event-db ...}
+   {:kind :event-db ...}
+   {:kind :event-fx ...}
+   {:kind :sub ...])
+
+### Registrar
+Each entry stored in the registrar will become a map instead of just a handler.
+
+Map keys:
+
+:kind - somehow redundant
+:id
+:doc
+:line
+:ns
+:doc
+:fn the handler
+
+`re-com` is a library which supplies reusable Reagent widgets. And widgets, like a datepicker, are the simplest kind of components.
+`re-com` components are reusability because they take an input stream of data and they
+
+`def-view`: TODO
+
+
+
+### DB : (`app-db` / `db`)
 ``` clojure
 {...}
 ```
 
 
 ### event
+
 ``` clojure
 [event-id & args]
 ```
 
+### Event (`event`)
 ### Effect (`effect` / `fx`)
-- what your event handler does to the world (aka side-effects)
 - https://github.com/Day8/re-frame/blob/master/docs/API.md
-- built-in effect
+- 내장 이펙트
 
 ``` clojure
-:db `db`
+[:db `db`]
 
-:dispatch `event`
+[:dispatch `event`]
 
-:dispatch-n [(nil | `event`) ...]
+[:dispatch-n [(nil | `event`) ...]]
 
-:dispatch-later [ (nil | {:ms `int` :dispatch `event`}) ...]
+[:dispatch-later [ (nil | {:ms `int` :dispatch `event`}) ...]]
 
-:deregister-event-handler `event-id`
+[:deregister-event-handler `event-id`]
 
-:deregister-event-handler [`event-id` ...]
+[:deregister-event-handler [`event-id` ...]]
 ```
 
 
 ### Coeffect (`coeffect` / `cofx`)
 - http://tomasp.net/coeffects/
 - the data your event handler requires from the world in order to do its computation (aka side-causes)
-- built-in coeffect
+- 내장 코-이펙트
 ``` clojure
 {
  :local-store `local-store`
@@ -81,7 +138,7 @@ app-db
 }
 ```
 
-### contextmap
+### contextmap (`context`, `ctx`)
 ``` clojure
 {:coeffects {:event [:some-id :some-param]
              :db    <original contents of app-db>}
@@ -142,7 +199,10 @@ https://github.com/Day8/re-frame/blob/master/docs/EventHandlingInfographic.md
   (fn [{:key [db]} `event`]
     {:db (assoc db :a 10)}))
 
-
+(reg-event-ctx
+  `event-key`
+  (fn [`context-map` `event`]
+    `context-map`)
 ## effect-routeter
 [[`effect-key` `effect-value`] ...]
 
@@ -165,6 +225,7 @@ https://github.com/Day8/re-frame/blob/master/docs/EventHandlingInfographic.md
   - `enrich`
   - `path`
   - `after`
+  - `inject-cofx`
 - built-in more : `std_interceptors.clj`
 
 ``` clojure
@@ -186,9 +247,49 @@ https://github.com/Day8/re-frame/blob/master/docs/EventHandlingInfographic.md
 ```
 
 
-==================================================
-
 # reg-sub / subscribe
+- https://github.com/Day8/re-frame/blob/master/docs/SubscriptionFlow.md
+- (ns re-frame.subs)
+
+{:name "Bruce"}
+
+(rf/reg-sub
+  :get-name
+  (fn [db _]
+    (name db))) => "Bruce"
+
+(rf/reg-sub
+  :greeting
+  (fn [db _]
+    (rf/subscribe :get-name))
+  (fn [name _]
+    (st "Hello, " name))) => "Hello, Bruce"
+
+@(rf/subscribe :greeting) => "Hello, Bruce"
+
+  1. (reg-sub
+       :test-sub
+       (fn [db [_]] db))
+  The value in app-db is passed to the computation function as the 1st argument.
+
+  2. (reg-sub
+       :a-b-sub
+       (fn [q-vec d-vec]
+         [(subs/subscribe [:a-sub])
+          (subs/subscribe [:b-sub])])
+       (fn [[a b] [_]] {:a a :b b}))
+
+  Two functions provided. The 2nd is computation function, as before. The 1st
+  is returns what `input signals` should be provided to the computation. The
+  `input signals` function is called with two arguments: the query vector
+  and the dynamic vector. The return value can be singleton reaction or
+  a sequence of reactions.
+
+  3. (reg-sub
+       :a-b-sub
+       :<- [:a-sub]
+       :<- [:b-sub]
+       (fn [[a b] [_]] {:a a :b b}))```
 (let [value @(rf/subsribe `query-id`)])
 
 
@@ -206,9 +307,7 @@ https://github.com/Day8/re-frame/blob/master/docs/EventHandlingInfographic.md
   (fn [[a b] query-vec]
     ....))
 
-
-
-
-
-`reg-fx`
-`reg-cofx` / `inject-cofx`
+[github-re-frame]: https://github.com/Day8/re-frame
+[github-reagent]: https://github.com/reagent-project/reagent
+[wiki-spa]: https://en.wikipedia.org/wiki/Single-page_application
+[clojurescript]: https://clojurescript.org/
