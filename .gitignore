@@ -1,1 +1,6 @@
-book
+# mdbook
+/book/
+
+# clojure
+/.clj-kondo/
+/.lsp/
