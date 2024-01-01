@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>reagent - study.clojurescript</title>
+        <title>css - study.clojurescript</title>
 
 
         <!-- Custom HTML head -->
@@ -88,7 +88,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="../index.html">Index.md</a></li><li class="chapter-item expanded "><a href="../clojurescript/clojurescript.html">clojurescript</a></li><li class="chapter-item expanded "><a href="../reagent/reagent.html" class="active">reagent</a></li><li class="chapter-item expanded "><a href="../re-frame/re-frame.html">re-frame</a></li><li class="chapter-item expanded "><a href="../closure.html">closure.md</a></li><li class="chapter-item expanded "><a href="../shadow-cljs/shadow-cljs.html">shadow-cljs</a></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="../index.html">들어가며</a></li><li class="chapter-item expanded "><a href="../clojurescript/clojurescript.html">clojurescript</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../clojurescript/hiccup.html">hiccup</a></li><li class="chapter-item expanded "><a href="../clojurescript/reference.html">reference</a></li></ol></li><li class="chapter-item expanded "><a href="../closure.html">google's closure</a></li><li class="chapter-item expanded "><a href="../shadow-cljs/shadow-cljs.html">shadow-cljs</a></li><li class="chapter-item expanded affix "><li class="part-title">Web</li><li class="chapter-item expanded "><a href="../npm/node.html">node</a></li><li class="chapter-item expanded "><a href="../web/javascript.html">javascript</a></li><li class="chapter-item expanded "><a href="../web/css.html" class="active">css</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../web/tailwindcss.html">tailwindcss</a></li></ol></li><li class="chapter-item expanded "><li class="part-title">React</li><li class="chapter-item expanded "><a href="../react/react.html">react</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../react/reagent/reagent.html">reagent</a></li><li class="chapter-item expanded "><a href="../react/re-frame/re-frame.html">re-frame</a></li></ol></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle">
                 <div class="sidebar-resize-indicator"></div>
@@ -150,7 +150,7 @@
                         <a href="https://github.com/netpyoung/study.clojurescript" title="Git repository" aria-label="Git repository">
                             <i id="git-repository-button" class="fa fa-github"></i>
                         </a>
-                        <a href="https://github.com/netpyoung/study.clojurescript/edit/main/src/reagent/reagent.md" title="Suggest an edit" aria-label="Suggest an edit">
+                        <a href="https://github.com/netpyoung/study.clojurescript/edit/main/src/web/css.md" title="Suggest an edit" aria-label="Suggest an edit">
                             <i id="git-edit-button" class="fa fa-edit"></i>
                         </a>
 
@@ -179,83 +179,59 @@
 
                 <div id="content" class="content">
                     <main>
-                        <p>https://github.com/reagent-project/reagent</p>
-<p>(defn hello-component [name]
-[:p &quot;Hello, &quot; name &quot;!&quot;])</p>
-<p>(defn say-hello []
-[hello-component &quot;world&quot;])</p>
-<p>class Hello extends React.Component {
-render() {
-return <div>Hello {this.props.name}</div>;
-}
-}</p>
-<p>class SayHello extends React.Component {
-render() {
-return &lt;Hello name&quot;world&quot; /&gt;;
-}
-}</p>
-<p><a href="https://reactjs.org/">react.js</a></p>
-<p>특성	props	state
-parent 컴포넌트에 의해 값이 변경 될 수 있는가?	예	아니오
-컴포넌트 내부에서 변경 될 수 있는가?	아니오	예</p>
-<p>ref: https://velopert.com/921</p>
-<p>https://reactjs.org/docs/fragments.html</p>
-<p><code>reagent.core/atom</code>
-deref</p>
-<p><code>reagent.core/create-class</code>
-If you don’t use ES6 classes, you may use the create-react-class module instead. See Using React without ES6 for more information.</p>
-<p>(r/create-class
-{:component-did-mout ...
-:reagent-render ...})</p>
-<h1 id="element"><a class="header" href="#element">Element</a></h1>
+                        <h1 id="css"><a class="header" href="#css">css</a></h1>
 <ul>
-<li>https://reagent-project.github.io/news/news050.html</li>
+<li>css
+<ul>
+<li><a href="https://tech.kakao.com/2022/05/20/on-demand-atomic-css-library/">https://tech.kakao.com/2022/05/20/on-demand-atomic-css-library/</a></li>
 </ul>
-<p><code>reagent.core/create-element</code>
-https://reactjs.org/docs/react-api.html#createelement</p>
-<p><code>reagent.core/as-element</code></p>
-<p>turns Reagent’s hiccup forms into React elements,</p>
-<p>(r/create-element &quot;div&quot;
-#js{:className &quot;foo&quot;}
-&quot;Hello &quot;
-(r/as-element [:strong &quot;world&quot;]))</p>
-<p><code>r/adapt-react-class</code>
-(def div-adapter (r/adapt-react-class &quot;div&quot;))</p>
-<p>(defn adapted []
-[div-adapter {:class &quot;foo&quot;}
-&quot;Hello &quot; [:strong &quot;world&quot;]])</p>
-<p>https://reagent-project.github.io/news/news060-alpha.html
-<code>reagent.core/track</code>
-rswap!</p>
-<p>https://github.com/reagent-project/reagent/blob/master/CHANGELOG.md#080-rc1-2018-04-11
-Add :&lt;&gt; shorthand for React Fragments (#352])</p>
-<p><code>getInitialState</code>
-<code>componentWillMount</code></p>
-<p><code>reagent/dom-node</code></p>
-<p>this (r/current-component)
-(r/props this) ;; this.props
-(r/children this) ;; this.props.children</p>
-<p>r/next-tick
-r/wrap
-The new wrap function combines two parts – a simple value, and a callback for when that value should change – into one value, that happens to look as an atom.</p>
-<p>The first argument to wrap should be the value that will be returned by @the-result.</p>
-<p>The second argument should be a function, that will be passed the new value whenever the result is changed (with optional extra arguments to wrap prepended, as with partial).</p>
-<p><code>reagent.core/cursor</code>
-https://reagent-project.github.io/news/news050.html</p>
-<p>Values and references
-So what’s the difference between wraps and cursors? Why have both?</p>
-<p>A wrap is just a value that happens to look like an atom. It doesn’t change unless you tell it to. It is a very lightweight combination of value and a callback to back-propagate changes to the value. It relies only on Reagent’s equality test in :should-component-update to avoid unnecessary re-rendering.</p>
-<p>A cursor, on the other hand, will always be up-to-date with the value of the source atom. In other words, it acts a reference to part of the value of the source. Components that deref cursors are re-rendered automatically, in exactly the same way as if they deref a normal Reagent atom (unnecessary re-rendering is avoided by checking if the cursor's value has changed using identical?).</p>
+</li>
+<li>library
+<ul>
+<li><a href="https://getbootstrap.com/">bootstrap</a></li>
+<li><a href="https://bulma.io/">belma</a></li>
+<li>Utility-First
+<ul>
+<li><a href="https://tailwindcss.com/">tailwind</a></li>
+</ul>
+</li>
+<li><a href="https://mui.com/">material-ui</a></li>
+<li><a href="https://storybook.js.org/">storybook.js</a></li>
+<li>CSS-in-JS
+<ul>
+<li><a href="https://cssinjs.org/">css in js</a></li>
+<li><a href="https://stylexjs.com/">stylex</a></li>
+</ul>
+</li>
+<li><a href="https://styled-components.com/">styled-components</a></li>
+<li><a href="https://unocss.dev/">unocss</a></li>
+</ul>
+</li>
+<li>clojurescript
+<ul>
+<li><a href="https://github.com/thheller/shadow-css">shadow-css</a>
+<ul>
+<li>CSS-in-CLJ(S)</li>
+</ul>
+</li>
+<li><a href="https://github.com/lambdaisland/ornament">ornament</a>
+<ul>
+<li>Clojure Styled Components</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                            <a rel="prev" href="../clojurescript/clojurescript.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="../web/javascript.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
 
-                            <a rel="next prefetch" href="../re-frame/re-frame.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next prefetch" href="../web/tailwindcss.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
 
@@ -265,11 +241,11 @@ So what’s the difference between wraps and cursors? Why have both?</p>
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                    <a rel="prev" href="../clojurescript/clojurescript.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="../web/javascript.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
 
-                    <a rel="next prefetch" href="../re-frame/re-frame.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next prefetch" href="../web/tailwindcss.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
             </nav>

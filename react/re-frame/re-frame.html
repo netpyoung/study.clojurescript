@@ -12,21 +12,21 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="theme-color" content="#ffffff">
 
-        <link rel="icon" href="../favicon.svg">
-        <link rel="shortcut icon" href="../favicon.png">
-        <link rel="stylesheet" href="../css/variables.css">
-        <link rel="stylesheet" href="../css/general.css">
-        <link rel="stylesheet" href="../css/chrome.css">
-        <link rel="stylesheet" href="../css/print.css" media="print">
+        <link rel="icon" href="../../favicon.svg">
+        <link rel="shortcut icon" href="../../favicon.png">
+        <link rel="stylesheet" href="../../css/variables.css">
+        <link rel="stylesheet" href="../../css/general.css">
+        <link rel="stylesheet" href="../../css/chrome.css">
+        <link rel="stylesheet" href="../../css/print.css" media="print">
 
         <!-- Fonts -->
-        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
-        <link rel="stylesheet" href="../fonts/fonts.css">
+        <link rel="stylesheet" href="../../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../../fonts/fonts.css">
 
         <!-- Highlight.js Stylesheets -->
-        <link rel="stylesheet" href="../highlight.css">
-        <link rel="stylesheet" href="../tomorrow-night.css">
-        <link rel="stylesheet" href="../ayu-highlight.css">
+        <link rel="stylesheet" href="../../highlight.css">
+        <link rel="stylesheet" href="../../tomorrow-night.css">
+        <link rel="stylesheet" href="../../ayu-highlight.css">
 
         <!-- Custom theme stylesheets -->
 
@@ -35,7 +35,7 @@
     <div id="body-container">
         <!-- Provide site root to javascript -->
         <script>
-            var path_to_root = "../";
+            var path_to_root = "../../";
             var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
         </script>
 
@@ -88,7 +88,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="../index.html">Index.md</a></li><li class="chapter-item expanded "><a href="../clojurescript/clojurescript.html">clojurescript</a></li><li class="chapter-item expanded "><a href="../reagent/reagent.html">reagent</a></li><li class="chapter-item expanded "><a href="../re-frame/re-frame.html" class="active">re-frame</a></li><li class="chapter-item expanded "><a href="../closure.html">closure.md</a></li><li class="chapter-item expanded "><a href="../shadow-cljs/shadow-cljs.html">shadow-cljs</a></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="../../index.html">들어가며</a></li><li class="chapter-item expanded "><a href="../../clojurescript/clojurescript.html">clojurescript</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../clojurescript/hiccup.html">hiccup</a></li><li class="chapter-item expanded "><a href="../../clojurescript/reference.html">reference</a></li></ol></li><li class="chapter-item expanded "><a href="../../closure.html">google's closure</a></li><li class="chapter-item expanded "><a href="../../shadow-cljs/shadow-cljs.html">shadow-cljs</a></li><li class="chapter-item expanded affix "><li class="part-title">Web</li><li class="chapter-item expanded "><a href="../../npm/node.html">node</a></li><li class="chapter-item expanded "><a href="../../web/javascript.html">javascript</a></li><li class="chapter-item expanded "><a href="../../web/css.html">css</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../web/tailwindcss.html">tailwindcss</a></li></ol></li><li class="chapter-item expanded "><li class="part-title">React</li><li class="chapter-item expanded "><a href="../../react/react.html">react</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../react/reagent/reagent.html">reagent</a></li><li class="chapter-item expanded "><a href="../../react/re-frame/re-frame.html" class="active">re-frame</a></li></ol></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle">
                 <div class="sidebar-resize-indicator"></div>
@@ -144,13 +144,13 @@
                     <h1 class="menu-title">study.clojurescript</h1>
 
                     <div class="right-buttons">
-                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                        <a href="../../print.html" title="Print this book" aria-label="Print this book">
                             <i id="print-button" class="fa fa-print"></i>
                         </a>
                         <a href="https://github.com/netpyoung/study.clojurescript" title="Git repository" aria-label="Git repository">
                             <i id="git-repository-button" class="fa fa-github"></i>
                         </a>
-                        <a href="https://github.com/netpyoung/study.clojurescript/edit/main/src/re-frame/re-frame.md" title="Suggest an edit" aria-label="Suggest an edit">
+                        <a href="https://github.com/netpyoung/study.clojurescript/edit/main/src/react/re-frame/re-frame.md" title="Suggest an edit" aria-label="Suggest an edit">
                             <i id="git-edit-button" class="fa fa-edit"></i>
                         </a>
 
@@ -179,22 +179,18 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1 id="re-frame-repo--readme"><a class="header" href="#re-frame-repo--readme">re-frame (<a href="https://github.com/Day8/re-frame">repo</a> / <a href="https://github.com/Day8/re-frame/blob/master/docs/README.md">README</a>)</a></h1>
+                        <h1 id="re-frame"><a class="header" href="#re-frame">re-frame</a></h1>
+<p>(<a href="https://github.com/Day8/re-frame">repo</a> / <a href="https://github.com/Day8/re-frame/blob/master/docs/README.md">README</a>)</p>
 <ul>
-<li>
-<p><a href="https://clojurescript.org/">ClojureScript</a>로 작성된 <a href="https://github.com/Day8/re-frame">re-frame</a>은 <a href="https://en.wikipedia.org/wiki/Single-page_application">SPA</a>만들때 쓰는 패턴입니다.</p>
-</li>
-<li>
-<p><a href="https://github.com/Day8/re-frame">re-frame</a>은 내부적으로 <a href="https://github.com/reagent-project/reagent">reagent</a>를 활용합니다.</p>
-</li>
-<li>
-<p><a href="https://www.youtube.com/watch?v=-yQreNDzvdw">Reaktor Talks: Esko Lahti, Developing Web Applications With Reagent/re-frame</a></p>
-</li>
-<li>
-<p>간락한 개념.</p>
-</li>
+<li><a href="https://clojurescript.org/">ClojureScript</a>로 작성된 <a href="https://github.com/Day8/re-frame">re-frame</a>은 <a href="https://en.wikipedia.org/wiki/Single-page_application">SPA</a>만들때 쓰는 패턴입니다.</li>
+<li><a href="https://github.com/Day8/re-frame">re-frame</a>은 내부적으로 <a href="https://github.com/reagent-project/reagent">reagent</a>를 활용합니다.</li>
+<li><a href="https://www.youtube.com/watch?v=-yQreNDzvdw">Reaktor Talks: Esko Lahti, Developing Web Applications With Reagent/re-frame</a></li>
 </ul>
-<pre><code>DB -&gt;
+<p>https://day8.github.io/re-frame/</p>
+<ul>
+<li>간락한 개념.</li>
+</ul>
+<pre><code class="language-txt">DB -&gt;
   뷰 -&gt;
     Reagent -&gt;
       React -&gt;
@@ -208,7 +204,7 @@ DB
 <ul>
 <li>키워드로 보는 개념.</li>
 </ul>
-<pre><code>app-db -&gt;
+<pre><code class="language-txt">app-db -&gt;
   [:hiccup] -&gt;
     (r/render-component component dom-root) -&gt;
     (rf/subsribe query-id) -&gt;
@@ -231,44 +227,53 @@ app-db
 </code></pre>
 <h2 id="용어설명"><a class="header" href="#용어설명">용어설명</a></h2>
 <h3 id="kind-reg-"><a class="header" href="#kind-reg-">kind <code>reg-*</code></a></h3>
-<p>register handler
+<pre><code class="language-clojure">register handler
 :event-db
 :event-fx
 :event-ctx
 :sub
 :sub-raw
 :fx
-:cofx</p>
-<p>drawing board
+:cofx
+
+drawing board
 reg-view
-reg-interceptor</p>
-<p>(rf/reg-event-db
-:event-id
-(fn [db event]
-(assoc db :some :thing)))</p>
-<p>(rf/reg
-{:kind  :event-db
-:id    :event-id
-:fn    (fn [db event]
-(assoc db :some :thing))})</p>
-<p>(rf/reg
-[{:kind :event-db ...}
-{:kind :event-db ...}
-{:kind :event-fx ...}
-{:kind :sub ...])</p>
+reg-interceptor
+
+(rf/reg-event-db
+   :event-id
+   (fn [db event]
+     (assoc db :some :thing)))
+
+(rf/reg
+  {:kind  :event-db
+   :id    :event-id
+   :fn    (fn [db event]
+            (assoc db :some :thing))})
+
+(rf/reg
+  [{:kind :event-db ...}
+   {:kind :event-db ...}
+   {:kind :event-fx ...}
+   {:kind :sub ...])
+</code></pre>
 <h3 id="registrar"><a class="header" href="#registrar">Registrar</a></h3>
 <p>Each entry stored in the registrar will become a map instead of just a handler.</p>
-<p>Map keys:</p>
-<p>:kind - somehow redundant
+<pre><code>Map keys:
+
+:kind - somehow redundant
 :id
 :doc
 :line
 :ns
 :doc
-:fn the handler</p>
-<p><code>re-com</code> is a library which supplies reusable Reagent widgets. And widgets, like a datepicker, are the simplest kind of components.
-<code>re-com</code> components are reusability because they take an input stream of data and they</p>
-<p><code>def-view</code>: TODO</p>
+:fn the handler
+
+`re-com` is a library which supplies reusable Reagent widgets. And widgets, like a datepicker, are the simplest kind of components.
+`re-com` components are reusability because they take an input stream of data and they
+
+`def-view`: TODO
+</code></pre>
 <h3 id="db--app-db--db"><a class="header" href="#db--app-db--db">DB : (<code>app-db</code> / <code>db</code>)</a></h3>
 <pre><code class="language-clojure">{...}
 </code></pre>
@@ -314,15 +319,18 @@ reg-interceptor</p>
  :queue     &lt;a collection of further interceptors&gt;
  :stack     &lt;a collection of interceptors already walked&gt;}
 </code></pre>
-<p>==================================================
-https://github.com/Day8/re-frame/blob/master/docs/EventHandlingInfographic.md</p>
+<hr />
+<ul>
+<li><a href="https://github.com/Day8/re-frame/blob/master/docs/EventHandlingInfographic.md">https://github.com/Day8/re-frame/blob/master/docs/EventHandlingInfographic.md</a></li>
+</ul>
 <h2 id="raise"><a class="header" href="#raise">raise</a></h2>
 <pre><code class="language-clojure">(rf/dispatch `event`)
 
 (rf/dispatch-sync `event`)
 </code></pre>
 <h2 id="queueing"><a class="header" href="#queueing">queueing</a></h2>
-<p>[event1 event2 event3 ...]</p>
+<pre><code class="language-clojure">[event1 event2 event3 ...]
+</code></pre>
 <h2 id="event-routeter"><a class="header" href="#event-routeter">event-routeter</a></h2>
 <pre><code class="language-clojure">(rf/reg-event-fx
   `event-key`
@@ -343,20 +351,24 @@ https://github.com/Day8/re-frame/blob/master/docs/EventHandlingInfographic.md</p
     `new-db`))
 ;;=&gt; {:db `new-db`} =&gt; [[:db `new-db`]]
 </code></pre>
-<p>(reg-event-db
-<code>event-key</code>
-(fn [{:key [db]} <code>event</code>]
-(assoc db :a 10)))</p>
-<p>(reg-event-fx
-<code>event-key</code>
-(fn [{:key [db]} <code>event</code>]
-{:db (assoc db :a 10)}))</p>
-<p>(reg-event-ctx
-<code>event-key</code>
-(fn [<code>context-map</code> <code>event</code>]
-<code>context-map</code>)</p>
+<pre><code class="language-clojure">(reg-event-db
+  `event-key`
+  (fn [{:key [db]} `event`]
+    (assoc db :a 10)))
+
+(reg-event-fx
+  `event-key`
+  (fn [{:key [db]} `event`]
+    {:db (assoc db :a 10)}))
+
+(reg-event-ctx
+  `event-key`
+  (fn [`context-map` `event`]
+    `context-map`)
+</code></pre>
 <h2 id="effect-routeter"><a class="header" href="#effect-routeter">effect-routeter</a></h2>
-<p>[[<code>effect-key</code> <code>effect-value</code>] ...]</p>
+<pre><code class="language-clojure">[[`effect-key` `effect-value`] ...]
+</code></pre>
 <h2 id="apply-effect"><a class="header" href="#apply-effect">apply effect</a></h2>
 <ul>
 <li>built-in : <code>:db</code>, <code>:dispatch</code>, ``</li>
@@ -402,87 +414,120 @@ https://github.com/Day8/re-frame/blob/master/docs/EventHandlingInfographic.md</p
 </code></pre>
 <h1 id="reg-sub--subscribe"><a class="header" href="#reg-sub--subscribe">reg-sub / subscribe</a></h1>
 <ul>
-<li>https://github.com/Day8/re-frame/blob/master/docs/SubscriptionFlow.md</li>
-<li>(ns re-frame.subs)</li>
+<li><a href="https://github.com/Day8/re-frame/blob/master/docs/SubscriptionFlow.md">https://github.com/Day8/re-frame/blob/master/docs/SubscriptionFlow.md</a></li>
+<li><code>(ns re-frame.subs)</code></li>
 </ul>
-<p>{:name &quot;Bruce&quot;}</p>
-<p>(rf/reg-sub
-:get-name
-(fn [db _]
-(name db))) =&gt; &quot;Bruce&quot;</p>
-<p>(rf/reg-sub
-:greeting
-(fn [db _]
-(rf/subscribe :get-name))
-(fn [name _]
-(st &quot;Hello, &quot; name))) =&gt; &quot;Hello, Bruce&quot;</p>
-<p>@(rf/subscribe :greeting) =&gt; &quot;Hello, Bruce&quot;</p>
-<ol>
+<pre><code class="language-clojure">{:name &quot;Bruce&quot;}
+
+(rf/reg-sub
+  :get-name
+  (fn [db _]
+    (name db))) =&gt; &quot;Bruce&quot;
+
+(rf/reg-sub
+  :greeting
+  (fn [db _]
+    (rf/subscribe :get-name))
+  (fn [name _]
+    (st &quot;Hello, &quot; name))) =&gt; &quot;Hello, Bruce&quot;
+
+@(rf/subscribe :greeting) =&gt; &quot;Hello, Bruce&quot;
+
+  1. (reg-sub
+       :test-sub
+       (fn [db [_]] db))
+
+  ;; The value in app-db is passed to the computation function as the 1st argument.
+
+  2. (reg-sub
+       :a-b-sub
+       (fn [q-vec d-vec]
+         [(subs/subscribe [:a-sub])
+          (subs/subscribe [:b-sub])])
+       (fn [[a b] [_]] {:a a :b b}))
+
+  ;;  Two functions provided. The 2nd is computation function, as before. The 1st
+  ;;  is returns what `input signals` should be provided to the computation. The
+  ;;  `input signals` function is called with two arguments: the query vector
+  ;;  and the dynamic vector. The return value can be singleton reaction or
+  ;;  a sequence of reactions.
+
+  3. (reg-sub
+       :a-b-sub
+       :&lt;- [:a-sub]
+       :&lt;- [:b-sub]
+       (fn [[a b] [_]] {:a a :b b}))```
+(let [value @(rf/subsribe `query-id`)])
+
+
+
+(rf/reg-sub
+  `query-id`
+  (fn [db event] ; computation-fn
+    value))
+
+(rf/reg-sub
+  `query-id`
+  (fn [query-vec dynamic-vec]
+    [(subscribe [:a-sub])
+     (subscribe [:b-sub])])
+  (fn [[a b] query-vec]
+    ....))
+</code></pre>
+<h2 id="ref"><a class="header" href="#ref">Ref</a></h2>
+<ul>
 <li>
-<p>(reg-sub
-:test-sub
-(fn [db [_]] db))
-The value in app-db is passed to the computation function as the 1st argument.</p>
+<p><a href="https://docs.google.com/drawings/d/1ptKAIPfb_gtwwSqYmt-JGTkwPVm_6LeWjjm-FcWznBs/edit">https://docs.google.com/drawings/d/1ptKAIPfb_gtwwSqYmt-JGTkwPVm_6LeWjjm-FcWznBs/edit</a></p>
 </li>
 <li>
-<p>(reg-sub
-:a-b-sub
-(fn [q-vec d-vec]
-[(subs/subscribe [:a-sub])
-(subs/subscribe [:b-sub])])
-(fn [[a b] [_]] {:a a :b b}))</p>
+<p><a href="https://github.com/Day8/re-frame/blob/master/docs/FAQs/DoINeedReFrame.md">https://github.com/Day8/re-frame/blob/master/docs/FAQs/DoINeedReFrame.md</a></p>
 </li>
-</ol>
-<p>Two functions provided. The 2nd is computation function, as before. The 1st
-is returns what <code>input signals</code> should be provided to the computation. The
-<code>input signals</code> function is called with two arguments: the query vector
-and the dynamic vector. The return value can be singleton reaction or
-a sequence of reactions.</p>
-<ol start="3">
-<li>(reg-sub
-:a-b-sub
-:&lt;- [:a-sub]
-:&lt;- [:b-sub]
-(fn [[a b] [_]] {:a a :b b}))```
-(let [value @(rf/subsribe <code>query-id</code>)])</li>
-</ol>
-<p>(rf/reg-sub
-<code>query-id</code>
-(fn [db event] ; computation-fn
-value))</p>
-<p>(rf/reg-sub
-<code>query-id</code>
-(fn [query-vec dynamic-vec]
-[(subscribe [:a-sub])
-(subscribe [:b-sub])])
-(fn [[a b] query-vec]
-....))</p>
-<p>https://docs.google.com/drawings/d/1ptKAIPfb_gtwwSqYmt-JGTkwPVm_6LeWjjm-FcWznBs/edit</p>
-<p>https://github.com/Day8/re-frame/blob/master/docs/FAQs/DoINeedReFrame.md</p>
-<h2 id="router"><a class="header" href="#router">Router</a></h2>
-<p>https://github.com/Day8/re-frame/blob/master/src/re_frame/router.cljc#L8-L60</p>
-<p>Subscription &amp; EventHandler
-https://github.com/Day8/re-frame/blob/master/docs/FAQs/UseASubscriptionInAnEventHandler.md</p>
-<p>Logger
-https://github.com/Day8/re-frame/blob/master/docs/FAQs/Logging.md</p>
-<p>on-click.event handle
-https://github.com/Day8/re-frame/blob/master/docs/FAQs/Null-Dispatched-Events.md</p>
-<p>WIP - EventError Handling
-https://github.com/Day8/re-frame/issues/231#issuecomment-249991378</p>
-<p>Custom event-handler define
-https://github.com/Day8/re-frame/blob/master/docs/FAQs/GlobalInterceptors.md</p>
+<li>
+<p>Router</p>
+<ul>
+<li><a href="https://github.com/Day8/re-frame/blob/master/src/re_frame/router.cljc#L8-L60">https://github.com/Day8/re-frame/blob/master/src/re_frame/router.cljc#L8-L60</a></li>
+</ul>
+</li>
+<li>
+<p>Subscription &amp; EventHandler</p>
+<ul>
+<li><a href="https://github.com/Day8/re-frame/blob/master/docs/FAQs/UseASubscriptionInAnEventHandler.md">https://github.com/Day8/re-frame/blob/master/docs/FAQs/UseASubscriptionInAnEventHandler.md</a></li>
+</ul>
+</li>
+<li>
+<p>Logger</p>
+<ul>
+<li><a href="https://github.com/Day8/re-frame/blob/master/docs/FAQs/Logging.md">https://github.com/Day8/re-frame/blob/master/docs/FAQs/Logging.md</a></li>
+</ul>
+</li>
+<li>
+<p>on-click.event handle</p>
+<ul>
+<li><a href="https://github.com/Day8/re-frame/blob/master/docs/FAQs/Null-Dispatched-Events.md">https://github.com/Day8/re-frame/blob/master/docs/FAQs/Null-Dispatched-Events.md</a></li>
+</ul>
+</li>
+<li>
+<p>WIP - EventError Handling</p>
+<ul>
+<li><a href="https://github.com/Day8/re-frame/issues/231#issuecomment-249991378">https://github.com/Day8/re-frame/issues/231#issuecomment-249991378</a></li>
+</ul>
+</li>
+<li>
+<p>Custom event-handler define</p>
+<ul>
+<li><a href="https://github.com/Day8/re-frame/blob/master/docs/FAQs/GlobalInterceptors.md">https://github.com/Day8/re-frame/blob/master/docs/FAQs/GlobalInterceptors.md</a></li>
+</ul>
+</li>
+</ul>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                            <a rel="prev" href="../reagent/reagent.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="../../react/reagent/reagent.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
 
-                            <a rel="next prefetch" href="../closure.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
-                                <i class="fa fa-angle-right"></i>
-                            </a>
 
                         <div style="clear: both"></div>
                     </nav>
@@ -490,13 +535,10 @@ https://github.com/Day8/re-frame/blob/master/docs/FAQs/GlobalInterceptors.md</p>
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                    <a rel="prev" href="../reagent/reagent.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="../../react/reagent/reagent.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
 
-                    <a rel="next prefetch" href="../closure.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
-                        <i class="fa fa-angle-right"></i>
-                    </a>
             </nav>
 
         </div>
@@ -509,13 +551,13 @@ https://github.com/Day8/re-frame/blob/master/docs/FAQs/GlobalInterceptors.md</p>
         </script>
 
 
-        <script src="../elasticlunr.min.js"></script>
-        <script src="../mark.min.js"></script>
-        <script src="../searcher.js"></script>
+        <script src="../../elasticlunr.min.js"></script>
+        <script src="../../mark.min.js"></script>
+        <script src="../../searcher.js"></script>
 
-        <script src="../clipboard.min.js"></script>
-        <script src="../highlight.js"></script>
-        <script src="../book.js"></script>
+        <script src="../../clipboard.min.js"></script>
+        <script src="../../highlight.js"></script>
+        <script src="../../book.js"></script>
 
         <!-- Custom JS scripts -->
 

@@ -89,7 +89,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="index.html">Index.md</a></li><li class="chapter-item expanded "><a href="clojurescript/clojurescript.html">clojurescript</a></li><li class="chapter-item expanded "><a href="reagent/reagent.html">reagent</a></li><li class="chapter-item expanded "><a href="re-frame/re-frame.html">re-frame</a></li><li class="chapter-item expanded "><a href="closure.html">closure.md</a></li><li class="chapter-item expanded "><a href="shadow-cljs/shadow-cljs.html">shadow-cljs</a></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="index.html">들어가며</a></li><li class="chapter-item expanded "><a href="clojurescript/clojurescript.html">clojurescript</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="clojurescript/hiccup.html">hiccup</a></li><li class="chapter-item expanded "><a href="clojurescript/reference.html">reference</a></li></ol></li><li class="chapter-item expanded "><a href="closure.html">google's closure</a></li><li class="chapter-item expanded "><a href="shadow-cljs/shadow-cljs.html">shadow-cljs</a></li><li class="chapter-item expanded affix "><li class="part-title">Web</li><li class="chapter-item expanded "><a href="npm/node.html">node</a></li><li class="chapter-item expanded "><a href="web/javascript.html">javascript</a></li><li class="chapter-item expanded "><a href="web/css.html">css</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="web/tailwindcss.html">tailwindcss</a></li></ol></li><li class="chapter-item expanded "><li class="part-title">React</li><li class="chapter-item expanded "><a href="react/react.html">react</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="react/reagent/reagent.html">reagent</a></li><li class="chapter-item expanded "><a href="react/re-frame/re-frame.html">re-frame</a></li></ol></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle">
                 <div class="sidebar-resize-indicator"></div>
@@ -177,91 +177,669 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1 id="indexmd"><a class="header" href="#indexmd">Index.md</a></h1>
+                        <h1 id="clojurescript-공부노트"><a class="header" href="#clojurescript-공부노트">Clojurescript 공부노트</a></h1>
+<ul>
+<li>Clojurescript는 조금 까다롭다
+<ul>
+<li>Clojure를 알아야하고</li>
+<li>웹 개발 환경/도구를 알아야한다
+<ul>
+<li>node</li>
+<li>javascript
+<ul>
+<li>interop</li>
+</ul>
+</li>
+<li>css</li>
+<li>framework
+<ul>
+<li>react</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>기타 등등</li>
+</ul>
+</li>
+</ul>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="clojurescript"><a class="header" href="#clojurescript">clojurescript</a></h1>
-<div style="break-before: page; page-break-before: always;"></div><p>https://github.com/reagent-project/reagent</p>
-<p>(defn hello-component [name]
-[:p &quot;Hello, &quot; name &quot;!&quot;])</p>
-<p>(defn say-hello []
-[hello-component &quot;world&quot;])</p>
-<p>class Hello extends React.Component {
-render() {
-return <div>Hello {this.props.name}</div>;
-}
-}</p>
-<p>class SayHello extends React.Component {
-render() {
-return &lt;Hello name&quot;world&quot; /&gt;;
-}
-}</p>
-<p><a href="https://reactjs.org/">react.js</a></p>
-<p>특성	props	state
-parent 컴포넌트에 의해 값이 변경 될 수 있는가?	예	아니오
-컴포넌트 내부에서 변경 될 수 있는가?	아니오	예</p>
-<p>ref: https://velopert.com/921</p>
-<p>https://reactjs.org/docs/fragments.html</p>
-<p><code>reagent.core/atom</code>
-deref</p>
-<p><code>reagent.core/create-class</code>
-If you don’t use ES6 classes, you may use the create-react-class module instead. See Using React without ES6 for more information.</p>
-<p>(r/create-class
-{:component-did-mout ...
-:reagent-render ...})</p>
-<h1 id="element"><a class="header" href="#element">Element</a></h1>
 <ul>
-<li>https://reagent-project.github.io/news/news050.html</li>
+<li><a href="https://clojurescript.org/">homepage</a>
+<ul>
+<li><a href="https://github.com/clojure/clojurescript">repo</a></li>
+<li><a href="https://cljs.github.io/api/">API</a></li>
+<li><a href="https://clojurescript.org/tools/testing">testing</a></li>
 </ul>
-<p><code>reagent.core/create-element</code>
-https://reactjs.org/docs/react-api.html#createelement</p>
+</li>
+<li><a href="https://clojurescript.io/">online REPL</a></li>
+<li><a href="https://cljs.info/cheatsheet/">cheatsheet</a>
+<ul>
+<li><a href="https://github.com/oakmac/cljs-cheatsheet">repo</a></li>
+</ul>
+</li>
+</ul>
+<h2 id="ref"><a class="header" href="#ref">ref</a></h2>
+<ul>
+<li>
+<p><a href="https://github.com/funcool/clojurescript-unraveled">https://github.com/funcool/clojurescript-unraveled</a></p>
+<ul>
+<li><a href="https://github.com/t-cool/clojurescript-unraveled-ja">https://github.com/t-cool/clojurescript-unraveled-ja</a></li>
+</ul>
+</li>
+<li>
+<p><a href="https://cljs.github.io/api/compiler-options/foreign-libs">https://cljs.github.io/api/compiler-options/foreign-libs</a></p>
+</li>
+<li>
+<p>영태형님</p>
+<ul>
+<li><a href="http://philoskim.github.io/doc/clojurescript.html">http://philoskim.github.io/doc/clojurescript.html</a></li>
+<li><a href="http://philoskim.github.io/docs/cljs/static-fns.html">http://philoskim.github.io/docs/cljs/static-fns.html</a></li>
+<li><a href="https://gist.github.com/philoskim/2b8f401c82a220f74d0e02832c8ebc54">https://gist.github.com/philoskim/2b8f401c82a220f74d0e02832c8ebc54</a></li>
+</ul>
+</li>
+<li>
+<p><a href="https://shaunlebron.github.io/t3tr0s-slides/#0">https://shaunlebron.github.io/t3tr0s-slides/#0</a></p>
+</li>
+<li>
+<p><a href="https://github.com/ertugrulcetin/racing-game-cljs">https://github.com/ertugrulcetin/racing-game-cljs</a></p>
+</li>
+</ul>
+<h2 id="cljsjs"><a class="header" href="#cljsjs">cljsjs</a></h2>
+<ul>
+<li><a href="https://cljsjs.github.io/">homepage</a>
+<ul>
+<li><a href="https://github.com/cljsjs/packages">repo</a></li>
+</ul>
+</li>
+</ul>
+<h2 id="library"><a class="header" href="#library">library</a></h2>
+<ul>
+<li>emotion-js</li>
+<li>malli</li>
+<li>karma + @testing-library/react</li>
+</ul>
+<h2 id="reitit"><a class="header" href="#reitit">reitit</a></h2>
+<p>&quot;reitit&quot;는 핀란드어로 &quot;routes&quot;을 뜻합니다.</p>
+<ul>
+<li><a href="https://github.com/metosin/reitit">repo</a></li>
+<li><a href="https://cljdoc.org/d/metosin/reitit/">docs</a>
+<ul>
+<li><a href="https://github.com/metosin/reitit/blob/master/examples/frontend/src/frontend/core.cljs">example</a></li>
+</ul>
+</li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="hiccup"><a class="header" href="#hiccup">hiccup</a></h1>
+<p>Fast library for rendering HTML in Clojure </p>
+<ul>
+<li><a href="https://github.com/weavejester/hiccup">repo</a></li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="reference"><a class="header" href="#reference">reference</a></h1>
+<ul>
+<li><a href="https://clojurebridgelondon.github.io/">https://clojurebridgelondon.github.io/</a></li>
+<li><a href="https://www.youtube.com/watch?v=lvsAqVIeRAQ">&quot;Modern Frontend on ClojureScript and React in 2023&quot; by Yuri Khmelevsky</a></li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="closure"><a class="header" href="#closure">Closure</a></h1>
+<ul>
+<li>
+<p><a href="https://clojurescript.org/about/closure">https://clojurescript.org/about/closure</a></p>
+<ul>
+<li>clojurescript는 <a href="https://developers.google.com/closure/">google의 closure 도구</a>를 이용하여 clojurescript파일을 javascript파일로 만듬.</li>
+<li>이 도구는, <code>closure compiler</code>와 <code>closure library</code> 등을 포함하고 있으며, clojurescript의 코어는 <code>closure library</code>기능을 이용하여 만들어져 있음.</li>
+<li>따라서 closure의 <code>addDependency</code>, <code>provide</code>, <code>require</code>를 이용하여, 컴파일시 어떤게 포함될지에 대한 의존성 관리를 할 수 있음.</li>
+<li><code>closure compiler</code>를 이용하여, 공백제거, 코멘트제거 및 이름축약 등, 최적화된 javascript파일을 얻을 수 있다.</li>
+</ul>
+</li>
+<li>
+<p><a href="https://clojurescript.org/reference/compiler-options">ClojureScript 컴파일 옵션</a></p>
+</li>
+</ul>
+<h2 id="주의점"><a class="header" href="#주의점">주의점.</a></h2>
+<ul>
+<li><code>:optimizations :none</code>시 <code>goog/base.js</code>을 추가시켜줘야 한다.
+<ul>
+<li><a href="https://stackoverflow.com/questions/26253958/understanding-relationship-between-clojurescript-and-google-closure-compiler">https://stackoverflow.com/questions/26253958/understanding-relationship-between-clojurescript-and-google-closure-compiler</a></li>
+</ul>
+</li>
+</ul>
+<h2 id="ref-1"><a class="header" href="#ref-1">Ref.</a></h2>
+<ul>
+<li><a href="https://adambard.com/blog/clojurescript-boot-fireplace/">https://adambard.com/blog/clojurescript-boot-fireplace/</a></li>
+<li><a href="https://lambdaisland.com/episodes/javascript-libraries-clojurescript">https://lambdaisland.com/episodes/javascript-libraries-clojurescript</a></li>
+<li><a href="http://upgradingdave.com/blog/pages/006_boot_cljs.html">http://upgradingdave.com/blog/pages/006_boot_cljs.html</a></li>
+<li><a href="https://github.com/magomimmo/modern-cljs">https://github.com/magomimmo/modern-cljs</a></li>
+<li><a href="https://github.com/binaryage/cljs-oops">https://github.com/binaryage/cljs-oops</a></li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="shadow-cljs"><a class="header" href="#shadow-cljs">shadow-cljs</a></h1>
+<ul>
+<li>
+<p><a href="https://github.com/thheller/shadow-cljs">repo</a></p>
+</li>
+<li>
+<p><a href="https://shadow-cljs.github.io/docs/UsersGuide.html">가이드</a></p>
+<ul>
+<li><a href="https://github.com/shadow-cljs/shadow-cljs.github.io">가이드 - repo</a></li>
+<li>ja
+<ul>
+<li><a href="https://t-cool.github.io/shadow-cljs-users-guide-ja/">https://t-cool.github.io/shadow-cljs-users-guide-ja/</a></li>
+<li><a href="https://github.com/t-cool/shadow-cljs-users-guide-ja">https://github.com/t-cool/shadow-cljs-users-guide-ja</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>part</p>
+<ul>
+<li>clojure library</li>
+<li>npm package</li>
+</ul>
+</li>
+<li>
+<p><del>Figwheel</del></p>
+<ul>
+<li>예전에는 Figwheel을 많이 사용했지만, 현재는 shadow-cljs를 많이 사용한다.</li>
+<li><a href="https://figwheel.org/">https://figwheel.org/</a>
+<ul>
+<li><a href="https://github.com/bhauman/figwheel-main">https://github.com/bhauman/figwheel-main</a></li>
+<li><a href="https://github.com/bhauman/lein-figwheel">https://github.com/bhauman/lein-figwheel</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>shadow-cljs lifecycle</p>
+<ul>
+<li>https://code.thheller.com/blog/shadow-cljs/2019/08/25/hot-reload-in-clojurescript.html</li>
+</ul>
+</li>
+</ul>
+<pre><code class="language-json">:modules {:app {:init-fn example.app/init}}
+</code></pre>
+<h2 id="dev-beforeafter-load-async"><a class="header" href="#dev-beforeafter-load-async">:dev{{-before/after}}-load{{-async}}</a></h2>
+<pre><code class="language-clojure">(defn ^:dev/before-load stop []
+  (js/console.log &quot;stop&quot;))
+
+(defn ^:dev/after-load start []
+  (js/console.log &quot;start&quot;))
+
+(defn ^:dev/before-load-async stop [done]
+  (js/console.log &quot;stop&quot;)
+  (js/setTimeout
+    (fn []
+      (js/console.log &quot;stop complete&quot;)
+      (done)))
+
+(defn ^:dev/after-load-async start [done]
+  (js/console.log &quot;start&quot;)
+  (js/setTimeout
+    (fn []
+      (js/console.log &quot;start complete&quot;)
+      (done))))
+</code></pre>
+<h2 id="shadow-cljsedn"><a class="header" href="#shadow-cljsedn">shadow-cljs.edn</a></h2>
+<h2 id="example"><a class="header" href="#example">example</a></h2>
+<pre><code class="language-bash">npx shadow-cljs -d cider/cider-nrepl:0.44.0 watch :app
+
+shadow-cljs - config: /Users/pyoung/test-cljs/shadow-cljs.edn
+shadow-cljs - starting via &quot;clojure&quot;
+shadow-cljs - HTTP server available at http://localhost:8080
+shadow-cljs - server version: 2.26.2 running at http://localhost:9630
+shadow-cljs - nREPL server started on port 49953
+shadow-cljs - watching build :app
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="node"><a class="header" href="#node">node</a></h1>
+<p>Node.js® is an open-source, cross-platform JavaScript runtime environment.</p>
+<ul>
+<li>
+<p><a href="https://nodejs.org/en">홈페이지</a></p>
+</li>
+<li>
+<p>Javascript Engine</p>
+<ul>
+<li>.js  -&gt; V8 엔진 (컴파일) -&gt; 기계 코드 (X86_64, MIPS, ARM 등) -&gt; CPU에서 실행</li>
+<li>종류
+<ul>
+<li>V8 is the name of the JavaScript engine that powers Google Chrome
+<ul>
+<li>Lars Bak 창시</li>
+<li>C++로 작성</li>
+<li>Node.js에서 사용</li>
+</ul>
+</li>
+<li>Firefox has SpiderMonkey</li>
+<li>Safari has JavaScriptCore (also called Nitro)</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="ecmascript"><a class="header" href="#ecmascript">ECMAScript</a></h2>
+<ul>
+<li>ESModule</li>
+<li>CommonJS</li>
+</ul>
+<h2 id="패키지-매니저"><a class="header" href="#패키지-매니저">패키지 매니저</a></h2>
+<h3 id="npm"><a class="header" href="#npm">NPM</a></h3>
+<ul>
+<li>npm(<code>N</code>ode <code>P</code>ackage <code>M</code>anager)</li>
+<li>npx(<code>N</code>ode <code>P</code>ackage <code>E</code>xecuter)
+<ul>
+<li>npx는 npm 버전 5.2.0부터 포함된 명령</li>
+</ul>
+</li>
+</ul>
+<h4 id="packagejson"><a class="header" href="#packagejson">package.json</a></h4>
+<h3 id="기타"><a class="header" href="#기타">기타</a></h3>
+<ul>
+<li>pnpm
+<ul>
+<li><a href="https://pnpm.io/">https://pnpm.io/</a></li>
+<li><a href="https://pnpm.io/benchmarks">https://pnpm.io/benchmarks</a></li>
+</ul>
+</li>
+<li>yarn
+<ul>
+<li><a href="https://classic.yarnpkg.com/en/">https://classic.yarnpkg.com/en/</a></li>
+</ul>
+</li>
+</ul>
+<pre><code class="language-txt">yarn에 실망한 개발자 Zoltan Kochan이 2017년 pnpm을 세상에 내놓습니다.
+ pnpm은 yarn과 npm에 비해 빠릅니다. 그 이유는 패키지를 복사해서 사용하는 대신에 hard link를 사용하기 때문이죠. 또한 공간도 덜 차지합니다. 패키지의 버전 하나는 한 개의 복사본만 존재합니다. 그리고 그 파일의 링크를 node_modules 폴더에 추가합니다.
+
+ref: https://medium.com/zigbang/패키지-매니저-그것이-궁금하다-5bacc65fb05d
+</code></pre>
+<h2 id="ref-2"><a class="header" href="#ref-2">Ref</a></h2>
+<p><a href="https://www.youtube.com/playlist?list=PLuHgQVnccGMB4krR04ug5nEXJ3sAEOWDL">NPM Package - 생활코딩</a></p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="javascript"><a class="header" href="#javascript">javascript</a></h1>
+<h2 id="신텍스-하이라이트"><a class="header" href="#신텍스-하이라이트">신텍스 하이라이트</a></h2>
+<h3 id="highlightjs"><a class="header" href="#highlightjs">highlight.js</a></h3>
+<ul>
+<li>
+<p>예제</p>
+<ul>
+<li><a href="https://highlightjs.org/static/demo/">https://highlightjs.org/static/demo/</a></li>
+<li>깔쌈해보이는것
+<ul>
+<li>base16-framer</li>
+<li>atom-one-dark</li>
+<li>atom-one-light</li>
+<li>monokia-sublime</li>
+<li>base16-material-darker</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>highlightBlock</p>
+<ul>
+<li>Deprecated since version 11.0: Please use highlightElement() instead.</li>
+</ul>
+</li>
+<li>
+<p><a href="https://ask.clojure.org/index.php/9068/how-to-use-highlight-js-in-a-shadow-cljs-project">https://ask.clojure.org/index.php/9068/how-to-use-highlight-js-in-a-shadow-cljs-project</a></p>
+</li>
+</ul>
+<pre><code class="language-clojure">(defn get-highlight-code [code]
+  [:pre
+    [:code {:dangerouslySetInnerHTML
+             {:__html (.-value (js/hljs.highlight &quot;clojure&quot; code))}}]])
+</code></pre>
+<ul>
+<li>dangerouslySetInnerHTML
+<ul>
+<li><a href="https://react.dev/reference/react-dom/components/common#common-props">https://react.dev/reference/react-dom/components/common#common-props</a></li>
+</ul>
+</li>
+</ul>
+<pre><code class="language-txt">npm/cljsjs로 설치할 수 있긴한데, npm/cljsjs버전은 용량이 큰거같아 사이트에서 다운받고 작은거로 가자
+
+## npm
+&quot;highlight.js&quot;: &quot;^11.9.0&quot;,
+
+## deps.edn
+cljsjs/highlight {:mvn/version &quot;11.7.0-0&quot;}
+</code></pre>
+<h3 id="codemirror"><a class="header" href="#codemirror">codemirror</a></h3>
+<ul>
+<li><a href="https://codemirror.net/">https://codemirror.net/</a></li>
+<li><a href="https://github.com/nextjournal/clojure-mode">https://github.com/nextjournal/clojure-mode</a></li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="css"><a class="header" href="#css">css</a></h1>
+<ul>
+<li>css
+<ul>
+<li><a href="https://tech.kakao.com/2022/05/20/on-demand-atomic-css-library/">https://tech.kakao.com/2022/05/20/on-demand-atomic-css-library/</a></li>
+</ul>
+</li>
+<li>library
+<ul>
+<li><a href="https://getbootstrap.com/">bootstrap</a></li>
+<li><a href="https://bulma.io/">belma</a></li>
+<li>Utility-First
+<ul>
+<li><a href="https://tailwindcss.com/">tailwind</a></li>
+</ul>
+</li>
+<li><a href="https://mui.com/">material-ui</a></li>
+<li><a href="https://storybook.js.org/">storybook.js</a></li>
+<li>CSS-in-JS
+<ul>
+<li><a href="https://cssinjs.org/">css in js</a></li>
+<li><a href="https://stylexjs.com/">stylex</a></li>
+</ul>
+</li>
+<li><a href="https://styled-components.com/">styled-components</a></li>
+<li><a href="https://unocss.dev/">unocss</a></li>
+</ul>
+</li>
+<li>clojurescript
+<ul>
+<li><a href="https://github.com/thheller/shadow-css">shadow-css</a>
+<ul>
+<li>CSS-in-CLJ(S)</li>
+</ul>
+</li>
+<li><a href="https://github.com/lambdaisland/ornament">ornament</a>
+<ul>
+<li>Clojure Styled Components</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="tailwindcss"><a class="header" href="#tailwindcss">tailwindcss</a></h1>
+<ul>
+<li>
+<p>tailwindcss: 순풍</p>
+</li>
+<li>
+<p><a href="https://tailwindcss.com/">홈페이지</a></p>
+<ul>
+<li><a href="https://tailwindcss.com/docs/content-configuration">https://tailwindcss.com/docs/content-configuration</a></li>
+<li><a href="https://tailwindcss.com/docs/configuration">https://tailwindcss.com/docs/configuration</a></li>
+</ul>
+</li>
+</ul>
+<pre><code class="language-bash">npx tailwindcss init
+</code></pre>
+<h2 id="tailwindconfigjs"><a class="header" href="#tailwindconfigjs">tailwind.config.js</a></h2>
+<pre><code class="language-json">;; file: package.json
+{
+  &quot;name&quot;: &quot;app&quot;,
+  &quot;version&quot;: &quot;0.0.1&quot;,
+  &quot;scripts&quot;: {
+    &quot;start&quot;: &quot;npx shadow-cljs -d cider/cider-nrepl:0.44.0 watch :app&quot;,
+    &quot;styles-watch&quot;: &quot;npx tailwindcss -i src/styles/styles.css -o resources/public/css/styles.css --watch&quot;,
+    &quot;styles&quot;: &quot;npx tailwindcss -i src/styles/styles.css -o resources/public/css/styles.css&quot;,
+    &quot;build&quot;: &quot;npx shadow-cljs release :app &amp;&amp; npm run styles&quot;,
+    &quot;test&quot;: &quot;echo \&quot;Error: no test specified\&quot; &amp;&amp; exit 1&quot;
+  },
+  &quot;devDependencies&quot;: {
+    &quot;shadow-cljs&quot;: &quot;2.26.2&quot;
+  },
+  &quot;dependencies&quot;: {
+    &quot;react&quot;: &quot;^18.2.0&quot;,
+    &quot;react-dom&quot;: &quot;^18.2.0&quot;,
+    &quot;tailwindcss&quot;: &quot;^3.4.0&quot;
+  }
+}
+</code></pre>
+<ul>
+<li>jit
+<ul>
+<li><a href="https://github.com/teknql/shadow-cljs-tailwind-jit">https://github.com/teknql/shadow-cljs-tailwind-jit</a></li>
+<li><a href="https://v2.tailwindcss.com/docs/just-in-time-mode?source=post_page-----82add3fe1fd--------------------------------#enabling-jit-mode">https://v2.tailwindcss.com/docs/just-in-time-mode?source=post_page-----82add3fe1fd--------------------------------#enabling-jit-mode</a></li>
+</ul>
+</li>
+<li>ref
+<ul>
+<li><a href="https://github.com/jacekschae/shadow-cljs-tailwindcss">https://github.com/jacekschae/shadow-cljs-tailwindcss</a></li>
+<li><a href="https://velog.io/@teo/adorablecss-better-then-tailwindcss">https://velog.io/@teo/adorablecss-better-then-tailwindcss</a></li>
+</ul>
+</li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="react"><a class="header" href="#react">react</a></h1>
+<ul>
+<li><a href="https://react.dev/">react</a></li>
+<li><a href="https://reactnative.dev/">react-native</a></li>
+</ul>
+<p>react개인적으로 정리. 자세한건 facebook공식 사이트에 있으니,  한눈에 필요한 것만 빠르게 윤곽을 잡을 수 있는게 필요!</p>
+<h2 id="1-시작-왜-react가-나왔는가"><a class="header" href="#1-시작-왜-react가-나왔는가">1. 시작, 왜 React가 나왔는가?</a></h2>
+<p>facebook이  사이트를 개발하면서 데이터 변경과 ui변경을 동기화 시키는데 어려움을 격음.</p>
+<h3 id="11-어떻게-동기화를-시킬-것인가"><a class="header" href="#11-어떻게-동기화를-시킬-것인가">1.1 어떻게 동기화를 시킬 것인가.</a></h3>
+<p>데이터를 변경할때마다 다시 새로 그리면 비용이 큼으로, 바뀌어야 하는 부분만 변경하고 싶음.브라우저는 DOM을 이용하여 표현하는데, DOM이 눈에 보이도록 렌더링될때에는 비용(시간)이 많이 듬.Virtual DOM이라고 눈에 보이지 않는 DOM을 만들어, 변경사항을 적용하고, 최소한에 변경사항을 눈에 보이도록 실제DOM에 반영하면 어떨까.</p>
+<h3 id="12-react는-어떠한-데이터-흐름을-가지며-어떻게-uidom을-갱신하는가"><a class="header" href="#12-react는-어떠한-데이터-흐름을-가지며-어떻게-uidom을-갱신하는가">1.2 React는 어떠한 데이터 흐름을 가지며 어떻게 UI(dom)을 갱신하는가.</a></h3>
+<p>가상 Dom의 변경사항을 검사하여, 실제 Dom에 적용한다(변경에 필요한 최소한의 dom만 갱신)단방향 데이타 흐름.여기서 <code>Dom갱신</code>, <code>데이터 흐름</code>에 주의해야 한다 .dom갱신부터 보자</p>
+<pre><code>컴포넌트컴포넌트 생성 constructor
+ ---- 렌더전 초기화  UNSAFE_componentWillMount
+렌더링 render
+렌더후 초기화 componentDidMount
+</code></pre>
+<h3 id="갱신"><a class="header" href="#갱신">갱신.</a></h3>
+<p>Reconciliation 작업은 Virtual DOM과 DOM을 비교해 DOM을 갱신하는 작업이다</p>
+<h3 id="dom-element"><a class="header" href="#dom-element">Dom Element</a></h3>
+<ul>
+<li>Dom속성 : Camel-case</li>
+<li>이벤트 헨들러 : Camel-case</li>
+<li>style 속성 : camelCase</li>
+</ul>
+<pre><code class="language-html">&lt;div className='a'&gt;
+&lt;label htmlFor='name'&gt;
+</code></pre>
+<h3 id="reconciliation"><a class="header" href="#reconciliation">reconciliation</a></h3>
+<ul>
+<li>https://d2.naver.com/helloworld/9297403</li>
+<li>https://www.robinwieruch.de/redux-mobx-confusion</li>
+</ul>
+<pre><code class="language-javascript">function Welcome(props) {
+  return &lt;h1&gt;Hello, {props.name}&lt;/h1&gt;;
+}
+</code></pre>
+<pre><code class="language-js">// constructor HelloMessage(name) { } 이런식으로 해야 나중에 햇갈리지 않지 이런 인터페이스는 에러!!class HelloMessage extends React.Component {  render() {    return &lt;div&gt;Hello {this.props.name}&lt;/div&gt;;  }}ReactDOM.render(&lt;HelloMessage name=&quot;Jane&quot; /&gt;, mountNode);``````jsclass HelloMessage extends React.Component {  render() {    return React.createElement(      &quot;div&quot;,      null,      &quot;Hello &quot;,      this.props.name    );  }}ReactDOM.render(React.createElement(HelloMessage, { name: &quot;Jane&quot; }), mountNode);```Props 속성- immutable- passed in from parent- can not change it- can be defaulted &amp; validated## stateclass Clock extends React.Component {  constructor(props) {    super(props);    this.state = {date: new Date()};  }  render() {    return (      &lt;div&gt;        &lt;h1&gt;Hello, world!&lt;/h1&gt;        &lt;h2&gt;It is {this.state.date.toLocaleTimeString()}.&lt;/h2&gt;      &lt;/div&gt;    );  }}내부 상태(state) 저장this.state.comment = &quot;hello&quot;;  // Wrongthis.setState({comment: &quot;hello&quot;});  //Correctthis.state = // only constructorstate와 props 는 비동기적으로 업데이트 됨으로```js// Wrongthis.setState({counter:this.state.counter + this.props.increment});// Correctthis.setState((prevState,props)=&gt;({counter:prevState.counter + props.increment}));```componentDidMount() { }componentWillUnmount() { }this.state = {posts: [],comments: []};componentDidMount() {fetchPosts().then(response=&gt;{this.setState({posts: response.posts    });  });fetchComments().then(response=&gt;{this.setState({comments: response.comments    });  });}this.hello 처럼 변수를 만들어 무언가를 저장할 수 있다(보여지는 파트가 아닌것)State 상태- private- maintained by component- mutableReactDOM.render() 로 렌더된 결과를 바꾼다.state: this.setState() - 새로운 값으로 변경 - component renderstate - lifecycle - https://facebook.github.io/react/docs/state-and-lifecycle.htmllifting-state-up : https://facebook.github.io/react/docs/lifting-state-up.htmlprops.children&lt;FancyBorder color=&quot;blue&quot;&gt;&lt;h1 className=&quot;Dialog-title&quot;&gt;Welcome&lt;/h1&gt;&lt;p className=&quot;Dialog-message&quot;&gt;Thank you for visiting our spacecraft!&lt;/p&gt;&lt;/FancyBorder&gt;{props.left}&lt;SplitPane left={ &lt;Contacts /&gt; } right={ &lt;Chat /&gt; } /&gt;결과적으로 이걸 이해https://facebook.github.io/react/docs/thinking-in-react.htmlstate와 props를 적절히 활용.- 좀 더 깔끔한 방법은 없을까?-- FilterableProductTable의 콜백을 계속 물고와서, SearchBar에서 input의 변경 콜백과 연결시켜주는 것## mixin예전에 있었던 기능으로 복잡함.https://facebook.github.io/react/blog/2016/07/13/mixins-considered-harmful.htmlhttps://en.wikipedia.org/wiki/MixinIn object-oriented programming languages, a mixin is a class that contains methods for use by other classes without having to be the parent class of those other classes자바스크립트 코드로 mixin배우려니 빡쳐서 찾아보니http://blog.saltfactory.net/ruby/understanding-mixin-using-with-ruby.htmljs에서 mixin가지고 노는것은 미친짓.fb에선 mixin이 암시적인 의존성을 가진다고 생각.이름 충돌, 복잡성증가## [HOC(Higher Order Component)](https://facebook.github.io/react/docs/higher-order-components.html)HOCs are not part of the React APIconst EnhancedComponent = higherOrderComponent(WrappedComponent);HOCs are common in third-party React libraries, such as Redux's connect and Relay's createContainer.python decorator랑 비슷하게 구현.## this.props.key : https://facebook.github.io/react/docs/lists-and-keys.htmllist의 자식엘리먼트(li)같은걸 코드로 생성할때 const todoItems = todos.map((todo) =&gt;&lt;li key={todo.id}&gt;{todo.text} &lt;/li&gt;);이런식으로 uniqid를 쥐어준다.(유니크하지 않으면 나중에 렌더링시 순서가 꼬일 수 있다)ㅡㅡ## this.props.refIn the typical React dataflow, props are the only way that parent components interact with their children. To modify a child, you re-render it with new props. However, there are a few cases where you need to imperatively modify a child outside of the typical dataflow. The child to be modified could be an instance of a React component, or it could be a DOM element. For both of these cases, React provides an escape hatch.When to Use Refs#
+	* Managing focus, text selection, or media playback.
+	* Triggering imperative animations.
+	* Integrating with third-party DOM libraries.
+
+class CustomTextInput extends React.Component {constructor(props){super(props);this.focus=this.focus.bind(this);  }focus(){  this.textInput.focus();  }render(){  return(&lt;div&gt;&lt;inputtype=&quot;text&quot;ref={(input) =&gt; { this.textInput = input; }} /&gt;&lt;inputtype=&quot;button&quot;value=&quot;Focus the text input&quot;onClick={this.focus}/&gt;&lt;/div&gt;);  }}# toolhttps://github.com/facebook/react-devtoolshttps://facebook.github.io/react/docs/perf.html
+
+</code></pre>
+<p>virtual dom
+speed</p>
+<p>props
+internal component state</p>
+<p>parent = data =&gt; child</p>
+<ul>
+<li>data flow one way from top to down</li>
+<li>immutable</li>
+</ul>
+<p>PropTypes
+static typechecking</p>
+<p>SFC: Stateless Functional Component</p>
+<h2 id="props-와-state"><a class="header" href="#props-와-state">props 와 state</a></h2>
+<ul>
+<li>state는 독립적인 컴포넌트의 상태고, prop은 외부(부모) 컴포넌트에게 받은 속성이다</li>
+<li>Redux 프로젝트에서 prop는 애플리케이션에서 전역으로 관리하는 상태라고 생각하면 된다.</li>
+<li>요약하면 컴포넌트 자체의 상태(색상, 애니메이션 등)는 state로 처리하고, 전체적으로 관리해야 하는 상태(서버와 동기화하는 데이터 등)는 부모 컴포넌트에서 prop으로 받아 처리한다. 물론 prop을 갱신하면 App 컴포넌트가 전반적으로 갱신되기 때문에 state를 갱신하는 것보다는 비교적 느리다. 효과적으로 state를 사용하면 좋지만, prop으로 처리해야 하는 작업을 state로 처리하면 오히려 코드 작성이 더 어려워진다.
+state와 prop의 차이에 관한 더 자세한 내용은 &quot;props vs state&quot;를 참고한다. React에서 구분하는 prop와 state의 차이에 관해서는 &quot;Thinking in React&quot;의 'Step 3: Identify The Minimal (but complete) Representation Of UI State'를 참고한다.</li>
+</ul>
+<h2 id="ref-3"><a class="header" href="#ref-3">Ref.</a></h2>
+<ul>
+<li><a href="https://d2.naver.com/helloworld/1848131">React 적용 가이드 - React와 Redux</a></li>
+</ul>
+<hr />
+<h2 id="redux"><a class="header" href="#redux">redux</a></h2>
+<ul>
+<li>Redux 프로젝트에서 prop는 애플리케이션에서 전역으로 관리하는 상태라고 생각하면 된다.</li>
+<li>https://github.com/reactjs/redux</li>
+</ul>
+<h2 id="핫-코드-리로드를-위해"><a class="header" href="#핫-코드-리로드를-위해">핫 코드 리로드를 위해</a></h2>
+<p>flux store와는 달리, 로직과 상태를 분리</p>
+<h2 id="타임-트래블"><a class="header" href="#타임-트래블">타임 트래블</a></h2>
+<ul>
+<li>action이 store로 전달시, 기존 상태 복사 후 복사본을 수정.</li>
+<li>앱에서 사용하는 모든 state를 하나의 tree로 관리 - 하나의 트리라서 관리 문제 발생!</li>
+</ul>
+<hr />
+<h2 id="flux"><a class="header" href="#flux">flux</a></h2>
+<ul>
+<li>https://facebook.github.io/flux/</li>
+<li>flux store
+<ol>
+<li>상태 변환을 위한 로직</li>
+<li>현재 어플리케이션 상태</li>
+</ol>
+</li>
+</ul>
+<h2 id="etc"><a class="header" href="#etc">Etc</a></h2>
+<ul>
+<li><a href="https://github.com/lilactown/helix">https://github.com/lilactown/helix</a></li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="reagent"><a class="header" href="#reagent">reagent</a></h1>
+<p>https://github.com/reagent-project/reagent</p>
+<ul>
+<li>cljsjs/react</li>
+<li>cljsjs/react-dom</li>
+</ul>
+<pre><code class="language-clojure">(defn hello-component [name]
+  [:p &quot;Hello, &quot; name &quot;!&quot;])
+
+(defn say-hello []
+  [hello-component &quot;world&quot;])
+</code></pre>
+<pre><code class="language-javascript">class Hello extends React.Component {
+  render() {
+    return &lt;div&gt;Hello {this.props.name}&lt;/div&gt;;
+  }
+}
+
+class SayHello extends React.Component {
+  render() {
+    return &lt;Hello name&quot;world&quot; /&gt;;
+  }
+}
+</code></pre>
+<ul>
+<li>
+<p>특성	props	state</p>
+<ul>
+<li>parent 컴포넌트에 의해 값이 변경 될 수 있는가?	예	아니오</li>
+<li>컴포넌트 내부에서 변경 될 수 있는가?	아니오	예</li>
+<li>ref: https://velopert.com/921</li>
+</ul>
+</li>
+<li>
+<p><code>reagent.core/atom</code></p>
+<ul>
+<li>deref</li>
+</ul>
+</li>
+<li>
+<p><code>reagent.core/create-class</code></p>
+<ul>
+<li>If you don’t use ES6 classes, you may use the create-react-class module instead. See Using React without ES6 for more information.</li>
+</ul>
+</li>
+</ul>
+<pre><code class="language-clojure">(r/create-class
+ {:component-did-mout ...
+  :reagent-render ...})
+</code></pre>
+<h2 id="element"><a class="header" href="#element">Element</a></h2>
+<ul>
+<li>
+<p>https://reagent-project.github.io/news/news050.html</p>
+</li>
+<li>
+<p><code>reagent.core/create-element</code></p>
+<ul>
+<li><a href="https://reactjs.org/docs/react-api.html#createelement">https://reactjs.org/docs/react-api.html#createelement</a></li>
+</ul>
+</li>
+<li>
 <p><code>reagent.core/as-element</code></p>
-<p>turns Reagent’s hiccup forms into React elements,</p>
-<p>(r/create-element &quot;div&quot;
-#js{:className &quot;foo&quot;}
-&quot;Hello &quot;
-(r/as-element [:strong &quot;world&quot;]))</p>
-<p><code>r/adapt-react-class</code>
-(def div-adapter (r/adapt-react-class &quot;div&quot;))</p>
-<p>(defn adapted []
-[div-adapter {:class &quot;foo&quot;}
-&quot;Hello &quot; [:strong &quot;world&quot;]])</p>
-<p>https://reagent-project.github.io/news/news060-alpha.html
-<code>reagent.core/track</code>
-rswap!</p>
-<p>https://github.com/reagent-project/reagent/blob/master/CHANGELOG.md#080-rc1-2018-04-11
-Add :&lt;&gt; shorthand for React Fragments (#352])</p>
-<p><code>getInitialState</code>
-<code>componentWillMount</code></p>
-<p><code>reagent/dom-node</code></p>
-<p>this (r/current-component)
-(r/props this) ;; this.props
-(r/children this) ;; this.props.children</p>
-<p>r/next-tick
-r/wrap
-The new wrap function combines two parts – a simple value, and a callback for when that value should change – into one value, that happens to look as an atom.</p>
-<p>The first argument to wrap should be the value that will be returned by @the-result.</p>
-<p>The second argument should be a function, that will be passed the new value whenever the result is changed (with optional extra arguments to wrap prepended, as with partial).</p>
-<p><code>reagent.core/cursor</code>
-https://reagent-project.github.io/news/news050.html</p>
-<p>Values and references
-So what’s the difference between wraps and cursors? Why have both?</p>
-<p>A wrap is just a value that happens to look like an atom. It doesn’t change unless you tell it to. It is a very lightweight combination of value and a callback to back-propagate changes to the value. It relies only on Reagent’s equality test in :should-component-update to avoid unnecessary re-rendering.</p>
-<p>A cursor, on the other hand, will always be up-to-date with the value of the source atom. In other words, it acts a reference to part of the value of the source. Components that deref cursors are re-rendered automatically, in exactly the same way as if they deref a normal Reagent atom (unnecessary re-rendering is avoided by checking if the cursor's value has changed using identical?).</p>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="re-frame-repo--readme"><a class="header" href="#re-frame-repo--readme">re-frame (<a href="https://github.com/Day8/re-frame">repo</a> / <a href="https://github.com/Day8/re-frame/blob/master/docs/README.md">README</a>)</a></h1>
 <ul>
-<li>
-<p><a href="https://clojurescript.org/">ClojureScript</a>로 작성된 <a href="https://github.com/Day8/re-frame">re-frame</a>은 <a href="https://en.wikipedia.org/wiki/Single-page_application">SPA</a>만들때 쓰는 패턴입니다.</p>
-</li>
-<li>
-<p><a href="https://github.com/Day8/re-frame">re-frame</a>은 내부적으로 <a href="https://github.com/reagent-project/reagent">reagent</a>를 활용합니다.</p>
-</li>
-<li>
-<p><a href="https://www.youtube.com/watch?v=-yQreNDzvdw">Reaktor Talks: Esko Lahti, Developing Web Applications With Reagent/re-frame</a></p>
-</li>
-<li>
-<p>간락한 개념.</p>
+<li>turns Reagent’s hiccup forms into React elements,</li>
+</ul>
 </li>
 </ul>
-<pre><code>DB -&gt;
+<pre><code class="language-clojure">   (r/create-element &quot;div&quot;
+                     #js{:className &quot;foo&quot;}
+                     &quot;Hello &quot;
+                     (r/as-element [:strong &quot;world&quot;]))
+</code></pre>
+<ul>
+<li><code>r/adapt-react-class</code></li>
+</ul>
+<pre><code class="language-clojure">(def div-adapter (r/adapt-react-class &quot;div&quot;))
+
+(defn adapted []
+  [div-adapter {:class &quot;foo&quot;}
+   &quot;Hello &quot; [:strong &quot;world&quot;]])
+</code></pre>
+<ul>
+<li><a href="https://reagent-project.github.io/news/news060-alpha.html">https://reagent-project.github.io/news/news060-alpha.html</a></li>
+<li><code>reagent.core/track</code></li>
+<li>rswap!</li>
+<li><code>getInitialState</code></li>
+<li><code>componentWillMount</code></li>
+<li><code>reagent/dom-node</code></li>
+</ul>
+<pre><code class="language-clojure">this (r/current-component)
+(r/props this) ;; this.props
+(r/children this) ;; this.props.children
+</code></pre>
+<ul>
+<li>
+<p>r/next-tick</p>
+</li>
+<li>
+<p>r/wrap</p>
+<ul>
+<li>The new wrap function combines two parts – a simple value, and a callback for when that value should change – into one value, that happens to look as an atom.</li>
+<li>The first argument to wrap should be the value that will be returned by @the-result.</li>
+<li>The second argument should be a function, that will be passed the new value whenever the result is changed (with optional extra arguments to wrap prepended, as with partial).</li>
+</ul>
+</li>
+<li>
+<p><code>reagent.core/cursor</code></p>
+<ul>
+<li><a href="https://reagent-project.github.io/news/news050.html">https://reagent-project.github.io/news/news050.html</a></li>
+</ul>
+</li>
+<li>
+<p>Values and references</p>
+<ul>
+<li>So what’s the difference between wraps and cursors? Why have both?</li>
+<li>A wrap is just a value that happens to look like an atom. It doesn’t change unless you tell it to. It is a very lightweight combination of value and a callback to back-propagate changes to the value. It relies only on Reagent’s equality test in :should-component-update to avoid unnecessary re-rendering.</li>
+<li>A cursor, on the other hand, will always be up-to-date with the value of the source atom. In other words, it acts a reference to part of the value of the source. Components that deref cursors are re-rendered automatically, in exactly the same way as if they deref a normal Reagent atom (unnecessary re-rendering is avoided by checking if the cursor's value has changed using identical?).</li>
+</ul>
+</li>
+</ul>
+<h2 id="ref-4"><a class="header" href="#ref-4"><code>:ref</code></a></h2>
+<ul>
+<li><a href="https://github.com/reagent-project/reagent/blob/master/doc/FAQ/UsingRefs.md">https://github.com/reagent-project/reagent/blob/master/doc/FAQ/UsingRefs.md</a></li>
+</ul>
+<h2 id=""><a class="header" href="#"><code>:&lt;&gt;</code></a></h2>
+<ul>
+<li>react fragment
+<ul>
+<li><a href="https://reactjs.org/docs/fragments.html">https://reactjs.org/docs/fragments.html</a></li>
+<li><a href="https://github.com/reagent-project/reagent/blob/master/CHANGELOG.md#080-rc1-2018-04-11">Add :&lt;&gt; shorthand for React Fragments (#352)</a></li>
+<li><a href="https://stackoverflow.com/questions/64181996/what-is-in-reagent-hiccup">https://stackoverflow.com/questions/64181996/what-is-in-reagent-hiccup</a></li>
+</ul>
+</li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="re-frame"><a class="header" href="#re-frame">re-frame</a></h1>
+<p>(<a href="https://github.com/Day8/re-frame">repo</a> / <a href="https://github.com/Day8/re-frame/blob/master/docs/README.md">README</a>)</p>
+<ul>
+<li><a href="https://clojurescript.org/">ClojureScript</a>로 작성된 <a href="https://github.com/Day8/re-frame">re-frame</a>은 <a href="https://en.wikipedia.org/wiki/Single-page_application">SPA</a>만들때 쓰는 패턴입니다.</li>
+<li><a href="https://github.com/Day8/re-frame">re-frame</a>은 내부적으로 <a href="https://github.com/reagent-project/reagent">reagent</a>를 활용합니다.</li>
+<li><a href="https://www.youtube.com/watch?v=-yQreNDzvdw">Reaktor Talks: Esko Lahti, Developing Web Applications With Reagent/re-frame</a></li>
+</ul>
+<p>https://day8.github.io/re-frame/</p>
+<ul>
+<li>간락한 개념.</li>
+</ul>
+<pre><code class="language-txt">DB -&gt;
   뷰 -&gt;
     Reagent -&gt;
       React -&gt;
@@ -275,7 +853,7 @@ DB
 <ul>
 <li>키워드로 보는 개념.</li>
 </ul>
-<pre><code>app-db -&gt;
+<pre><code class="language-txt">app-db -&gt;
   [:hiccup] -&gt;
     (r/render-component component dom-root) -&gt;
     (rf/subsribe query-id) -&gt;
@@ -298,44 +876,53 @@ app-db
 </code></pre>
 <h2 id="용어설명"><a class="header" href="#용어설명">용어설명</a></h2>
 <h3 id="kind-reg-"><a class="header" href="#kind-reg-">kind <code>reg-*</code></a></h3>
-<p>register handler
+<pre><code class="language-clojure">register handler
 :event-db
 :event-fx
 :event-ctx
 :sub
 :sub-raw
 :fx
-:cofx</p>
-<p>drawing board
+:cofx
+
+drawing board
 reg-view
-reg-interceptor</p>
-<p>(rf/reg-event-db
-:event-id
-(fn [db event]
-(assoc db :some :thing)))</p>
-<p>(rf/reg
-{:kind  :event-db
-:id    :event-id
-:fn    (fn [db event]
-(assoc db :some :thing))})</p>
-<p>(rf/reg
-[{:kind :event-db ...}
-{:kind :event-db ...}
-{:kind :event-fx ...}
-{:kind :sub ...])</p>
+reg-interceptor
+
+(rf/reg-event-db
+   :event-id
+   (fn [db event]
+     (assoc db :some :thing)))
+
+(rf/reg
+  {:kind  :event-db
+   :id    :event-id
+   :fn    (fn [db event]
+            (assoc db :some :thing))})
+
+(rf/reg
+  [{:kind :event-db ...}
+   {:kind :event-db ...}
+   {:kind :event-fx ...}
+   {:kind :sub ...])
+</code></pre>
 <h3 id="registrar"><a class="header" href="#registrar">Registrar</a></h3>
 <p>Each entry stored in the registrar will become a map instead of just a handler.</p>
-<p>Map keys:</p>
-<p>:kind - somehow redundant
+<pre><code>Map keys:
+
+:kind - somehow redundant
 :id
 :doc
 :line
 :ns
 :doc
-:fn the handler</p>
-<p><code>re-com</code> is a library which supplies reusable Reagent widgets. And widgets, like a datepicker, are the simplest kind of components.
-<code>re-com</code> components are reusability because they take an input stream of data and they</p>
-<p><code>def-view</code>: TODO</p>
+:fn the handler
+
+`re-com` is a library which supplies reusable Reagent widgets. And widgets, like a datepicker, are the simplest kind of components.
+`re-com` components are reusability because they take an input stream of data and they
+
+`def-view`: TODO
+</code></pre>
 <h3 id="db--app-db--db"><a class="header" href="#db--app-db--db">DB : (<code>app-db</code> / <code>db</code>)</a></h3>
 <pre><code class="language-clojure">{...}
 </code></pre>
@@ -381,15 +968,18 @@ reg-interceptor</p>
  :queue     &lt;a collection of further interceptors&gt;
  :stack     &lt;a collection of interceptors already walked&gt;}
 </code></pre>
-<p>==================================================
-https://github.com/Day8/re-frame/blob/master/docs/EventHandlingInfographic.md</p>
+<hr />
+<ul>
+<li><a href="https://github.com/Day8/re-frame/blob/master/docs/EventHandlingInfographic.md">https://github.com/Day8/re-frame/blob/master/docs/EventHandlingInfographic.md</a></li>
+</ul>
 <h2 id="raise"><a class="header" href="#raise">raise</a></h2>
 <pre><code class="language-clojure">(rf/dispatch `event`)
 
 (rf/dispatch-sync `event`)
 </code></pre>
 <h2 id="queueing"><a class="header" href="#queueing">queueing</a></h2>
-<p>[event1 event2 event3 ...]</p>
+<pre><code class="language-clojure">[event1 event2 event3 ...]
+</code></pre>
 <h2 id="event-routeter"><a class="header" href="#event-routeter">event-routeter</a></h2>
 <pre><code class="language-clojure">(rf/reg-event-fx
   `event-key`
@@ -410,20 +1000,24 @@ https://github.com/Day8/re-frame/blob/master/docs/EventHandlingInfographic.md</p
     `new-db`))
 ;;=&gt; {:db `new-db`} =&gt; [[:db `new-db`]]
 </code></pre>
-<p>(reg-event-db
-<code>event-key</code>
-(fn [{:key [db]} <code>event</code>]
-(assoc db :a 10)))</p>
-<p>(reg-event-fx
-<code>event-key</code>
-(fn [{:key [db]} <code>event</code>]
-{:db (assoc db :a 10)}))</p>
-<p>(reg-event-ctx
-<code>event-key</code>
-(fn [<code>context-map</code> <code>event</code>]
-<code>context-map</code>)</p>
+<pre><code class="language-clojure">(reg-event-db
+  `event-key`
+  (fn [{:key [db]} `event`]
+    (assoc db :a 10)))
+
+(reg-event-fx
+  `event-key`
+  (fn [{:key [db]} `event`]
+    {:db (assoc db :a 10)}))
+
+(reg-event-ctx
+  `event-key`
+  (fn [`context-map` `event`]
+    `context-map`)
+</code></pre>
 <h2 id="effect-routeter"><a class="header" href="#effect-routeter">effect-routeter</a></h2>
-<p>[[<code>effect-key</code> <code>effect-value</code>] ...]</p>
+<pre><code class="language-clojure">[[`effect-key` `effect-value`] ...]
+</code></pre>
 <h2 id="apply-effect"><a class="header" href="#apply-effect">apply effect</a></h2>
 <ul>
 <li>built-in : <code>:db</code>, <code>:dispatch</code>, ``</li>
@@ -469,104 +1063,111 @@ https://github.com/Day8/re-frame/blob/master/docs/EventHandlingInfographic.md</p
 </code></pre>
 <h1 id="reg-sub--subscribe"><a class="header" href="#reg-sub--subscribe">reg-sub / subscribe</a></h1>
 <ul>
-<li>https://github.com/Day8/re-frame/blob/master/docs/SubscriptionFlow.md</li>
-<li>(ns re-frame.subs)</li>
+<li><a href="https://github.com/Day8/re-frame/blob/master/docs/SubscriptionFlow.md">https://github.com/Day8/re-frame/blob/master/docs/SubscriptionFlow.md</a></li>
+<li><code>(ns re-frame.subs)</code></li>
 </ul>
-<p>{:name &quot;Bruce&quot;}</p>
-<p>(rf/reg-sub
-:get-name
-(fn [db _]
-(name db))) =&gt; &quot;Bruce&quot;</p>
-<p>(rf/reg-sub
-:greeting
-(fn [db _]
-(rf/subscribe :get-name))
-(fn [name _]
-(st &quot;Hello, &quot; name))) =&gt; &quot;Hello, Bruce&quot;</p>
-<p>@(rf/subscribe :greeting) =&gt; &quot;Hello, Bruce&quot;</p>
-<ol>
+<pre><code class="language-clojure">{:name &quot;Bruce&quot;}
+
+(rf/reg-sub
+  :get-name
+  (fn [db _]
+    (name db))) =&gt; &quot;Bruce&quot;
+
+(rf/reg-sub
+  :greeting
+  (fn [db _]
+    (rf/subscribe :get-name))
+  (fn [name _]
+    (st &quot;Hello, &quot; name))) =&gt; &quot;Hello, Bruce&quot;
+
+@(rf/subscribe :greeting) =&gt; &quot;Hello, Bruce&quot;
+
+  1. (reg-sub
+       :test-sub
+       (fn [db [_]] db))
+
+  ;; The value in app-db is passed to the computation function as the 1st argument.
+
+  2. (reg-sub
+       :a-b-sub
+       (fn [q-vec d-vec]
+         [(subs/subscribe [:a-sub])
+          (subs/subscribe [:b-sub])])
+       (fn [[a b] [_]] {:a a :b b}))
+
+  ;;  Two functions provided. The 2nd is computation function, as before. The 1st
+  ;;  is returns what `input signals` should be provided to the computation. The
+  ;;  `input signals` function is called with two arguments: the query vector
+  ;;  and the dynamic vector. The return value can be singleton reaction or
+  ;;  a sequence of reactions.
+
+  3. (reg-sub
+       :a-b-sub
+       :&lt;- [:a-sub]
+       :&lt;- [:b-sub]
+       (fn [[a b] [_]] {:a a :b b}))```
+(let [value @(rf/subsribe `query-id`)])
+
+
+
+(rf/reg-sub
+  `query-id`
+  (fn [db event] ; computation-fn
+    value))
+
+(rf/reg-sub
+  `query-id`
+  (fn [query-vec dynamic-vec]
+    [(subscribe [:a-sub])
+     (subscribe [:b-sub])])
+  (fn [[a b] query-vec]
+    ....))
+</code></pre>
+<h2 id="ref-5"><a class="header" href="#ref-5">Ref</a></h2>
+<ul>
 <li>
-<p>(reg-sub
-:test-sub
-(fn [db [_]] db))
-The value in app-db is passed to the computation function as the 1st argument.</p>
+<p><a href="https://docs.google.com/drawings/d/1ptKAIPfb_gtwwSqYmt-JGTkwPVm_6LeWjjm-FcWznBs/edit">https://docs.google.com/drawings/d/1ptKAIPfb_gtwwSqYmt-JGTkwPVm_6LeWjjm-FcWznBs/edit</a></p>
 </li>
 <li>
-<p>(reg-sub
-:a-b-sub
-(fn [q-vec d-vec]
-[(subs/subscribe [:a-sub])
-(subs/subscribe [:b-sub])])
-(fn [[a b] [_]] {:a a :b b}))</p>
+<p><a href="https://github.com/Day8/re-frame/blob/master/docs/FAQs/DoINeedReFrame.md">https://github.com/Day8/re-frame/blob/master/docs/FAQs/DoINeedReFrame.md</a></p>
 </li>
-</ol>
-<p>Two functions provided. The 2nd is computation function, as before. The 1st
-is returns what <code>input signals</code> should be provided to the computation. The
-<code>input signals</code> function is called with two arguments: the query vector
-and the dynamic vector. The return value can be singleton reaction or
-a sequence of reactions.</p>
-<ol start="3">
-<li>(reg-sub
-:a-b-sub
-:&lt;- [:a-sub]
-:&lt;- [:b-sub]
-(fn [[a b] [_]] {:a a :b b}))```
-(let [value @(rf/subsribe <code>query-id</code>)])</li>
-</ol>
-<p>(rf/reg-sub
-<code>query-id</code>
-(fn [db event] ; computation-fn
-value))</p>
-<p>(rf/reg-sub
-<code>query-id</code>
-(fn [query-vec dynamic-vec]
-[(subscribe [:a-sub])
-(subscribe [:b-sub])])
-(fn [[a b] query-vec]
-....))</p>
-<p>https://docs.google.com/drawings/d/1ptKAIPfb_gtwwSqYmt-JGTkwPVm_6LeWjjm-FcWznBs/edit</p>
-<p>https://github.com/Day8/re-frame/blob/master/docs/FAQs/DoINeedReFrame.md</p>
-<h2 id="router"><a class="header" href="#router">Router</a></h2>
-<p>https://github.com/Day8/re-frame/blob/master/src/re_frame/router.cljc#L8-L60</p>
-<p>Subscription &amp; EventHandler
-https://github.com/Day8/re-frame/blob/master/docs/FAQs/UseASubscriptionInAnEventHandler.md</p>
-<p>Logger
-https://github.com/Day8/re-frame/blob/master/docs/FAQs/Logging.md</p>
-<p>on-click.event handle
-https://github.com/Day8/re-frame/blob/master/docs/FAQs/Null-Dispatched-Events.md</p>
-<p>WIP - EventError Handling
-https://github.com/Day8/re-frame/issues/231#issuecomment-249991378</p>
-<p>Custom event-handler define
-https://github.com/Day8/re-frame/blob/master/docs/FAQs/GlobalInterceptors.md</p>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="closure-컴파일러의-이해"><a class="header" href="#closure-컴파일러의-이해">Closure 컴파일러의 이해.</a></h1>
+<li>
+<p>Router</p>
 <ul>
-<li>ref: https://clojurescript.org/about/closure</li>
+<li><a href="https://github.com/Day8/re-frame/blob/master/src/re_frame/router.cljc#L8-L60">https://github.com/Day8/re-frame/blob/master/src/re_frame/router.cljc#L8-L60</a></li>
 </ul>
-<p>clojurescript는 <a href="https://developers.google.com/closure/">google의 closure 도구</a>를 이용하여 clojurescript파일을 javascript파일로 만든다.
-이 도구는, <code>closure compiler</code>와 <code>closure library</code> 등을 포함하고 있으며,  clojurescript의 코어는 <code>closure library</code>기능을 이용하여 만들어져있다.
-따라서 closure의 <code>addDependency</code>, <code>provide</code>, <code>require</code>를 이용하여, 컴파일시 어떤게 포함될지에 대한 의존성 관리를 할 수 있게 되었다.
-<code>closure compiler</code>를 이용하여, 공백제거, 코멘트제거 및 이름축약 등, 최적화된 javascript파일을 얻을 수 있다.</p>
-<h1 id="clojurescript-컴파일-옵션"><a class="header" href="#clojurescript-컴파일-옵션">ClojureScript 컴파일 옵션.</a></h1>
+</li>
+<li>
+<p>Subscription &amp; EventHandler</p>
 <ul>
-<li>ref: https://clojurescript.org/reference/compiler-options</li>
+<li><a href="https://github.com/Day8/re-frame/blob/master/docs/FAQs/UseASubscriptionInAnEventHandler.md">https://github.com/Day8/re-frame/blob/master/docs/FAQs/UseASubscriptionInAnEventHandler.md</a></li>
 </ul>
-<h2 id="주의점"><a class="header" href="#주의점">주의점.</a></h2>
+</li>
+<li>
+<p>Logger</p>
 <ul>
-<li><code>:optimizations :none</code>시 <code>goog/base.js</code>을 추가시켜줘야 한다.
+<li><a href="https://github.com/Day8/re-frame/blob/master/docs/FAQs/Logging.md">https://github.com/Day8/re-frame/blob/master/docs/FAQs/Logging.md</a></li>
+</ul>
+</li>
+<li>
+<p>on-click.event handle</p>
 <ul>
-<li>https://stackoverflow.com/questions/26253958/understanding-relationship-between-clojurescript-and-google-closure-compiler</li>
+<li><a href="https://github.com/Day8/re-frame/blob/master/docs/FAQs/Null-Dispatched-Events.md">https://github.com/Day8/re-frame/blob/master/docs/FAQs/Null-Dispatched-Events.md</a></li>
+</ul>
+</li>
+<li>
+<p>WIP - EventError Handling</p>
+<ul>
+<li><a href="https://github.com/Day8/re-frame/issues/231#issuecomment-249991378">https://github.com/Day8/re-frame/issues/231#issuecomment-249991378</a></li>
+</ul>
+</li>
+<li>
+<p>Custom event-handler define</p>
+<ul>
+<li><a href="https://github.com/Day8/re-frame/blob/master/docs/FAQs/GlobalInterceptors.md">https://github.com/Day8/re-frame/blob/master/docs/FAQs/GlobalInterceptors.md</a></li>
 </ul>
 </li>
 </ul>
-<h1 id="ref"><a class="header" href="#ref">Ref.</a></h1>
-<ul>
-<li>https://adambard.com/blog/clojurescript-boot-fireplace/</li>
-<li>https://lambdaisland.com/episodes/javascript-libraries-clojurescript</li>
-<li>http://upgradingdave.com/blog/pages/006_boot_cljs.html</li>
-<li>https://github.com/magomimmo/modern-cljs</li>
-<li>https://github.com/binaryage/cljs-oops</li>
-</ul>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="shadow-cljs"><a class="header" href="#shadow-cljs">shadow-cljs</a></h1>
 
                     </main>
 

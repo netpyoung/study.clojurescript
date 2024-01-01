@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>shadow-cljs - study.clojurescript</title>
+        <title>javascript - study.clojurescript</title>
 
 
         <!-- Custom HTML head -->
@@ -88,7 +88,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="../index.html">들어가며</a></li><li class="chapter-item expanded "><a href="../clojurescript/clojurescript.html">clojurescript</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../clojurescript/hiccup.html">hiccup</a></li><li class="chapter-item expanded "><a href="../clojurescript/reference.html">reference</a></li></ol></li><li class="chapter-item expanded "><a href="../closure.html">google's closure</a></li><li class="chapter-item expanded "><a href="../shadow-cljs/shadow-cljs.html" class="active">shadow-cljs</a></li><li class="chapter-item expanded affix "><li class="part-title">Web</li><li class="chapter-item expanded "><a href="../npm/node.html">node</a></li><li class="chapter-item expanded "><a href="../web/javascript.html">javascript</a></li><li class="chapter-item expanded "><a href="../web/css.html">css</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../web/tailwindcss.html">tailwindcss</a></li></ol></li><li class="chapter-item expanded "><li class="part-title">React</li><li class="chapter-item expanded "><a href="../react/react.html">react</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../react/reagent/reagent.html">reagent</a></li><li class="chapter-item expanded "><a href="../react/re-frame/re-frame.html">re-frame</a></li></ol></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="../index.html">들어가며</a></li><li class="chapter-item expanded "><a href="../clojurescript/clojurescript.html">clojurescript</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../clojurescript/hiccup.html">hiccup</a></li><li class="chapter-item expanded "><a href="../clojurescript/reference.html">reference</a></li></ol></li><li class="chapter-item expanded "><a href="../closure.html">google's closure</a></li><li class="chapter-item expanded "><a href="../shadow-cljs/shadow-cljs.html">shadow-cljs</a></li><li class="chapter-item expanded affix "><li class="part-title">Web</li><li class="chapter-item expanded "><a href="../npm/node.html">node</a></li><li class="chapter-item expanded "><a href="../web/javascript.html" class="active">javascript</a></li><li class="chapter-item expanded "><a href="../web/css.html">css</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../web/tailwindcss.html">tailwindcss</a></li></ol></li><li class="chapter-item expanded "><li class="part-title">React</li><li class="chapter-item expanded "><a href="../react/react.html">react</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../react/reagent/reagent.html">reagent</a></li><li class="chapter-item expanded "><a href="../react/re-frame/re-frame.html">re-frame</a></li></ol></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle">
                 <div class="sidebar-resize-indicator"></div>
@@ -150,7 +150,7 @@
                         <a href="https://github.com/netpyoung/study.clojurescript" title="Git repository" aria-label="Git repository">
                             <i id="git-repository-button" class="fa fa-github"></i>
                         </a>
-                        <a href="https://github.com/netpyoung/study.clojurescript/edit/main/src/shadow-cljs/shadow-cljs.md" title="Suggest an edit" aria-label="Suggest an edit">
+                        <a href="https://github.com/netpyoung/study.clojurescript/edit/main/src/web/javascript.md" title="Suggest an edit" aria-label="Suggest an edit">
                             <i id="git-edit-button" class="fa fa-edit"></i>
                         </a>
 
@@ -179,93 +179,70 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1 id="shadow-cljs"><a class="header" href="#shadow-cljs">shadow-cljs</a></h1>
+                        <h1 id="javascript"><a class="header" href="#javascript">javascript</a></h1>
+<h2 id="신텍스-하이라이트"><a class="header" href="#신텍스-하이라이트">신텍스 하이라이트</a></h2>
+<h3 id="highlightjs"><a class="header" href="#highlightjs">highlight.js</a></h3>
 <ul>
 <li>
-<p><a href="https://github.com/thheller/shadow-cljs">repo</a></p>
-</li>
-<li>
-<p><a href="https://shadow-cljs.github.io/docs/UsersGuide.html">가이드</a></p>
+<p>예제</p>
 <ul>
-<li><a href="https://github.com/shadow-cljs/shadow-cljs.github.io">가이드 - repo</a></li>
-<li>ja
+<li><a href="https://highlightjs.org/static/demo/">https://highlightjs.org/static/demo/</a></li>
+<li>깔쌈해보이는것
 <ul>
-<li><a href="https://t-cool.github.io/shadow-cljs-users-guide-ja/">https://t-cool.github.io/shadow-cljs-users-guide-ja/</a></li>
-<li><a href="https://github.com/t-cool/shadow-cljs-users-guide-ja">https://github.com/t-cool/shadow-cljs-users-guide-ja</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li>
-<p>part</p>
-<ul>
-<li>clojure library</li>
-<li>npm package</li>
-</ul>
-</li>
-<li>
-<p><del>Figwheel</del></p>
-<ul>
-<li>예전에는 Figwheel을 많이 사용했지만, 현재는 shadow-cljs를 많이 사용한다.</li>
-<li><a href="https://figwheel.org/">https://figwheel.org/</a>
-<ul>
-<li><a href="https://github.com/bhauman/figwheel-main">https://github.com/bhauman/figwheel-main</a></li>
-<li><a href="https://github.com/bhauman/lein-figwheel">https://github.com/bhauman/lein-figwheel</a></li>
+<li>base16-framer</li>
+<li>atom-one-dark</li>
+<li>atom-one-light</li>
+<li>monokia-sublime</li>
+<li>base16-material-darker</li>
 </ul>
 </li>
 </ul>
 </li>
 <li>
-<p>shadow-cljs lifecycle</p>
+<p>highlightBlock</p>
 <ul>
-<li>https://code.thheller.com/blog/shadow-cljs/2019/08/25/hot-reload-in-clojurescript.html</li>
+<li>Deprecated since version 11.0: Please use highlightElement() instead.</li>
 </ul>
 </li>
+<li>
+<p><a href="https://ask.clojure.org/index.php/9068/how-to-use-highlight-js-in-a-shadow-cljs-project">https://ask.clojure.org/index.php/9068/how-to-use-highlight-js-in-a-shadow-cljs-project</a></p>
+</li>
 </ul>
-<pre><code class="language-json">:modules {:app {:init-fn example.app/init}}
+<pre><code class="language-clojure">(defn get-highlight-code [code]
+  [:pre
+    [:code {:dangerouslySetInnerHTML
+             {:__html (.-value (js/hljs.highlight &quot;clojure&quot; code))}}]])
 </code></pre>
-<h2 id="dev-beforeafter-load-async"><a class="header" href="#dev-beforeafter-load-async">:dev{{-before/after}}-load{{-async}}</a></h2>
-<pre><code class="language-clojure">(defn ^:dev/before-load stop []
-  (js/console.log &quot;stop&quot;))
+<ul>
+<li>dangerouslySetInnerHTML
+<ul>
+<li><a href="https://react.dev/reference/react-dom/components/common#common-props">https://react.dev/reference/react-dom/components/common#common-props</a></li>
+</ul>
+</li>
+</ul>
+<pre><code class="language-txt">npm/cljsjs로 설치할 수 있긴한데, npm/cljsjs버전은 용량이 큰거같아 사이트에서 다운받고 작은거로 가자
 
-(defn ^:dev/after-load start []
-  (js/console.log &quot;start&quot;))
+## npm
+&quot;highlight.js&quot;: &quot;^11.9.0&quot;,
 
-(defn ^:dev/before-load-async stop [done]
-  (js/console.log &quot;stop&quot;)
-  (js/setTimeout
-    (fn []
-      (js/console.log &quot;stop complete&quot;)
-      (done)))
-
-(defn ^:dev/after-load-async start [done]
-  (js/console.log &quot;start&quot;)
-  (js/setTimeout
-    (fn []
-      (js/console.log &quot;start complete&quot;)
-      (done))))
+## deps.edn
+cljsjs/highlight {:mvn/version &quot;11.7.0-0&quot;}
 </code></pre>
-<h2 id="shadow-cljsedn"><a class="header" href="#shadow-cljsedn">shadow-cljs.edn</a></h2>
-<h2 id="example"><a class="header" href="#example">example</a></h2>
-<pre><code class="language-bash">npx shadow-cljs -d cider/cider-nrepl:0.44.0 watch :app
-
-shadow-cljs - config: /Users/pyoung/test-cljs/shadow-cljs.edn
-shadow-cljs - starting via &quot;clojure&quot;
-shadow-cljs - HTTP server available at http://localhost:8080
-shadow-cljs - server version: 2.26.2 running at http://localhost:9630
-shadow-cljs - nREPL server started on port 49953
-shadow-cljs - watching build :app
-</code></pre>
+<h3 id="codemirror"><a class="header" href="#codemirror">codemirror</a></h3>
+<ul>
+<li><a href="https://codemirror.net/">https://codemirror.net/</a></li>
+<li><a href="https://github.com/nextjournal/clojure-mode">https://github.com/nextjournal/clojure-mode</a></li>
+</ul>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                            <a rel="prev" href="../closure.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="../npm/node.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
 
-                            <a rel="next prefetch" href="../npm/node.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next prefetch" href="../web/css.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
 
@@ -275,11 +252,11 @@ shadow-cljs - watching build :app
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                    <a rel="prev" href="../closure.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="../npm/node.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
 
-                    <a rel="next prefetch" href="../npm/node.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next prefetch" href="../web/css.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
             </nav>

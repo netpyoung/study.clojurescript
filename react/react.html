@@ -1,0 +1,329 @@
+<!DOCTYPE HTML>
+<html lang="kr" class="light" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>react - study.clojurescript</title>
+
+
+        <!-- Custom HTML head -->
+        
+        <meta name="description" content="공부 - 클로저스크립트">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="../favicon.svg">
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+    </head>
+    <body class="sidebar-visible no-js">
+    <div id="body-container">
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('light')
+            html.classList.add(theme);
+            var body = document.querySelector('body');
+            body.classList.remove('no-js')
+            body.classList.add('js');
+        </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var body = document.querySelector('body');
+            var sidebar = null;
+            var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            sidebar_toggle.checked = sidebar === 'visible';
+            body.classList.remove('sidebar-visible');
+            body.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded "><a href="../index.html">들어가며</a></li><li class="chapter-item expanded "><a href="../clojurescript/clojurescript.html">clojurescript</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../clojurescript/hiccup.html">hiccup</a></li><li class="chapter-item expanded "><a href="../clojurescript/reference.html">reference</a></li></ol></li><li class="chapter-item expanded "><a href="../closure.html">google's closure</a></li><li class="chapter-item expanded "><a href="../shadow-cljs/shadow-cljs.html">shadow-cljs</a></li><li class="chapter-item expanded affix "><li class="part-title">Web</li><li class="chapter-item expanded "><a href="../npm/node.html">node</a></li><li class="chapter-item expanded "><a href="../web/javascript.html">javascript</a></li><li class="chapter-item expanded "><a href="../web/css.html">css</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../web/tailwindcss.html">tailwindcss</a></li></ol></li><li class="chapter-item expanded "><li class="part-title">React</li><li class="chapter-item expanded "><a href="../react/react.html" class="active">react</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../react/reagent/reagent.html">reagent</a></li><li class="chapter-item expanded "><a href="../react/re-frame/re-frame.html">re-frame</a></li></ol></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <!-- Track and set sidebar scroll position -->
+        <script>
+            var sidebarScrollbox = document.querySelector('#sidebar .sidebar-scrollbox');
+            sidebarScrollbox.addEventListener('click', function(e) {
+                if (e.target.tagName === 'A') {
+                    sessionStorage.setItem('sidebar-scroll', sidebarScrollbox.scrollTop);
+                }
+            }, { passive: true });
+            var sidebarScrollTop = sessionStorage.getItem('sidebar-scroll');
+            sessionStorage.removeItem('sidebar-scroll');
+            if (sidebarScrollTop) {
+                // preserve sidebar scroll position when navigating via links within sidebar
+                sidebarScrollbox.scrollTop = sidebarScrollTop;
+            } else {
+                // scroll sidebar to current active section when navigating via "next/previous chapter" buttons
+                var activeSection = document.querySelector('#sidebar .active');
+                if (activeSection) {
+                    activeSection.scrollIntoView({ block: 'center' });
+                }
+            }
+        </script>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </label>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">study.clojurescript</h1>
+
+                    <div class="right-buttons">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                        <a href="https://github.com/netpyoung/study.clojurescript" title="Git repository" aria-label="Git repository">
+                            <i id="git-repository-button" class="fa fa-github"></i>
+                        </a>
+                        <a href="https://github.com/netpyoung/study.clojurescript/edit/main/src/react/react.md" title="Suggest an edit" aria-label="Suggest an edit">
+                            <i id="git-edit-button" class="fa fa-edit"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="react"><a class="header" href="#react">react</a></h1>
+<ul>
+<li><a href="https://react.dev/">react</a></li>
+<li><a href="https://reactnative.dev/">react-native</a></li>
+</ul>
+<p>react개인적으로 정리. 자세한건 facebook공식 사이트에 있으니,  한눈에 필요한 것만 빠르게 윤곽을 잡을 수 있는게 필요!</p>
+<h2 id="1-시작-왜-react가-나왔는가"><a class="header" href="#1-시작-왜-react가-나왔는가">1. 시작, 왜 React가 나왔는가?</a></h2>
+<p>facebook이  사이트를 개발하면서 데이터 변경과 ui변경을 동기화 시키는데 어려움을 격음.</p>
+<h3 id="11-어떻게-동기화를-시킬-것인가"><a class="header" href="#11-어떻게-동기화를-시킬-것인가">1.1 어떻게 동기화를 시킬 것인가.</a></h3>
+<p>데이터를 변경할때마다 다시 새로 그리면 비용이 큼으로, 바뀌어야 하는 부분만 변경하고 싶음.브라우저는 DOM을 이용하여 표현하는데, DOM이 눈에 보이도록 렌더링될때에는 비용(시간)이 많이 듬.Virtual DOM이라고 눈에 보이지 않는 DOM을 만들어, 변경사항을 적용하고, 최소한에 변경사항을 눈에 보이도록 실제DOM에 반영하면 어떨까.</p>
+<h3 id="12-react는-어떠한-데이터-흐름을-가지며-어떻게-uidom을-갱신하는가"><a class="header" href="#12-react는-어떠한-데이터-흐름을-가지며-어떻게-uidom을-갱신하는가">1.2 React는 어떠한 데이터 흐름을 가지며 어떻게 UI(dom)을 갱신하는가.</a></h3>
+<p>가상 Dom의 변경사항을 검사하여, 실제 Dom에 적용한다(변경에 필요한 최소한의 dom만 갱신)단방향 데이타 흐름.여기서 <code>Dom갱신</code>, <code>데이터 흐름</code>에 주의해야 한다 .dom갱신부터 보자</p>
+<pre><code>컴포넌트컴포넌트 생성 constructor
+ ---- 렌더전 초기화  UNSAFE_componentWillMount
+렌더링 render
+렌더후 초기화 componentDidMount
+</code></pre>
+<h3 id="갱신"><a class="header" href="#갱신">갱신.</a></h3>
+<p>Reconciliation 작업은 Virtual DOM과 DOM을 비교해 DOM을 갱신하는 작업이다</p>
+<h3 id="dom-element"><a class="header" href="#dom-element">Dom Element</a></h3>
+<ul>
+<li>Dom속성 : Camel-case</li>
+<li>이벤트 헨들러 : Camel-case</li>
+<li>style 속성 : camelCase</li>
+</ul>
+<pre><code class="language-html">&lt;div className='a'&gt;
+&lt;label htmlFor='name'&gt;
+</code></pre>
+<h3 id="reconciliation"><a class="header" href="#reconciliation">reconciliation</a></h3>
+<ul>
+<li>https://d2.naver.com/helloworld/9297403</li>
+<li>https://www.robinwieruch.de/redux-mobx-confusion</li>
+</ul>
+<pre><code class="language-javascript">function Welcome(props) {
+  return &lt;h1&gt;Hello, {props.name}&lt;/h1&gt;;
+}
+</code></pre>
+<pre><code class="language-js">// constructor HelloMessage(name) { } 이런식으로 해야 나중에 햇갈리지 않지 이런 인터페이스는 에러!!class HelloMessage extends React.Component {  render() {    return &lt;div&gt;Hello {this.props.name}&lt;/div&gt;;  }}ReactDOM.render(&lt;HelloMessage name=&quot;Jane&quot; /&gt;, mountNode);``````jsclass HelloMessage extends React.Component {  render() {    return React.createElement(      &quot;div&quot;,      null,      &quot;Hello &quot;,      this.props.name    );  }}ReactDOM.render(React.createElement(HelloMessage, { name: &quot;Jane&quot; }), mountNode);```Props 속성- immutable- passed in from parent- can not change it- can be defaulted &amp; validated## stateclass Clock extends React.Component {  constructor(props) {    super(props);    this.state = {date: new Date()};  }  render() {    return (      &lt;div&gt;        &lt;h1&gt;Hello, world!&lt;/h1&gt;        &lt;h2&gt;It is {this.state.date.toLocaleTimeString()}.&lt;/h2&gt;      &lt;/div&gt;    );  }}내부 상태(state) 저장this.state.comment = &quot;hello&quot;;  // Wrongthis.setState({comment: &quot;hello&quot;});  //Correctthis.state = // only constructorstate와 props 는 비동기적으로 업데이트 됨으로```js// Wrongthis.setState({counter:this.state.counter + this.props.increment});// Correctthis.setState((prevState,props)=&gt;({counter:prevState.counter + props.increment}));```componentDidMount() { }componentWillUnmount() { }this.state = {posts: [],comments: []};componentDidMount() {fetchPosts().then(response=&gt;{this.setState({posts: response.posts    });  });fetchComments().then(response=&gt;{this.setState({comments: response.comments    });  });}this.hello 처럼 변수를 만들어 무언가를 저장할 수 있다(보여지는 파트가 아닌것)State 상태- private- maintained by component- mutableReactDOM.render() 로 렌더된 결과를 바꾼다.state: this.setState() - 새로운 값으로 변경 - component renderstate - lifecycle - https://facebook.github.io/react/docs/state-and-lifecycle.htmllifting-state-up : https://facebook.github.io/react/docs/lifting-state-up.htmlprops.children&lt;FancyBorder color=&quot;blue&quot;&gt;&lt;h1 className=&quot;Dialog-title&quot;&gt;Welcome&lt;/h1&gt;&lt;p className=&quot;Dialog-message&quot;&gt;Thank you for visiting our spacecraft!&lt;/p&gt;&lt;/FancyBorder&gt;{props.left}&lt;SplitPane left={ &lt;Contacts /&gt; } right={ &lt;Chat /&gt; } /&gt;결과적으로 이걸 이해https://facebook.github.io/react/docs/thinking-in-react.htmlstate와 props를 적절히 활용.- 좀 더 깔끔한 방법은 없을까?-- FilterableProductTable의 콜백을 계속 물고와서, SearchBar에서 input의 변경 콜백과 연결시켜주는 것## mixin예전에 있었던 기능으로 복잡함.https://facebook.github.io/react/blog/2016/07/13/mixins-considered-harmful.htmlhttps://en.wikipedia.org/wiki/MixinIn object-oriented programming languages, a mixin is a class that contains methods for use by other classes without having to be the parent class of those other classes자바스크립트 코드로 mixin배우려니 빡쳐서 찾아보니http://blog.saltfactory.net/ruby/understanding-mixin-using-with-ruby.htmljs에서 mixin가지고 노는것은 미친짓.fb에선 mixin이 암시적인 의존성을 가진다고 생각.이름 충돌, 복잡성증가## [HOC(Higher Order Component)](https://facebook.github.io/react/docs/higher-order-components.html)HOCs are not part of the React APIconst EnhancedComponent = higherOrderComponent(WrappedComponent);HOCs are common in third-party React libraries, such as Redux's connect and Relay's createContainer.python decorator랑 비슷하게 구현.## this.props.key : https://facebook.github.io/react/docs/lists-and-keys.htmllist의 자식엘리먼트(li)같은걸 코드로 생성할때 const todoItems = todos.map((todo) =&gt;&lt;li key={todo.id}&gt;{todo.text} &lt;/li&gt;);이런식으로 uniqid를 쥐어준다.(유니크하지 않으면 나중에 렌더링시 순서가 꼬일 수 있다)ㅡㅡ## this.props.refIn the typical React dataflow, props are the only way that parent components interact with their children. To modify a child, you re-render it with new props. However, there are a few cases where you need to imperatively modify a child outside of the typical dataflow. The child to be modified could be an instance of a React component, or it could be a DOM element. For both of these cases, React provides an escape hatch.When to Use Refs#
+	* Managing focus, text selection, or media playback.
+	* Triggering imperative animations.
+	* Integrating with third-party DOM libraries.
+
+class CustomTextInput extends React.Component {constructor(props){super(props);this.focus=this.focus.bind(this);  }focus(){  this.textInput.focus();  }render(){  return(&lt;div&gt;&lt;inputtype=&quot;text&quot;ref={(input) =&gt; { this.textInput = input; }} /&gt;&lt;inputtype=&quot;button&quot;value=&quot;Focus the text input&quot;onClick={this.focus}/&gt;&lt;/div&gt;);  }}# toolhttps://github.com/facebook/react-devtoolshttps://facebook.github.io/react/docs/perf.html
+
+</code></pre>
+<p>virtual dom
+speed</p>
+<p>props
+internal component state</p>
+<p>parent = data =&gt; child</p>
+<ul>
+<li>data flow one way from top to down</li>
+<li>immutable</li>
+</ul>
+<p>PropTypes
+static typechecking</p>
+<p>SFC: Stateless Functional Component</p>
+<h2 id="props-와-state"><a class="header" href="#props-와-state">props 와 state</a></h2>
+<ul>
+<li>state는 독립적인 컴포넌트의 상태고, prop은 외부(부모) 컴포넌트에게 받은 속성이다</li>
+<li>Redux 프로젝트에서 prop는 애플리케이션에서 전역으로 관리하는 상태라고 생각하면 된다.</li>
+<li>요약하면 컴포넌트 자체의 상태(색상, 애니메이션 등)는 state로 처리하고, 전체적으로 관리해야 하는 상태(서버와 동기화하는 데이터 등)는 부모 컴포넌트에서 prop으로 받아 처리한다. 물론 prop을 갱신하면 App 컴포넌트가 전반적으로 갱신되기 때문에 state를 갱신하는 것보다는 비교적 느리다. 효과적으로 state를 사용하면 좋지만, prop으로 처리해야 하는 작업을 state로 처리하면 오히려 코드 작성이 더 어려워진다.
+state와 prop의 차이에 관한 더 자세한 내용은 &quot;props vs state&quot;를 참고한다. React에서 구분하는 prop와 state의 차이에 관해서는 &quot;Thinking in React&quot;의 'Step 3: Identify The Minimal (but complete) Representation Of UI State'를 참고한다.</li>
+</ul>
+<h2 id="ref"><a class="header" href="#ref">Ref.</a></h2>
+<ul>
+<li><a href="https://d2.naver.com/helloworld/1848131">React 적용 가이드 - React와 Redux</a></li>
+</ul>
+<hr />
+<h2 id="redux"><a class="header" href="#redux">redux</a></h2>
+<ul>
+<li>Redux 프로젝트에서 prop는 애플리케이션에서 전역으로 관리하는 상태라고 생각하면 된다.</li>
+<li>https://github.com/reactjs/redux</li>
+</ul>
+<h2 id="핫-코드-리로드를-위해"><a class="header" href="#핫-코드-리로드를-위해">핫 코드 리로드를 위해</a></h2>
+<p>flux store와는 달리, 로직과 상태를 분리</p>
+<h2 id="타임-트래블"><a class="header" href="#타임-트래블">타임 트래블</a></h2>
+<ul>
+<li>action이 store로 전달시, 기존 상태 복사 후 복사본을 수정.</li>
+<li>앱에서 사용하는 모든 state를 하나의 tree로 관리 - 하나의 트리라서 관리 문제 발생!</li>
+</ul>
+<hr />
+<h2 id="flux"><a class="header" href="#flux">flux</a></h2>
+<ul>
+<li>https://facebook.github.io/flux/</li>
+<li>flux store
+<ol>
+<li>상태 변환을 위한 로직</li>
+<li>현재 어플리케이션 상태</li>
+</ol>
+</li>
+</ul>
+<h2 id="etc"><a class="header" href="#etc">Etc</a></h2>
+<ul>
+<li><a href="https://github.com/lilactown/helix">https://github.com/lilactown/helix</a></li>
+</ul>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../web/tailwindcss.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next prefetch" href="../react/reagent/reagent.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../web/tailwindcss.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next prefetch" href="../react/reagent/reagent.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../elasticlunr.min.js"></script>
+        <script src="../mark.min.js"></script>
+        <script src="../searcher.js"></script>
+
+        <script src="../clipboard.min.js"></script>
+        <script src="../highlight.js"></script>
+        <script src="../book.js"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </div>
+    </body>
+</html>
