@@ -89,7 +89,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="index.html">들어가며</a></li><li class="chapter-item expanded "><a href="clojurescript/clojurescript.html">clojurescript</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="clojurescript/hiccup.html">hiccup</a></li><li class="chapter-item expanded "><a href="clojurescript/reference.html">reference</a></li></ol></li><li class="chapter-item expanded "><a href="closure.html">google's closure</a></li><li class="chapter-item expanded "><a href="shadow-cljs/shadow-cljs.html">shadow-cljs</a></li><li class="chapter-item expanded affix "><li class="part-title">Web</li><li class="chapter-item expanded "><a href="npm/node.html">node</a></li><li class="chapter-item expanded "><a href="web/javascript.html">javascript</a></li><li class="chapter-item expanded "><a href="web/css.html">css</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="web/tailwindcss.html">tailwindcss</a></li></ol></li><li class="chapter-item expanded "><li class="part-title">React</li><li class="chapter-item expanded "><a href="react/react.html">react</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="react/reagent/reagent.html">reagent</a></li><li class="chapter-item expanded "><a href="react/re-frame/re-frame.html">re-frame</a></li></ol></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="index.html">들어가며</a></li><li class="chapter-item expanded "><a href="clojurescript/clojurescript.html">clojurescript</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="clojurescript/interop.html">interop</a></li><li class="chapter-item expanded "><a href="clojurescript/hiccup.html">hiccup</a></li><li class="chapter-item expanded "><a href="clojurescript/reference.html">reference</a></li></ol></li><li class="chapter-item expanded "><a href="closure.html">google's closure</a></li><li class="chapter-item expanded "><a href="shadow-cljs/shadow-cljs.html">shadow-cljs</a></li><li class="chapter-item expanded affix "><li class="part-title">Web</li><li class="chapter-item expanded "><a href="npm/node.html">node</a></li><li class="chapter-item expanded "><a href="web/javascript.html">javascript</a></li><li class="chapter-item expanded "><a href="web/css.html">css</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="web/tailwindcss.html">tailwindcss</a></li></ol></li><li class="chapter-item expanded "><li class="part-title">React</li><li class="chapter-item expanded "><a href="react/react.html">react</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="react/reagent/reagent.html">reagent</a></li><li class="chapter-item expanded "><a href="react/re-frame/re-frame.html">re-frame</a></li></ol></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle">
                 <div class="sidebar-resize-indicator"></div>
@@ -268,6 +268,46 @@
 </ul>
 </li>
 </ul>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="interop"><a class="header" href="#interop">interop</a></h1>
+<pre><code class="language-clojure">(set! js/a 3)
+
+(def arr (array 1 2 3))
+;; #js [1 2 3]
+
+(def obj (js-obj &quot;x&quot; 1 &quot;y&quot; 2))
+;; #js {:x 1, :y 2}
+
+(aget arr 1)
+(aset obj &quot;z&quot; 3
+</code></pre>
+<pre><code class="language-clojure">(js/document.body.lastChild.innerHTML.chatAt 7)
+
+(js/Date &quot;2016-05-19&quot;)
+(js/Date. &quot;2016-05-19&quot;)
+
+
+(clj-&gt;js )
+(js-&gt;clj )
+;; :keywordize-keys true
+;; ref: js-&gt;clj
+;;      - https://cljs.github.io/api/cljs.core/js-GTclj
+;; ref: https://clojuredocs.org/clojure.walk/keywordize-keys
+</code></pre>
+<pre><code class="language-clojure">(-&gt; evt .-target .-value)
+(.. evt -target -value)
+</code></pre>
+<h2 id="googobject"><a class="header" href="#googobject">goog.object</a></h2>
+<ul>
+<li><a href="https://google.github.io/closure-library/api/goog.object.html">https://google.github.io/closure-library/api/goog.object.html</a></li>
+</ul>
+<pre><code class="language-txt">If you do need to access object properties dynamically, then all ClojureScript core provides are aget and aset, so what other option do we have? If you look a bit further you’ll find that ClojureScript comes bundled with the Google Closure Library, which is a bit like the missing “standard library” for JavaScript. The goog.object namespace has a few functions specifically for dealing with object properties.
+
+There’s goog.object/get and goog.object/set, corresponding with aset and aget, but also goog.object/add, which is like a safer version of set, in that it will only set a property if it’s not present yet, or otherwise throw an exception.
+</code></pre>
+<h2 id="ref-1"><a class="header" href="#ref-1">ref</a></h2>
+<ul>
+<li><a href="https://lambdaisland.com/episodes/clojurescript-interop">https://lambdaisland.com/episodes/clojurescript-interop</a></li>
+</ul>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="hiccup"><a class="header" href="#hiccup">hiccup</a></h1>
 <p>Fast library for rendering HTML in Clojure </p>
 <ul>
@@ -301,7 +341,7 @@
 </ul>
 </li>
 </ul>
-<h2 id="ref-1"><a class="header" href="#ref-1">Ref.</a></h2>
+<h2 id="ref-2"><a class="header" href="#ref-2">Ref.</a></h2>
 <ul>
 <li><a href="https://adambard.com/blog/clojurescript-boot-fireplace/">https://adambard.com/blog/clojurescript-boot-fireplace/</a></li>
 <li><a href="https://lambdaisland.com/episodes/javascript-libraries-clojurescript">https://lambdaisland.com/episodes/javascript-libraries-clojurescript</a></li>
@@ -447,7 +487,7 @@ shadow-cljs - watching build :app
 
 ref: https://medium.com/zigbang/패키지-매니저-그것이-궁금하다-5bacc65fb05d
 </code></pre>
-<h2 id="ref-2"><a class="header" href="#ref-2">Ref</a></h2>
+<h2 id="ref-3"><a class="header" href="#ref-3">Ref</a></h2>
 <p><a href="https://www.youtube.com/playlist?list=PLuHgQVnccGMB4krR04ug5nEXJ3sAEOWDL">NPM Package - 생활코딩</a></p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="javascript"><a class="header" href="#javascript">javascript</a></h1>
 <h2 id="신텍스-하이라이트"><a class="header" href="#신텍스-하이라이트">신텍스 하이라이트</a></h2>
@@ -661,7 +701,7 @@ static typechecking</p>
 <li>요약하면 컴포넌트 자체의 상태(색상, 애니메이션 등)는 state로 처리하고, 전체적으로 관리해야 하는 상태(서버와 동기화하는 데이터 등)는 부모 컴포넌트에서 prop으로 받아 처리한다. 물론 prop을 갱신하면 App 컴포넌트가 전반적으로 갱신되기 때문에 state를 갱신하는 것보다는 비교적 느리다. 효과적으로 state를 사용하면 좋지만, prop으로 처리해야 하는 작업을 state로 처리하면 오히려 코드 작성이 더 어려워진다.
 state와 prop의 차이에 관한 더 자세한 내용은 &quot;props vs state&quot;를 참고한다. React에서 구분하는 prop와 state의 차이에 관해서는 &quot;Thinking in React&quot;의 'Step 3: Identify The Minimal (but complete) Representation Of UI State'를 참고한다.</li>
 </ul>
-<h2 id="ref-3"><a class="header" href="#ref-3">Ref.</a></h2>
+<h2 id="ref-4"><a class="header" href="#ref-4">Ref.</a></h2>
 <ul>
 <li><a href="https://d2.naver.com/helloworld/1848131">React 적용 가이드 - React와 Redux</a></li>
 </ul>
@@ -814,7 +854,7 @@ class SayHello extends React.Component {
 </ul>
 </li>
 </ul>
-<h2 id="ref-4"><a class="header" href="#ref-4"><code>:ref</code></a></h2>
+<h2 id="ref-5"><a class="header" href="#ref-5"><code>:ref</code></a></h2>
 <ul>
 <li><a href="https://github.com/reagent-project/reagent/blob/master/doc/FAQ/UsingRefs.md">https://github.com/reagent-project/reagent/blob/master/doc/FAQ/UsingRefs.md</a></li>
 </ul>
@@ -1123,7 +1163,7 @@ reg-interceptor
   (fn [[a b] query-vec]
     ....))
 </code></pre>
-<h2 id="ref-5"><a class="header" href="#ref-5">Ref</a></h2>
+<h2 id="ref-6"><a class="header" href="#ref-6">Ref</a></h2>
 <ul>
 <li>
 <p><a href="https://docs.google.com/drawings/d/1ptKAIPfb_gtwwSqYmt-JGTkwPVm_6LeWjjm-FcWznBs/edit">https://docs.google.com/drawings/d/1ptKAIPfb_gtwwSqYmt-JGTkwPVm_6LeWjjm-FcWznBs/edit</a></p>
