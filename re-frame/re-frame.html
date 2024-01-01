@@ -1,0 +1,525 @@
+<!DOCTYPE HTML>
+<html lang="kr" class="light" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>re-frame - study.clojurescript</title>
+
+
+        <!-- Custom HTML head -->
+        
+        <meta name="description" content="공부 - 클로저스크립트">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="../favicon.svg">
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+    </head>
+    <body class="sidebar-visible no-js">
+    <div id="body-container">
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('light')
+            html.classList.add(theme);
+            var body = document.querySelector('body');
+            body.classList.remove('no-js')
+            body.classList.add('js');
+        </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var body = document.querySelector('body');
+            var sidebar = null;
+            var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            sidebar_toggle.checked = sidebar === 'visible';
+            body.classList.remove('sidebar-visible');
+            body.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded "><a href="../index.html">Index.md</a></li><li class="chapter-item expanded "><a href="../clojurescript/clojurescript.html">clojurescript</a></li><li class="chapter-item expanded "><a href="../reagent/reagent.html">reagent</a></li><li class="chapter-item expanded "><a href="../re-frame/re-frame.html" class="active">re-frame</a></li><li class="chapter-item expanded "><a href="../closure.html">closure.md</a></li><li class="chapter-item expanded "><a href="../shadow-cljs/shadow-cljs.html">shadow-cljs</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <!-- Track and set sidebar scroll position -->
+        <script>
+            var sidebarScrollbox = document.querySelector('#sidebar .sidebar-scrollbox');
+            sidebarScrollbox.addEventListener('click', function(e) {
+                if (e.target.tagName === 'A') {
+                    sessionStorage.setItem('sidebar-scroll', sidebarScrollbox.scrollTop);
+                }
+            }, { passive: true });
+            var sidebarScrollTop = sessionStorage.getItem('sidebar-scroll');
+            sessionStorage.removeItem('sidebar-scroll');
+            if (sidebarScrollTop) {
+                // preserve sidebar scroll position when navigating via links within sidebar
+                sidebarScrollbox.scrollTop = sidebarScrollTop;
+            } else {
+                // scroll sidebar to current active section when navigating via "next/previous chapter" buttons
+                var activeSection = document.querySelector('#sidebar .active');
+                if (activeSection) {
+                    activeSection.scrollIntoView({ block: 'center' });
+                }
+            }
+        </script>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </label>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">study.clojurescript</h1>
+
+                    <div class="right-buttons">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                        <a href="https://github.com/netpyoung/study.clojurescript" title="Git repository" aria-label="Git repository">
+                            <i id="git-repository-button" class="fa fa-github"></i>
+                        </a>
+                        <a href="https://github.com/netpyoung/study.clojurescript/edit/main/src/re-frame/re-frame.md" title="Suggest an edit" aria-label="Suggest an edit">
+                            <i id="git-edit-button" class="fa fa-edit"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="re-frame-repo--readme"><a class="header" href="#re-frame-repo--readme">re-frame (<a href="https://github.com/Day8/re-frame">repo</a> / <a href="https://github.com/Day8/re-frame/blob/master/docs/README.md">README</a>)</a></h1>
+<ul>
+<li>
+<p><a href="https://clojurescript.org/">ClojureScript</a>로 작성된 <a href="https://github.com/Day8/re-frame">re-frame</a>은 <a href="https://en.wikipedia.org/wiki/Single-page_application">SPA</a>만들때 쓰는 패턴입니다.</p>
+</li>
+<li>
+<p><a href="https://github.com/Day8/re-frame">re-frame</a>은 내부적으로 <a href="https://github.com/reagent-project/reagent">reagent</a>를 활용합니다.</p>
+</li>
+<li>
+<p><a href="https://www.youtube.com/watch?v=-yQreNDzvdw">Reaktor Talks: Esko Lahti, Developing Web Applications With Reagent/re-frame</a></p>
+</li>
+<li>
+<p>간락한 개념.</p>
+</li>
+</ul>
+<pre><code>DB -&gt;
+  뷰 -&gt;
+    Reagent -&gt;
+      React -&gt;
+        렌더링.
+        &lt;- 이벤트 발생.
+      &lt;- 이벤트 큐잉
+    &lt;- 이벤트 처리 (인터셉터와 함께), 이펙트 발생.
+  &lt;- 이펙터 처리.
+DB
+</code></pre>
+<ul>
+<li>키워드로 보는 개념.</li>
+</ul>
+<pre><code>app-db -&gt;
+  [:hiccup] -&gt;
+    (r/render-component component dom-root) -&gt;
+    (rf/subsribe query-id) -&gt;
+      React -&gt;
+        Dom -&gt;
+          Render
+          &lt;- (rf/dispatch event)
+          &lt;- [event ...]
+        &lt;- (rf/reg-event-fx event-id [interceptor ...] (fn [cofx event]))
+          &lt;- rf.cofx/inject-db :before
+          &lt;- (rf/-&gt;interceptor :before)
+          &lt;- (fn [cofx event] ...)
+          &lt;- (rf/-&gt;interceptor :after)
+          &lt;- rf.fx/do-fx :after
+          &lt;- [effect ...]
+    &lt;- (rf/reg-fx effect-id (fn [event-value] ...)
+  &lt;- (rf/reg-sub query-id (fn [db] ...))
+  &lt;- (rf/reg-sub query-id (fn [db] ...))
+app-db
+</code></pre>
+<h2 id="용어설명"><a class="header" href="#용어설명">용어설명</a></h2>
+<h3 id="kind-reg-"><a class="header" href="#kind-reg-">kind <code>reg-*</code></a></h3>
+<p>register handler
+:event-db
+:event-fx
+:event-ctx
+:sub
+:sub-raw
+:fx
+:cofx</p>
+<p>drawing board
+reg-view
+reg-interceptor</p>
+<p>(rf/reg-event-db
+:event-id
+(fn [db event]
+(assoc db :some :thing)))</p>
+<p>(rf/reg
+{:kind  :event-db
+:id    :event-id
+:fn    (fn [db event]
+(assoc db :some :thing))})</p>
+<p>(rf/reg
+[{:kind :event-db ...}
+{:kind :event-db ...}
+{:kind :event-fx ...}
+{:kind :sub ...])</p>
+<h3 id="registrar"><a class="header" href="#registrar">Registrar</a></h3>
+<p>Each entry stored in the registrar will become a map instead of just a handler.</p>
+<p>Map keys:</p>
+<p>:kind - somehow redundant
+:id
+:doc
+:line
+:ns
+:doc
+:fn the handler</p>
+<p><code>re-com</code> is a library which supplies reusable Reagent widgets. And widgets, like a datepicker, are the simplest kind of components.
+<code>re-com</code> components are reusability because they take an input stream of data and they</p>
+<p><code>def-view</code>: TODO</p>
+<h3 id="db--app-db--db"><a class="header" href="#db--app-db--db">DB : (<code>app-db</code> / <code>db</code>)</a></h3>
+<pre><code class="language-clojure">{...}
+</code></pre>
+<h3 id="event"><a class="header" href="#event">event</a></h3>
+<pre><code class="language-clojure">[event-id &amp; args]
+</code></pre>
+<h3 id="event-event"><a class="header" href="#event-event">Event (<code>event</code>)</a></h3>
+<h3 id="effect-effect--fx"><a class="header" href="#effect-effect--fx">Effect (<code>effect</code> / <code>fx</code>)</a></h3>
+<ul>
+<li>https://github.com/Day8/re-frame/blob/master/docs/API.md</li>
+<li>내장 이펙트</li>
+</ul>
+<pre><code class="language-clojure">[:db `db`]
+
+[:dispatch `event`]
+
+[:dispatch-n [(nil | `event`) ...]]
+
+[:dispatch-later [ (nil | {:ms `int` :dispatch `event`}) ...]]
+
+[:deregister-event-handler `event-id`]
+
+[:deregister-event-handler [`event-id` ...]]
+</code></pre>
+<h3 id="coeffect-coeffect--cofx"><a class="header" href="#coeffect-coeffect--cofx">Coeffect (<code>coeffect</code> / <code>cofx</code>)</a></h3>
+<ul>
+<li>http://tomasp.net/coeffects/</li>
+<li>the data your event handler requires from the world in order to do its computation (aka side-causes)</li>
+<li>내장 코-이펙트</li>
+</ul>
+<pre><code class="language-clojure">{
+ :local-store `local-store`
+ :db `db` ;; `current-app-state`
+}
+</code></pre>
+<h3 id="contextmap-context-ctx"><a class="header" href="#contextmap-context-ctx">contextmap (<code>context</code>, <code>ctx</code>)</a></h3>
+<pre><code class="language-clojure">{:coeffects {:event [:some-id :some-param]
+             :db    &lt;original contents of app-db&gt;}
+
+ :effects   {:db    &lt;new value for app-db&gt;
+             :dispatch  [:an-event-id :param1]}
+
+ :queue     &lt;a collection of further interceptors&gt;
+ :stack     &lt;a collection of interceptors already walked&gt;}
+</code></pre>
+<p>==================================================
+https://github.com/Day8/re-frame/blob/master/docs/EventHandlingInfographic.md</p>
+<h2 id="raise"><a class="header" href="#raise">raise</a></h2>
+<pre><code class="language-clojure">(rf/dispatch `event`)
+
+(rf/dispatch-sync `event`)
+</code></pre>
+<h2 id="queueing"><a class="header" href="#queueing">queueing</a></h2>
+<p>[event1 event2 event3 ...]</p>
+<h2 id="event-routeter"><a class="header" href="#event-routeter">event-routeter</a></h2>
+<pre><code class="language-clojure">(rf/reg-event-fx
+  `event-key`
+  (fn [`cofx` `event`]
+    `effect`))
+;;=&gt; {...} =&gt; [[`effect-key` `effect-value`] ...]
+
+(rf/reg-event-fx
+  `event-key`
+  [`interceptor` ...]
+  (fn [`cofx` `event`]
+    `effect`))
+;;=&gt; {...} =&gt; [[`effect-key` `effect-value`] ...]
+
+(reg-event-db
+  `event-key`
+  (fn [`db` `event`]
+    `new-db`))
+;;=&gt; {:db `new-db`} =&gt; [[:db `new-db`]]
+</code></pre>
+<p>(reg-event-db
+<code>event-key</code>
+(fn [{:key [db]} <code>event</code>]
+(assoc db :a 10)))</p>
+<p>(reg-event-fx
+<code>event-key</code>
+(fn [{:key [db]} <code>event</code>]
+{:db (assoc db :a 10)}))</p>
+<p>(reg-event-ctx
+<code>event-key</code>
+(fn [<code>context-map</code> <code>event</code>]
+<code>context-map</code>)</p>
+<h2 id="effect-routeter"><a class="header" href="#effect-routeter">effect-routeter</a></h2>
+<p>[[<code>effect-key</code> <code>effect-value</code>] ...]</p>
+<h2 id="apply-effect"><a class="header" href="#apply-effect">apply effect</a></h2>
+<ul>
+<li>built-in : <code>:db</code>, <code>:dispatch</code>, ``</li>
+</ul>
+<pre><code class="language-clojure">(rf/reg-fx
+  `effect-key`
+  (fn [`effect-value`]
+     ...))
+</code></pre>
+<h2 id="interceptor"><a class="header" href="#interceptor">interceptor</a></h2>
+<ul>
+<li>built-in
+<ul>
+<li><code>debug</code></li>
+<li><code>trim-v</code></li>
+</ul>
+</li>
+<li>built-in factory
+<ul>
+<li><code>enrich</code></li>
+<li><code>path</code></li>
+<li><code>after</code></li>
+<li><code>inject-cofx</code></li>
+</ul>
+</li>
+<li>built-in more : <code>std_interceptors.clj</code></li>
+</ul>
+<pre><code class="language-clojure">{:id      `cofx-id`
+ :before  (fn [context] ...)
+ :after   (fn [context] ...)}
+
+(rf/inject-cofx `cofx-id` arg)
+
+(rf/-&gt;interceptor
+ :id     `cofx-id`
+ :before handle-context
+ :after  handle-context)
+
+(reg-cofx
+   `cofx-id`
+   (fn [`cofx` arg]
+      `cofx`))
+</code></pre>
+<h1 id="reg-sub--subscribe"><a class="header" href="#reg-sub--subscribe">reg-sub / subscribe</a></h1>
+<ul>
+<li>https://github.com/Day8/re-frame/blob/master/docs/SubscriptionFlow.md</li>
+<li>(ns re-frame.subs)</li>
+</ul>
+<p>{:name &quot;Bruce&quot;}</p>
+<p>(rf/reg-sub
+:get-name
+(fn [db _]
+(name db))) =&gt; &quot;Bruce&quot;</p>
+<p>(rf/reg-sub
+:greeting
+(fn [db _]
+(rf/subscribe :get-name))
+(fn [name _]
+(st &quot;Hello, &quot; name))) =&gt; &quot;Hello, Bruce&quot;</p>
+<p>@(rf/subscribe :greeting) =&gt; &quot;Hello, Bruce&quot;</p>
+<ol>
+<li>
+<p>(reg-sub
+:test-sub
+(fn [db [_]] db))
+The value in app-db is passed to the computation function as the 1st argument.</p>
+</li>
+<li>
+<p>(reg-sub
+:a-b-sub
+(fn [q-vec d-vec]
+[(subs/subscribe [:a-sub])
+(subs/subscribe [:b-sub])])
+(fn [[a b] [_]] {:a a :b b}))</p>
+</li>
+</ol>
+<p>Two functions provided. The 2nd is computation function, as before. The 1st
+is returns what <code>input signals</code> should be provided to the computation. The
+<code>input signals</code> function is called with two arguments: the query vector
+and the dynamic vector. The return value can be singleton reaction or
+a sequence of reactions.</p>
+<ol start="3">
+<li>(reg-sub
+:a-b-sub
+:&lt;- [:a-sub]
+:&lt;- [:b-sub]
+(fn [[a b] [_]] {:a a :b b}))```
+(let [value @(rf/subsribe <code>query-id</code>)])</li>
+</ol>
+<p>(rf/reg-sub
+<code>query-id</code>
+(fn [db event] ; computation-fn
+value))</p>
+<p>(rf/reg-sub
+<code>query-id</code>
+(fn [query-vec dynamic-vec]
+[(subscribe [:a-sub])
+(subscribe [:b-sub])])
+(fn [[a b] query-vec]
+....))</p>
+<p>https://docs.google.com/drawings/d/1ptKAIPfb_gtwwSqYmt-JGTkwPVm_6LeWjjm-FcWznBs/edit</p>
+<p>https://github.com/Day8/re-frame/blob/master/docs/FAQs/DoINeedReFrame.md</p>
+<h2 id="router"><a class="header" href="#router">Router</a></h2>
+<p>https://github.com/Day8/re-frame/blob/master/src/re_frame/router.cljc#L8-L60</p>
+<p>Subscription &amp; EventHandler
+https://github.com/Day8/re-frame/blob/master/docs/FAQs/UseASubscriptionInAnEventHandler.md</p>
+<p>Logger
+https://github.com/Day8/re-frame/blob/master/docs/FAQs/Logging.md</p>
+<p>on-click.event handle
+https://github.com/Day8/re-frame/blob/master/docs/FAQs/Null-Dispatched-Events.md</p>
+<p>WIP - EventError Handling
+https://github.com/Day8/re-frame/issues/231#issuecomment-249991378</p>
+<p>Custom event-handler define
+https://github.com/Day8/re-frame/blob/master/docs/FAQs/GlobalInterceptors.md</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../reagent/reagent.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next prefetch" href="../closure.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../reagent/reagent.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next prefetch" href="../closure.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../elasticlunr.min.js"></script>
+        <script src="../mark.min.js"></script>
+        <script src="../searcher.js"></script>
+
+        <script src="../clipboard.min.js"></script>
+        <script src="../highlight.js"></script>
+        <script src="../book.js"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </div>
+    </body>
+</html>
