@@ -1,12 +1,20 @@
+# react
+
+- [react](https://react.dev/)
+- [react-native](https://reactnative.dev/)
+
 react개인적으로 정리. 자세한건 facebook공식 사이트에 있으니,  한눈에 필요한 것만 빠르게 윤곽을 잡을 수 있는게 필요!
 
 ## 1. 시작, 왜 React가 나왔는가?
+
 facebook이  사이트를 개발하면서 데이터 변경과 ui변경을 동기화 시키는데 어려움을 격음.
 
 ### 1.1 어떻게 동기화를 시킬 것인가.
+
 데이터를 변경할때마다 다시 새로 그리면 비용이 큼으로, 바뀌어야 하는 부분만 변경하고 싶음.브라우저는 DOM을 이용하여 표현하는데, DOM이 눈에 보이도록 렌더링될때에는 비용(시간)이 많이 듬.Virtual DOM이라고 눈에 보이지 않는 DOM을 만들어, 변경사항을 적용하고, 최소한에 변경사항을 눈에 보이도록 실제DOM에 반영하면 어떨까.
 
 ### 1.2 React는 어떠한 데이터 흐름을 가지며 어떻게 UI(dom)을 갱신하는가.
+
 가상 Dom의 변경사항을 검사하여, 실제 Dom에 적용한다(변경에 필요한 최소한의 dom만 갱신)단방향 데이타 흐름.여기서 `Dom갱신`, `데이터 흐름`에 주의해야 한다 .dom갱신부터 보자
 
 ```
@@ -21,19 +29,23 @@ facebook이  사이트를 개발하면서 데이터 변경과 ui변경을 동기
 Reconciliation 작업은 Virtual DOM과 DOM을 비교해 DOM을 갱신하는 작업이다
 
 ### Dom Element
-* Dom속성 : Camel-case
-* 이벤트 헨들러 : Camel-case
-* style 속성 : camelCase
-```
+
+- Dom속성 : Camel-case
+- 이벤트 헨들러 : Camel-case
+- style 속성 : camelCase
+
+
+``` html
 <div className='a'>
 <label htmlFor='name'>
 ```
 
 ### reconciliation
-* https://d2.naver.com/helloworld/9297403
-* https://www.robinwieruch.de/redux-mobx-confusion
 
-```js
+- https://d2.naver.com/helloworld/9297403
+- https://www.robinwieruch.de/redux-mobx-confusion
+
+```javascript
 function Welcome(props) {
   return <h1>Hello, {props.name}</h1>;
 }
@@ -47,7 +59,7 @@ function Welcome(props) {
 
 class CustomTextInput extends React.Component {constructor(props){super(props);this.focus=this.focus.bind(this);  }focus(){  this.textInput.focus();  }render(){  return(<div><inputtype="text"ref={(input) => { this.textInput = input; }} /><inputtype="button"value="Focus the text input"onClick={this.focus}/></div>);  }}# toolhttps://github.com/facebook/react-devtoolshttps://facebook.github.io/react/docs/perf.html
 
-
+```
 
 virtual dom
 speed
@@ -67,43 +79,43 @@ SFC: Stateless Functional Component
 
 
 
-# props 와 state
+## props 와 state
 
-state는 독립적인 컴포넌트의 상태고, prop은 외부(부모) 컴포넌트에게 받은 속성이다
-
-Redux 프로젝트에서 prop는 애플리케이션에서 전역으로 관리하는 상태라고 생각하면 된다.
-
-요약하면 컴포넌트 자체의 상태(색상, 애니메이션 등)는 state로 처리하고, 전체적으로 관리해야 하는 상태(서버와 동기화하는 데이터 등)는 부모 컴포넌트에서 prop으로 받아 처리한다. 물론 prop을 갱신하면 App 컴포넌트가 전반적으로 갱신되기 때문에 state를 갱신하는 것보다는 비교적 느리다. 효과적으로 state를 사용하면 좋지만, prop으로 처리해야 하는 작업을 state로 처리하면 오히려 코드 작성이 더 어려워진다.
+- state는 독립적인 컴포넌트의 상태고, prop은 외부(부모) 컴포넌트에게 받은 속성이다
+- Redux 프로젝트에서 prop는 애플리케이션에서 전역으로 관리하는 상태라고 생각하면 된다.
+- 요약하면 컴포넌트 자체의 상태(색상, 애니메이션 등)는 state로 처리하고, 전체적으로 관리해야 하는 상태(서버와 동기화하는 데이터 등)는 부모 컴포넌트에서 prop으로 받아 처리한다. 물론 prop을 갱신하면 App 컴포넌트가 전반적으로 갱신되기 때문에 state를 갱신하는 것보다는 비교적 느리다. 효과적으로 state를 사용하면 좋지만, prop으로 처리해야 하는 작업을 state로 처리하면 오히려 코드 작성이 더 어려워진다.
 state와 prop의 차이에 관한 더 자세한 내용은 "props vs state"를 참고한다. React에서 구분하는 prop와 state의 차이에 관해서는 "Thinking in React"의 'Step 3: Identify The Minimal (but complete) Representation Of UI State'를 참고한다.
 
+## Ref.
 
-
-
-
-# Ref.
-React 적용 가이드 - React와 Redux
-https://d2.naver.com/helloworld/1848131
-
+- [React 적용 가이드 - React와 Redux](https://d2.naver.com/helloworld/1848131)
 
 ---------------------------------------------------------------
 
-# redux
-* Redux 프로젝트에서 prop는 애플리케이션에서 전역으로 관리하는 상태라고 생각하면 된다.
-* https://github.com/reactjs/redux
+## redux
+
+- Redux 프로젝트에서 prop는 애플리케이션에서 전역으로 관리하는 상태라고 생각하면 된다.
+- https://github.com/reactjs/redux
 
 ## 핫 코드 리로드를 위해
+
 flux store와는 달리, 로직과 상태를 분리
 
 ## 타임 트래블
-action이 store로 전달시, 기존 상태 복사 후 복사본을 수정.
-앱에서 사용하는 모든 state를 하나의 tree로 관리 - 하나의 트리라서 관리 문제 발생!
 
-
+- action이 store로 전달시, 기존 상태 복사 후 복사본을 수정.
+- 앱에서 사용하는 모든 state를 하나의 tree로 관리 - 하나의 트리라서 관리 문제 발생!
 
 ---------------------------------------------------------------
 
-# flux
-* https://facebook.github.io/flux/
-* flux store
+## flux
+
+- https://facebook.github.io/flux/
+- flux store
   1. 상태 변환을 위한 로직
   2. 현재 어플리케이션 상태
+
+
+## Etc
+
+- <https://github.com/lilactown/helix>

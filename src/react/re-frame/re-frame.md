@@ -1,11 +1,22 @@
-# re-frame ([repo][github-re-frame] / [README](https://github.com/Day8/re-frame/blob/master/docs/README.md))
+# re-frame
+
+
+([repo][github-re-frame] / [README](https://github.com/Day8/re-frame/blob/master/docs/README.md))
 - [ClojureScript][clojurescript]로 작성된 [re-frame][github-re-frame]은 [SPA][wiki-spa]만들때 쓰는 패턴입니다.
 - [re-frame][github-re-frame]은 내부적으로 [reagent][github-reagent]를 활용합니다.
 - [Reaktor Talks: Esko Lahti, Developing Web Applications With Reagent/re-frame](https://www.youtube.com/watch?v=-yQreNDzvdw)
 
 
+https://day8.github.io/re-frame/
+
+[github-re-frame]: https://github.com/Day8/re-frame
+[github-reagent]: https://github.com/reagent-project/reagent
+[wiki-spa]: https://en.wikipedia.org/wiki/Single-page_application
+[clojurescript]: https://clojurescript.org/
+
 - 간락한 개념.
-```
+
+``` txt
 DB ->
   뷰 ->
     Reagent ->
@@ -19,7 +30,8 @@ DB
 ```
 
 - 키워드로 보는 개념.
-```
+
+``` txt
 app-db ->
   [:hiccup] ->
     (r/render-component component dom-root) ->
@@ -45,6 +57,8 @@ app-db
 ## 용어설명
 
 ### kind `reg-*`
+
+``` clojure
 register handler
 :event-db
 :event-fx
@@ -74,10 +88,13 @@ reg-interceptor
    {:kind :event-db ...}
    {:kind :event-fx ...}
    {:kind :sub ...])
+```
 
 ### Registrar
+
 Each entry stored in the registrar will become a map instead of just a handler.
 
+```
 Map keys:
 
 :kind - somehow redundant
@@ -92,10 +109,11 @@ Map keys:
 `re-com` components are reusability because they take an input stream of data and they
 
 `def-view`: TODO
-
+```
 
 
 ### DB : (`app-db` / `db`)
+
 ``` clojure
 {...}
 ```
@@ -108,7 +126,9 @@ Map keys:
 ```
 
 ### Event (`event`)
+
 ### Effect (`effect` / `fx`)
+
 - https://github.com/Day8/re-frame/blob/master/docs/API.md
 - 내장 이펙트
 
@@ -128,9 +148,11 @@ Map keys:
 
 
 ### Coeffect (`coeffect` / `cofx`)
+
 - http://tomasp.net/coeffects/
 - the data your event handler requires from the world in order to do its computation (aka side-causes)
 - 내장 코-이펙트
+
 ``` clojure
 {
  :local-store `local-store`
@@ -139,6 +161,7 @@ Map keys:
 ```
 
 ### contextmap (`context`, `ctx`)
+
 ``` clojure
 {:coeffects {:event [:some-id :some-param]
              :db    <original contents of app-db>}
@@ -150,12 +173,13 @@ Map keys:
  :stack     <a collection of interceptors already walked>}
 ```
 
+-----------------------
 
-==================================================
-https://github.com/Day8/re-frame/blob/master/docs/EventHandlingInfographic.md
+- <https://github.com/Day8/re-frame/blob/master/docs/EventHandlingInfographic.md>
 
 
 ## raise
+
 ``` clojure
 (rf/dispatch `event`)
 
@@ -164,10 +188,14 @@ https://github.com/Day8/re-frame/blob/master/docs/EventHandlingInfographic.md
 
 
 ## queueing
+
+``` clojure
 [event1 event2 event3 ...]
+```
 
 
 ## event-routeter
+
 ``` clojure
 (rf/reg-event-fx
   `event-key`
@@ -189,6 +217,7 @@ https://github.com/Day8/re-frame/blob/master/docs/EventHandlingInfographic.md
 ;;=> {:db `new-db`} => [[:db `new-db`]]
 ```
 
+``` clojure
 (reg-event-db
   `event-key`
   (fn [{:key [db]} `event`]
@@ -203,12 +232,18 @@ https://github.com/Day8/re-frame/blob/master/docs/EventHandlingInfographic.md
   `event-key`
   (fn [`context-map` `event`]
     `context-map`)
-## effect-routeter
-[[`effect-key` `effect-value`] ...]
+```
 
+## effect-routeter
+
+``` clojure
+[[`effect-key` `effect-value`] ...]
+```
 
 ## apply effect
+
 - built-in : `:db`, `:dispatch`, ``
+
 ``` clojure
 (rf/reg-fx
   `effect-key`
@@ -216,8 +251,8 @@ https://github.com/Day8/re-frame/blob/master/docs/EventHandlingInfographic.md
      ...))
 ```
 
-
 ## interceptor
+
 - built-in
   - `debug`
   - `trim-v`
@@ -248,9 +283,11 @@ https://github.com/Day8/re-frame/blob/master/docs/EventHandlingInfographic.md
 
 
 # reg-sub / subscribe
-- https://github.com/Day8/re-frame/blob/master/docs/SubscriptionFlow.md
-- (ns re-frame.subs)
 
+- <https://github.com/Day8/re-frame/blob/master/docs/SubscriptionFlow.md>
+- `(ns re-frame.subs)`
+
+``` clojure
 {:name "Bruce"}
 
 (rf/reg-sub
@@ -270,7 +307,8 @@ https://github.com/Day8/re-frame/blob/master/docs/EventHandlingInfographic.md
   1. (reg-sub
        :test-sub
        (fn [db [_]] db))
-  The value in app-db is passed to the computation function as the 1st argument.
+
+  ;; The value in app-db is passed to the computation function as the 1st argument.
 
   2. (reg-sub
        :a-b-sub
@@ -279,11 +317,11 @@ https://github.com/Day8/re-frame/blob/master/docs/EventHandlingInfographic.md
           (subs/subscribe [:b-sub])])
        (fn [[a b] [_]] {:a a :b b}))
 
-  Two functions provided. The 2nd is computation function, as before. The 1st
-  is returns what `input signals` should be provided to the computation. The
-  `input signals` function is called with two arguments: the query vector
-  and the dynamic vector. The return value can be singleton reaction or
-  a sequence of reactions.
+  ;;  Two functions provided. The 2nd is computation function, as before. The 1st
+  ;;  is returns what `input signals` should be provided to the computation. The
+  ;;  `input signals` function is called with two arguments: the query vector
+  ;;  and the dynamic vector. The return value can be singleton reaction or
+  ;;  a sequence of reactions.
 
   3. (reg-sub
        :a-b-sub
@@ -306,33 +344,22 @@ https://github.com/Day8/re-frame/blob/master/docs/EventHandlingInfographic.md
      (subscribe [:b-sub])])
   (fn [[a b] query-vec]
     ....))
+```
 
-[github-re-frame]: https://github.com/Day8/re-frame
-[github-reagent]: https://github.com/reagent-project/reagent
-[wiki-spa]: https://en.wikipedia.org/wiki/Single-page_application
-[clojurescript]: https://clojurescript.org/
+## Ref
 
+- <https://docs.google.com/drawings/d/1ptKAIPfb_gtwwSqYmt-JGTkwPVm_6LeWjjm-FcWznBs/edit>
+- <https://github.com/Day8/re-frame/blob/master/docs/FAQs/DoINeedReFrame.md>
 
-
-https://docs.google.com/drawings/d/1ptKAIPfb_gtwwSqYmt-JGTkwPVm_6LeWjjm-FcWznBs/edit
-
-
-https://github.com/Day8/re-frame/blob/master/docs/FAQs/DoINeedReFrame.md
-
-## Router
-https://github.com/Day8/re-frame/blob/master/src/re_frame/router.cljc#L8-L60
-
-Subscription & EventHandler
-https://github.com/Day8/re-frame/blob/master/docs/FAQs/UseASubscriptionInAnEventHandler.md
-
-Logger
-https://github.com/Day8/re-frame/blob/master/docs/FAQs/Logging.md
-
-on-click.event handle
-https://github.com/Day8/re-frame/blob/master/docs/FAQs/Null-Dispatched-Events.md
-
-WIP - EventError Handling
-https://github.com/Day8/re-frame/issues/231#issuecomment-249991378
-
-Custom event-handler define
-https://github.com/Day8/re-frame/blob/master/docs/FAQs/GlobalInterceptors.md
+- Router
+  - <https://github.com/Day8/re-frame/blob/master/src/re_frame/router.cljc#L8-L60>
+- Subscription & EventHandler
+  - <https://github.com/Day8/re-frame/blob/master/docs/FAQs/UseASubscriptionInAnEventHandler.md>
+- Logger
+  - <https://github.com/Day8/re-frame/blob/master/docs/FAQs/Logging.md>
+- on-click.event handle
+  - <https://github.com/Day8/re-frame/blob/master/docs/FAQs/Null-Dispatched-Events.md>
+- WIP - EventError Handling
+  - <https://github.com/Day8/re-frame/issues/231#issuecomment-249991378>
+- Custom event-handler define
+  - <https://github.com/Day8/re-frame/blob/master/docs/FAQs/GlobalInterceptors.md>
