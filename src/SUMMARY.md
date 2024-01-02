@@ -7,6 +7,7 @@
   - [reference](./clojurescript/reference.md)
 - [google's closure](./closure.md)
 - [shadow-cljs](./shadow-cljs/shadow-cljs.md)
+- [sourcemap](./sourcemap.md)
 
 # Web
 
@@ -17,6 +18,11 @@
 
 # React
 
-- [react](./react/react.md)
+- [WIP react](./react/react.md)
   - [reagent](./react/reagent/reagent.md)
   - [re-frame](./react/re-frame/re-frame.md)
+
+# Deprecated
+
+- [boot](./deprecated/boot.md)
+- [figwheel](./deprecated/figwheel.md)

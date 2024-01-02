@@ -51,15 +51,128 @@ function Welcome(props) {
 }
 ```
 
-```js
-// constructor HelloMessage(name) { } 이런식으로 해야 나중에 햇갈리지 않지 이런 인터페이스는 에러!!class HelloMessage extends React.Component {  render() {    return <div>Hello {this.props.name}</div>;  }}ReactDOM.render(<HelloMessage name="Jane" />, mountNode);``````jsclass HelloMessage extends React.Component {  render() {    return React.createElement(      "div",      null,      "Hello ",      this.props.name    );  }}ReactDOM.render(React.createElement(HelloMessage, { name: "Jane" }), mountNode);```Props 속성- immutable- passed in from parent- can not change it- can be defaulted & validated## stateclass Clock extends React.Component {  constructor(props) {    super(props);    this.state = {date: new Date()};  }  render() {    return (      <div>        <h1>Hello, world!</h1>        <h2>It is {this.state.date.toLocaleTimeString()}.</h2>      </div>    );  }}내부 상태(state) 저장this.state.comment = "hello";  // Wrongthis.setState({comment: "hello"});  //Correctthis.state = // only constructorstate와 props 는 비동기적으로 업데이트 됨으로```js// Wrongthis.setState({counter:this.state.counter + this.props.increment});// Correctthis.setState((prevState,props)=>({counter:prevState.counter + props.increment}));```componentDidMount() { }componentWillUnmount() { }this.state = {posts: [],comments: []};componentDidMount() {fetchPosts().then(response=>{this.setState({posts: response.posts    });  });fetchComments().then(response=>{this.setState({comments: response.comments    });  });}this.hello 처럼 변수를 만들어 무언가를 저장할 수 있다(보여지는 파트가 아닌것)State 상태- private- maintained by component- mutableReactDOM.render() 로 렌더된 결과를 바꾼다.state: this.setState() - 새로운 값으로 변경 - component renderstate - lifecycle - https://facebook.github.io/react/docs/state-and-lifecycle.htmllifting-state-up : https://facebook.github.io/react/docs/lifting-state-up.htmlprops.children<FancyBorder color="blue"><h1 className="Dialog-title">Welcome</h1><p className="Dialog-message">Thank you for visiting our spacecraft!</p></FancyBorder>{props.left}<SplitPane left={ <Contacts /> } right={ <Chat /> } />결과적으로 이걸 이해https://facebook.github.io/react/docs/thinking-in-react.htmlstate와 props를 적절히 활용.- 좀 더 깔끔한 방법은 없을까?-- FilterableProductTable의 콜백을 계속 물고와서, SearchBar에서 input의 변경 콜백과 연결시켜주는 것## mixin예전에 있었던 기능으로 복잡함.https://facebook.github.io/react/blog/2016/07/13/mixins-considered-harmful.htmlhttps://en.wikipedia.org/wiki/MixinIn object-oriented programming languages, a mixin is a class that contains methods for use by other classes without having to be the parent class of those other classes자바스크립트 코드로 mixin배우려니 빡쳐서 찾아보니http://blog.saltfactory.net/ruby/understanding-mixin-using-with-ruby.htmljs에서 mixin가지고 노는것은 미친짓.fb에선 mixin이 암시적인 의존성을 가진다고 생각.이름 충돌, 복잡성증가## [HOC(Higher Order Component)](https://facebook.github.io/react/docs/higher-order-components.html)HOCs are not part of the React APIconst EnhancedComponent = higherOrderComponent(WrappedComponent);HOCs are common in third-party React libraries, such as Redux's connect and Relay's createContainer.python decorator랑 비슷하게 구현.## this.props.key : https://facebook.github.io/react/docs/lists-and-keys.htmllist의 자식엘리먼트(li)같은걸 코드로 생성할때 const todoItems = todos.map((todo) =><li key={todo.id}>{todo.text} </li>);이런식으로 uniqid를 쥐어준다.(유니크하지 않으면 나중에 렌더링시 순서가 꼬일 수 있다)ㅡㅡ## this.props.refIn the typical React dataflow, props are the only way that parent components interact with their children. To modify a child, you re-render it with new props. However, there are a few cases where you need to imperatively modify a child outside of the typical dataflow. The child to be modified could be an instance of a React component, or it could be a DOM element. For both of these cases, React provides an escape hatch.When to Use Refs#
+```javascript
+// constructor HelloMessage(name) { } 이런식으로 해야 나중에 햇갈리지 않지 이런 인터페이스는 에러!!
+class HelloMessage extends React.Component {
+  render() {
+    return <div>Hello {this.props.name}</div>;
+  }
+}
+ReactDOM.render(<HelloMessage name="Jane" />, mountNode);
+```
+
+``` js
+class HelloMessage extends React.Component {
+  render() {
+    return React.createElement("div", null, "Hello ", this.props.name );
+  }
+}
+
+ReactDOM.render(React.createElement(HelloMessage, { name: "Jane" }), mountNode);
+```
+
+Props 속성- immutable- passed in from parent- can not change it- can be defaulted & validated
+
+## state
+
+``` javascript
+class Clock extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {date: new Date()};
+  }
+  render() {
+    return (<div>
+    <h1>Hello, world!</h1>
+    <h2>It is {this.state.date.toLocaleTimeString()}.</h2>
+    </div>
+  );
+}
+내부 상태(state) 저장
+this.state.comment = "hello";
+// Wrongthis.setState({comment: "hello"});
+//Correctthis.state =
+// only constructorstate와 props 는 비동기적으로 업데이트 됨으로
+```
+``` javascript
+// Wrongthis.setState({counter:this.state.counter + this.props.increment});
+// Correctthis.setState((prevState,props)=>({counter:prevState.counter + props.increment}));
+```
+
+``` javascript
+componentDidMount() { }
+componentWillUnmount() { }
+this.state = {posts: [],comments: []};
+componentDidMount() {
+    fetchPosts().then(response=>{this.setState({posts: response.posts    });  });
+    fetchComments().then(response=>{this.setState({comments: response.comments    });  });
+}
+```
+this.hello 처럼 변수를 만들어 무언가를 저장할 수 있다(보여지는 파트가 아닌것)
+State 상태- private- maintained by component- mutableReactDOM.render() 로 렌더된 결과를 바꾼다.
+state: this.setState() - 새로운 값으로 변경 - component renderstate - lifecycle - https://facebook.github.io/react/docs/state-and-lifecycle.htmllifting-state-up : https://facebook.github.io/react/docs/lifting-state-up.htmlprops.children
+
+<FancyBorder color="blue">
+  <h1 className="Dialog-title">Welcome</h1>
+  <p className="Dialog-message">Thank you for visiting our spacecraft!</p>
+</FancyBorder>
+{props.left}
+<SplitPane left={ <Contacts /> }
+ right={ <Chat /> } 
+ />
+ 결과적으로 이걸 이해https://facebook.github.io/react/docs/thinking-in-react.htmlstate와 props를 적절히 활용.
+ - 좀 더 깔끔한 방법은 없을까?
+   - FilterableProductTable의 콜백을 계속 물고와서, SearchBar에서 input의 변경 콜백과 연결시켜주는 것
+
+## mixin예전에 있었던 기능으로 복잡함.
+
+https://facebook.github.io/react/blog/2016/07/13/mixins-considered-harmful.htmlhttps://en.wikipedia.org/wiki/MixinIn object-oriented programming languages, a mixin is a class that contains methods for use by other classes without having to be the parent class of those other classes
+
+자바스크립트 코드로 mixin배우려니 빡쳐서 찾아보니http://blog.saltfactory.net/ruby/understanding-mixin-using-with-ruby.htmljs에서 mixin가지고 노는것은 미친짓.
+
+fb에선 mixin이 암시적인 의존성을 가진다고 생각.
+이름 충돌, 복잡성증가
+
+## [HOC(Higher Order Component)](https://facebook.github.io/react/docs/higher-order-components.html)
+
+HOCs are not part of the React APIconst EnhancedComponent = higherOrderComponent(WrappedComponent);HOCs are common in third-party React libraries, such as Redux's connect and Relay's createContainer.python decorator랑 비슷하게 구현.
+
+## this.props.key : https://facebook.github.io/react/docs/lists-and-keys.html
+
+list의 자식엘리먼트(li)같은걸 코드로 생성할때 const todoItems = todos.map((todo) =><li key={todo.id}>{todo.text} </li>);이런식으로 uniqid를 쥐어준다.(유니크하지 않으면 나중에 렌더링시 순서가 꼬일 수 있다)ㅡㅡ
+
+## this.props.ref
+In the typical React dataflow, props are the only way that parent components interact with their children.
+ To modify a child, you re-render it with new props.
+  However, there are a few cases where you need to imperatively modify a child outside of the typical dataflow.
+   The child to be modified could be an instance of a React component, or it could be a DOM element. For both of these cases, React provides an escape hatch. When to Use Refs#
 	* Managing focus, text selection, or media playback.
 	* Triggering imperative animations.
 	* Integrating with third-party DOM libraries.
 
-class CustomTextInput extends React.Component {constructor(props){super(props);this.focus=this.focus.bind(this);  }focus(){  this.textInput.focus();  }render(){  return(<div><inputtype="text"ref={(input) => { this.textInput = input; }} /><inputtype="button"value="Focus the text input"onClick={this.focus}/></div>);  }}# toolhttps://github.com/facebook/react-devtoolshttps://facebook.github.io/react/docs/perf.html
+``` javascript
+class CustomTextInput extends React.Component {
+  constructor(props) {
+    super(props);this.focus=this.focus.bind(this);
+  }
+  focus() {
+    this.textInput.focus();
+  }
+  render() {
+    return(
+      <div>
+        <inputtype="text"ref={(input) => { this.textInput = input; }} />
+        <inputtype="button"value="Focus the text input"onClick={this.focus}/>
+      </div>
+    );
+  }
+}
 
 ```
+
+## tool
+
+https://github.com/facebook/react-devtoolshttps://facebook.github.io/react/docs/perf.html
 
 virtual dom
 speed
