@@ -151,3 +151,18 @@ shadow-cljs - server version: 2.26.2 running at http://localhost:9630
 shadow-cljs - nREPL server started on port 49953
 shadow-cljs - watching build :app
 ```
+
+## mirror
+
+- <https://github.com/thheller/shadow-cljs/issues/364#issuecomment-413162855>
+
+``` edn
+:repositories
+{
+  {"google" {:url "https://maven-central-asia.storage-download.googleapis.com/repos/central/data/"}}
+}
+```
+
+## compile option
+
+- <https://shadow-cljs.github.io/docs/UsersGuide.html#compiler-options>
