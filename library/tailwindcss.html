@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>node - 넷평의 Clojurescript 노트</title>
+        <title>tailwindcss - 넷평의 Clojurescript 노트</title>
 
 
         <!-- Custom HTML head -->
@@ -87,7 +87,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="../index.html">들어가며</a></li><li class="chapter-item expanded "><a href="../clojurescript/clojurescript.html">clojurescript</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../clojurescript/interop.html">interop</a></li><li class="chapter-item expanded "><a href="../clojurescript/hiccup.html">hiccup</a></li><li class="chapter-item expanded "><a href="../clojurescript/reference.html">reference</a></li></ol></li><li class="chapter-item expanded "><a href="../closure.html">google's closure</a></li><li class="chapter-item expanded "><a href="../shadow-cljs/shadow-cljs.html">shadow-cljs</a></li><li class="chapter-item expanded affix "><li class="part-title">Web</li><li class="chapter-item expanded "><a href="../npm/node.html" class="active">node</a></li><li class="chapter-item expanded "><a href="../web/javascript.html">javascript</a></li><li class="chapter-item expanded "><a href="../web/css.html">css</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../web/tailwindcss.html">tailwindcss</a></li></ol></li><li class="chapter-item expanded "><li class="part-title">React</li><li class="chapter-item expanded "><a href="../react/react.html">react</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../react/reagent/reagent.html">reagent</a></li><li class="chapter-item expanded "><a href="../react/re-frame/re-frame.html">re-frame</a></li></ol></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="../index.html">들어가며</a></li><li class="chapter-item expanded "><a href="../clojurescript/clojurescript.html">clojurescript</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../clojurescript/interop.html">interop</a></li><li class="chapter-item expanded "><a href="../clojurescript/reference.html">reference</a></li><li class="spacer"></li></ol></li><li class="chapter-item expanded "><li class="part-title">Tool</li><li class="chapter-item expanded "><a href="../tool/shadow-cljs/shadow-cljs.html">shadow-cljs</a></li><li class="spacer"></li><li class="chapter-item expanded affix "><li class="part-title">Web</li><li class="chapter-item expanded "><div>html</div></li><li><ol class="section"><li class="chapter-item expanded "><a href="../library/hiccup.html">hiccup</a></li></ol></li><li class="chapter-item expanded "><a href="../web/javascript.html">javascript</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../web/closure.html">google's closure</a></li><li class="chapter-item expanded "><a href="../web/sourcemap.html">sourcemap</a></li><li class="chapter-item expanded "><a href="../node/node.html">node</a></li></ol></li><li class="chapter-item expanded "><a href="../web/css.html">css</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../library/tailwindcss.html" class="active">tailwindcss</a></li><li class="spacer"></li></ol></li><li class="chapter-item expanded "><li class="part-title">React</li><li class="chapter-item expanded "><a href="../react/react.html">WIP react</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../library/reagent/reagent.html">reagent</a></li><li class="chapter-item expanded "><a href="../library/re-frame/re-frame.html">re-frame</a></li><li class="spacer"></li></ol></li><li class="chapter-item expanded "><li class="part-title">Deprecated</li><li class="chapter-item expanded "><a href="../deprecated/boot.html">boot</a></li><li class="chapter-item expanded "><a href="../deprecated/figwheel.html">figwheel</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle">
                 <div class="sidebar-resize-indicator"></div>
@@ -149,7 +149,7 @@
                         <a href="https://github.com/netpyoung/study.clojurescript" title="Git repository" aria-label="Git repository">
                             <i id="git-repository-button" class="fa fa-github"></i>
                         </a>
-                        <a href="https://github.com/netpyoung/study.clojurescript/edit/main/src/npm/node.md" title="Suggest an edit" aria-label="Suggest an edit">
+                        <a href="https://github.com/netpyoung/study.clojurescript/edit/main/src/library/tailwindcss.md" title="Suggest an edit" aria-label="Suggest an edit">
                             <i id="git-edit-button" class="fa fa-edit"></i>
                         </a>
 
@@ -178,79 +178,67 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1 id="node"><a class="header" href="#node">node</a></h1>
-<p>Node.js® is an open-source, cross-platform JavaScript runtime environment.</p>
+                        <h1 id="tailwindcss"><a class="header" href="#tailwindcss">tailwindcss</a></h1>
 <ul>
 <li>
-<p><a href="https://nodejs.org/en">홈페이지</a></p>
+<p>tailwindcss: 순풍</p>
 </li>
 <li>
-<p>Javascript Engine</p>
+<p><a href="https://tailwindcss.com/">홈페이지</a></p>
 <ul>
-<li>.js  -&gt; V8 엔진 (컴파일) -&gt; 기계 코드 (X86_64, MIPS, ARM 등) -&gt; CPU에서 실행</li>
-<li>종류
-<ul>
-<li>V8 is the name of the JavaScript engine that powers Google Chrome
-<ul>
-<li>Lars Bak 창시</li>
-<li>C++로 작성</li>
-<li>Node.js에서 사용</li>
-</ul>
-</li>
-<li>Firefox has SpiderMonkey</li>
-<li>Safari has JavaScriptCore (also called Nitro)</li>
+<li><a href="https://tailwindcss.com/docs/content-configuration">https://tailwindcss.com/docs/content-configuration</a></li>
+<li><a href="https://tailwindcss.com/docs/configuration">https://tailwindcss.com/docs/configuration</a></li>
 </ul>
 </li>
 </ul>
-</li>
-</ul>
-<h2 id="ecmascript"><a class="header" href="#ecmascript">ECMAScript</a></h2>
-<ul>
-<li>ESModule</li>
-<li>CommonJS</li>
-</ul>
-<h2 id="패키지-매니저"><a class="header" href="#패키지-매니저">패키지 매니저</a></h2>
-<h3 id="npm"><a class="header" href="#npm">NPM</a></h3>
-<ul>
-<li>npm(<code>N</code>ode <code>P</code>ackage <code>M</code>anager)</li>
-<li>npx(<code>N</code>ode <code>P</code>ackage <code>E</code>xecuter)
-<ul>
-<li>npx는 npm 버전 5.2.0부터 포함된 명령</li>
-</ul>
-</li>
-</ul>
-<h4 id="packagejson"><a class="header" href="#packagejson">package.json</a></h4>
-<h3 id="기타"><a class="header" href="#기타">기타</a></h3>
-<ul>
-<li>pnpm
-<ul>
-<li><a href="https://pnpm.io/">https://pnpm.io/</a></li>
-<li><a href="https://pnpm.io/benchmarks">https://pnpm.io/benchmarks</a></li>
-</ul>
-</li>
-<li>yarn
-<ul>
-<li><a href="https://classic.yarnpkg.com/en/">https://classic.yarnpkg.com/en/</a></li>
-</ul>
-</li>
-</ul>
-<pre><code class="language-txt">yarn에 실망한 개발자 Zoltan Kochan이 2017년 pnpm을 세상에 내놓습니다.
- pnpm은 yarn과 npm에 비해 빠릅니다. 그 이유는 패키지를 복사해서 사용하는 대신에 hard link를 사용하기 때문이죠. 또한 공간도 덜 차지합니다. 패키지의 버전 하나는 한 개의 복사본만 존재합니다. 그리고 그 파일의 링크를 node_modules 폴더에 추가합니다.
-
-ref: https://medium.com/zigbang/패키지-매니저-그것이-궁금하다-5bacc65fb05d
+<pre><code class="language-bash">npx tailwindcss init
 </code></pre>
-<h2 id="ref"><a class="header" href="#ref">Ref</a></h2>
-<p><a href="https://www.youtube.com/playlist?list=PLuHgQVnccGMB4krR04ug5nEXJ3sAEOWDL">NPM Package - 생활코딩</a></p>
+<h2 id="tailwindconfigjs"><a class="header" href="#tailwindconfigjs">tailwind.config.js</a></h2>
+<pre><code class="language-json">;; file: package.json
+{
+  &quot;name&quot;: &quot;app&quot;,
+  &quot;version&quot;: &quot;0.0.1&quot;,
+  &quot;scripts&quot;: {
+    &quot;start&quot;: &quot;npx shadow-cljs -d cider/cider-nrepl:0.44.0 watch :app&quot;,
+    &quot;styles-watch&quot;: &quot;npx tailwindcss -i src/styles/styles.css -o resources/public/css/styles.css --watch&quot;,
+    &quot;styles&quot;: &quot;npx tailwindcss -i src/styles/styles.css -o resources/public/css/styles.css&quot;,
+    &quot;build&quot;: &quot;npx shadow-cljs release :app &amp;&amp; npm run styles&quot;,
+    &quot;test&quot;: &quot;echo \&quot;Error: no test specified\&quot; &amp;&amp; exit 1&quot;
+  },
+  &quot;devDependencies&quot;: {
+    &quot;shadow-cljs&quot;: &quot;2.26.2&quot;
+  },
+  &quot;dependencies&quot;: {
+    &quot;react&quot;: &quot;^18.2.0&quot;,
+    &quot;react-dom&quot;: &quot;^18.2.0&quot;,
+    &quot;tailwindcss&quot;: &quot;^3.4.0&quot;
+  }
+}
+</code></pre>
+<ul>
+<li>jit
+<ul>
+<li><a href="https://github.com/teknql/shadow-cljs-tailwind-jit">https://github.com/teknql/shadow-cljs-tailwind-jit</a></li>
+<li><a href="https://v2.tailwindcss.com/docs/just-in-time-mode?source=post_page-----82add3fe1fd--------------------------------#enabling-jit-mode">https://v2.tailwindcss.com/docs/just-in-time-mode?source=post_page-----82add3fe1fd--------------------------------#enabling-jit-mode</a></li>
+</ul>
+</li>
+<li>ref
+<ul>
+<li><a href="https://github.com/jacekschae/shadow-cljs-tailwindcss">https://github.com/jacekschae/shadow-cljs-tailwindcss</a></li>
+<li><a href="https://velog.io/@teo/adorablecss-better-then-tailwindcss">https://velog.io/@teo/adorablecss-better-then-tailwindcss</a></li>
+</ul>
+</li>
+</ul>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                            <a rel="prev" href="../shadow-cljs/shadow-cljs.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="../web/css.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
 
-                            <a rel="next prefetch" href="../web/javascript.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next prefetch" href="../react/react.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
 
@@ -260,11 +248,11 @@ ref: https://medium.com/zigbang/패키지-매니저-그것이-궁금하다-5bacc
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                    <a rel="prev" href="../shadow-cljs/shadow-cljs.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="../web/css.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
 
-                    <a rel="next prefetch" href="../web/javascript.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next prefetch" href="../react/react.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
             </nav>

@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>clojurescript - 넷평의 Clojurescript 노트</title>
+        <title>boot - 넷평의 Clojurescript 노트</title>
 
 
         <!-- Custom HTML head -->
@@ -87,7 +87,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="../index.html">들어가며</a></li><li class="chapter-item expanded "><a href="../clojurescript/clojurescript.html" class="active">clojurescript</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../clojurescript/interop.html">interop</a></li><li class="chapter-item expanded "><a href="../clojurescript/reference.html">reference</a></li><li class="spacer"></li></ol></li><li class="chapter-item expanded "><li class="part-title">Tool</li><li class="chapter-item expanded "><a href="../tool/shadow-cljs/shadow-cljs.html">shadow-cljs</a></li><li class="spacer"></li><li class="chapter-item expanded affix "><li class="part-title">Web</li><li class="chapter-item expanded "><div>html</div></li><li><ol class="section"><li class="chapter-item expanded "><a href="../library/hiccup.html">hiccup</a></li></ol></li><li class="chapter-item expanded "><a href="../web/javascript.html">javascript</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../web/closure.html">google's closure</a></li><li class="chapter-item expanded "><a href="../web/sourcemap.html">sourcemap</a></li><li class="chapter-item expanded "><a href="../node/node.html">node</a></li></ol></li><li class="chapter-item expanded "><a href="../web/css.html">css</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../library/tailwindcss.html">tailwindcss</a></li><li class="spacer"></li></ol></li><li class="chapter-item expanded "><li class="part-title">React</li><li class="chapter-item expanded "><a href="../react/react.html">WIP react</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../library/reagent/reagent.html">reagent</a></li><li class="chapter-item expanded "><a href="../library/re-frame/re-frame.html">re-frame</a></li><li class="spacer"></li></ol></li><li class="chapter-item expanded "><li class="part-title">Deprecated</li><li class="chapter-item expanded "><a href="../deprecated/boot.html">boot</a></li><li class="chapter-item expanded "><a href="../deprecated/figwheel.html">figwheel</a></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="../index.html">들어가며</a></li><li class="chapter-item expanded "><a href="../clojurescript/clojurescript.html">clojurescript</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../clojurescript/interop.html">interop</a></li><li class="chapter-item expanded "><a href="../clojurescript/reference.html">reference</a></li><li class="spacer"></li></ol></li><li class="chapter-item expanded "><li class="part-title">Tool</li><li class="chapter-item expanded "><a href="../tool/shadow-cljs/shadow-cljs.html">shadow-cljs</a></li><li class="spacer"></li><li class="chapter-item expanded affix "><li class="part-title">Web</li><li class="chapter-item expanded "><div>html</div></li><li><ol class="section"><li class="chapter-item expanded "><a href="../library/hiccup.html">hiccup</a></li></ol></li><li class="chapter-item expanded "><a href="../web/javascript.html">javascript</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../web/closure.html">google's closure</a></li><li class="chapter-item expanded "><a href="../web/sourcemap.html">sourcemap</a></li><li class="chapter-item expanded "><a href="../node/node.html">node</a></li></ol></li><li class="chapter-item expanded "><a href="../web/css.html">css</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../library/tailwindcss.html">tailwindcss</a></li><li class="spacer"></li></ol></li><li class="chapter-item expanded "><li class="part-title">React</li><li class="chapter-item expanded "><a href="../react/react.html">WIP react</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../library/reagent/reagent.html">reagent</a></li><li class="chapter-item expanded "><a href="../library/re-frame/re-frame.html">re-frame</a></li><li class="spacer"></li></ol></li><li class="chapter-item expanded "><li class="part-title">Deprecated</li><li class="chapter-item expanded "><a href="../deprecated/boot.html" class="active">boot</a></li><li class="chapter-item expanded "><a href="../deprecated/figwheel.html">figwheel</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle">
                 <div class="sidebar-resize-indicator"></div>
@@ -149,7 +149,7 @@
                         <a href="https://github.com/netpyoung/study.clojurescript" title="Git repository" aria-label="Git repository">
                             <i id="git-repository-button" class="fa fa-github"></i>
                         </a>
-                        <a href="https://github.com/netpyoung/study.clojurescript/edit/main/src/clojurescript/clojurescript.md" title="Suggest an edit" aria-label="Suggest an edit">
+                        <a href="https://github.com/netpyoung/study.clojurescript/edit/main/src/deprecated/boot.md" title="Suggest an edit" aria-label="Suggest an edit">
                             <i id="git-edit-button" class="fa fa-edit"></i>
                         </a>
 
@@ -178,69 +178,35 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1 id="clojurescript"><a class="header" href="#clojurescript">clojurescript</a></h1>
-<ul>
-<li><a href="https://clojurescript.org/">homepage</a>
-<ul>
-<li><a href="https://github.com/clojure/clojurescript">repo</a></li>
-<li><a href="https://cljs.github.io/api/">API</a></li>
-<li><a href="https://clojurescript.org/tools/testing">testing</a></li>
-</ul>
-</li>
-<li><a href="https://clojurescript.io/">online REPL</a></li>
-<li><a href="https://cljs.info/cheatsheet/">cheatsheet</a>
-<ul>
-<li><a href="https://github.com/oakmac/cljs-cheatsheet">repo</a></li>
-</ul>
-</li>
-</ul>
-<h2 id="ref"><a class="header" href="#ref">ref</a></h2>
+                        <h1 id="boot"><a class="header" href="#boot">Boot</a></h1>
 <ul>
 <li>
-<p><a href="https://github.com/funcool/clojurescript-unraveled">https://github.com/funcool/clojurescript-unraveled</a></p>
-<ul>
-<li><a href="https://github.com/t-cool/clojurescript-unraveled-ja">https://github.com/t-cool/clojurescript-unraveled-ja</a></li>
-</ul>
+<p>프로젝트 관리 프로그램이 있어야겠다. <a href="http://boot-clj.com/">boot</a>를 사용하자.</p>
 </li>
 <li>
-<p><a href="https://cljs.github.io/api/compiler-options/foreign-libs">https://cljs.github.io/api/compiler-options/foreign-libs</a></p>
-</li>
-<li>
-<p>영태형님</p>
-<ul>
-<li><a href="http://philoskim.github.io/doc/clojurescript.html">http://philoskim.github.io/doc/clojurescript.html</a></li>
-<li><a href="http://philoskim.github.io/docs/cljs/static-fns.html">http://philoskim.github.io/docs/cljs/static-fns.html</a></li>
-<li><a href="https://gist.github.com/philoskim/2b8f401c82a220f74d0e02832c8ebc54">https://gist.github.com/philoskim/2b8f401c82a220f74d0e02832c8ebc54</a></li>
-</ul>
-</li>
-<li>
-<p><a href="https://shaunlebron.github.io/t3tr0s-slides/#0">https://shaunlebron.github.io/t3tr0s-slides/#0</a></p>
-</li>
-<li>
-<p><a href="https://github.com/ertugrulcetin/racing-game-cljs">https://github.com/ertugrulcetin/racing-game-cljs</a></p>
+<p>새 프로젝트 생성은 <a href="https://github.com/boot-clj/boot-new">boot-new</a>를 이용하자.</p>
+<pre><code>  boot -d boot/new new -t app -n sample
+</code></pre>
 </li>
 </ul>
-<h2 id="cljsjs"><a class="header" href="#cljsjs">cljsjs</a></h2>
+<h2 id="fileset"><a class="header" href="#fileset"><a href="https://github.com/boot-clj/boot/wiki/Filesets">Fileset</a></a></h2>
+<p>TODO(pyoung)
+boot fileset설명.
+<code>:resource-paths</code> : <code>.jar</code>에 포함되는 파일.</p>
+<h2 id="task"><a class="header" href="#task">Task</a></h2>
+<h3 id="serve"><a class="header" href="#serve">(serve)</a></h3>
+<p>fileset을 기본으로하는 http 서버</p>
+<pre><code>	(serve :port 8080 :httpkit true)
+</code></pre>
+<h3 id="cljs"><a class="header" href="#cljs">(cljs)</a></h3>
 <ul>
-<li><a href="https://cljsjs.github.io/">homepage</a>
+<li><a href="https://github.com/boot-clj/boot-cljs/blob/master/docs/cljs.edn.md">cljs.edn</a></li>
+<li><a href="https://github.com/boot-clj/boot-cljs/blob/master/docs/compiler-options.md">compiler-options</a></li>
+<li><code>(cljs)</code>는 fileset(<code>:resource-paths</code>, <code>:source-paths</code>포함)에 있는 <code>*.cljs.edn</code>을 찾아 <code>*.js</code>를 생성한다.</li>
+<li><code>:ids</code>
 <ul>
-<li><a href="https://github.com/cljsjs/packages">repo</a></li>
-</ul>
-</li>
-</ul>
-<h2 id="library"><a class="header" href="#library">library</a></h2>
-<ul>
-<li>emotion-js</li>
-<li>malli</li>
-<li>karma + @testing-library/react</li>
-</ul>
-<h2 id="reitit"><a class="header" href="#reitit">reitit</a></h2>
-<p>&quot;reitit&quot;는 핀란드어로 &quot;routes&quot;을 뜻합니다.</p>
-<ul>
-<li><a href="https://github.com/metosin/reitit">repo</a></li>
-<li><a href="https://cljdoc.org/d/metosin/reitit/">docs</a>
-<ul>
-<li><a href="https://github.com/metosin/reitit/blob/master/examples/frontend/src/frontend/core.cljs">example</a></li>
+<li><code>:ids</code>는 boot.core/by-path를 사용한다. boot.core/by-path는 path인식시 윈도우즈(\), xnix(/)를 다르게 인식한다.</li>
+<li>ref: <a href="https://github.com/boot-clj/boot-cljs/pull/118">https://github.com/boot-clj/boot-cljs/pull/118</a></li>
 </ul>
 </li>
 </ul>
@@ -249,11 +215,11 @@
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                            <a rel="prev" href="../index.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="../library/re-frame/re-frame.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
 
-                            <a rel="next prefetch" href="../clojurescript/interop.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next prefetch" href="../deprecated/figwheel.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
 
@@ -263,11 +229,11 @@
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                    <a rel="prev" href="../index.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="../library/re-frame/re-frame.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
 
-                    <a rel="next prefetch" href="../clojurescript/interop.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next prefetch" href="../deprecated/figwheel.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
             </nav>
