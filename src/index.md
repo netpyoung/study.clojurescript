@@ -10,3 +10,7 @@
     - framework
       - react
   - 기타 등등
+
+
+https://github.com/zalando/tech-radar
+https://opensource.zalando.com/tech-radar/

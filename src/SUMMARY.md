@@ -15,7 +15,7 @@
 
 # Web
 
-- [html]()
+- [html](./web/html.md)
   - [hiccup](./library/hiccup.md)
 - [javascript](./web/javascript.md)
   - [google's closure](./web/closure.md)
@@ -31,6 +31,11 @@
 - [WIP react](./react/react.md)
   - [reagent](./library/reagent/reagent.md)
   - [re-frame](./library/re-frame/re-frame.md)
+
+------
+
+# Library
+
 
 ------
 
