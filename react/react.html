@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html lang="kr" class="light" dir="ltr">
+<html lang="ko" class="light sidebar-visible" dir="ltr">
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
@@ -7,7 +7,7 @@
 
 
         <!-- Custom HTML head -->
-        
+
         <meta name="description" content="study.clojurescript">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="theme-color" content="#ffffff">
@@ -23,21 +23,23 @@
         <link rel="stylesheet" href="../fonts/fonts.css">
 
         <!-- Highlight.js Stylesheets -->
-        <link rel="stylesheet" href="../highlight.css">
-        <link rel="stylesheet" href="../tomorrow-night.css">
-        <link rel="stylesheet" href="../ayu-highlight.css">
+        <link rel="stylesheet" id="highlight-css" href="../highlight.css">
+        <link rel="stylesheet" id="tomorrow-night-css" href="../tomorrow-night.css">
+        <link rel="stylesheet" id="ayu-highlight-css" href="../ayu-highlight.css">
 
         <!-- Custom theme stylesheets -->
 
-    </head>
-    <body class="sidebar-visible no-js">
-    <div id="body-container">
+
         <!-- Provide site root to javascript -->
         <script>
             var path_to_root = "../";
             var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
         </script>
-
+        <!-- Start loading toc.js asap -->
+        <script src="../toc.js"></script>
+    </head>
+    <body>
+    <div id="body-container">
         <!-- Work around some values being stored in localStorage wrapped in quotes -->
         <script>
             try {
@@ -59,19 +61,16 @@
             var theme;
             try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
             if (theme === null || theme === undefined) { theme = default_theme; }
-            var html = document.querySelector('html');
+            const html = document.documentElement;
             html.classList.remove('light')
             html.classList.add(theme);
-            var body = document.querySelector('body');
-            body.classList.remove('no-js')
-            body.classList.add('js');
+            html.classList.add("js");
         </script>
 
         <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
 
         <!-- Hide / unhide sidebar before it is displayed -->
         <script>
-            var body = document.querySelector('body');
             var sidebar = null;
             var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
             if (document.body.clientWidth >= 1080) {
@@ -81,45 +80,25 @@
                 sidebar = 'hidden';
             }
             sidebar_toggle.checked = sidebar === 'visible';
-            body.classList.remove('sidebar-visible');
-            body.classList.add("sidebar-" + sidebar);
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
         </script>
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
-            <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="../index.html">들어가며</a></li><li class="chapter-item expanded "><a href="../clojurescript/clojurescript.html">clojurescript</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../clojurescript/interop.html">interop</a></li><li class="chapter-item expanded "><a href="../clojurescript/reference.html">reference</a></li><li class="spacer"></li></ol></li><li class="chapter-item expanded "><li class="part-title">Tool</li><li class="chapter-item expanded "><a href="../tool/shadow-cljs/shadow-cljs.html">shadow-cljs</a></li><li class="spacer"></li><li class="chapter-item expanded affix "><li class="part-title">Web</li><li class="chapter-item expanded "><a href="../web/html.html">html</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../library/hiccup.html">hiccup</a></li></ol></li><li class="chapter-item expanded "><a href="../web/javascript.html">javascript</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../web/closure.html">google's closure</a></li><li class="chapter-item expanded "><a href="../web/sourcemap.html">sourcemap</a></li><li class="chapter-item expanded "><a href="../node/node.html">node</a></li></ol></li><li class="chapter-item expanded "><a href="../web/css.html">css</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../library/tailwindcss.html">tailwindcss</a></li><li class="spacer"></li></ol></li><li class="chapter-item expanded "><li class="part-title">React</li><li class="chapter-item expanded "><a href="../react/react.html" class="active">WIP react</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../library/reagent/reagent.html">reagent</a></li><li class="chapter-item expanded "><a href="../library/re-frame/re-frame.html">re-frame</a></li><li class="spacer"></li></ol></li><li class="chapter-item expanded "><li class="part-title">Library</li><li class="spacer"></li><li class="chapter-item expanded affix "><li class="part-title">Deprecated</li><li class="chapter-item expanded "><a href="../deprecated/boot.html">boot</a></li><li class="chapter-item expanded "><a href="../deprecated/figwheel.html">figwheel</a></li></ol>
-            </div>
+            <!-- populated by js -->
+            <mdbook-sidebar-scrollbox class="sidebar-scrollbox"></mdbook-sidebar-scrollbox>
+            <noscript>
+                <iframe class="sidebar-iframe-outer" src="../toc.html"></iframe>
+            </noscript>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle">
                 <div class="sidebar-resize-indicator"></div>
             </div>
         </nav>
 
-        <!-- Track and set sidebar scroll position -->
-        <script>
-            var sidebarScrollbox = document.querySelector('#sidebar .sidebar-scrollbox');
-            sidebarScrollbox.addEventListener('click', function(e) {
-                if (e.target.tagName === 'A') {
-                    sessionStorage.setItem('sidebar-scroll', sidebarScrollbox.scrollTop);
-                }
-            }, { passive: true });
-            var sidebarScrollTop = sessionStorage.getItem('sidebar-scroll');
-            sessionStorage.removeItem('sidebar-scroll');
-            if (sidebarScrollTop) {
-                // preserve sidebar scroll position when navigating via links within sidebar
-                sidebarScrollbox.scrollTop = sidebarScrollTop;
-            } else {
-                // scroll sidebar to current active section when navigating via "next/previous chapter" buttons
-                var activeSection = document.querySelector('#sidebar .active');
-                if (activeSection) {
-                    activeSection.scrollIntoView({ block: 'center' });
-                }
-            }
-        </script>
-
         <div id="page-wrapper" class="page-wrapper">
 
             <div class="page">
-                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar-hover-placeholder"></div>
                 <div id="menu-bar" class="menu-bar sticky">
                     <div class="left-buttons">
                         <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
@@ -221,15 +200,15 @@ class HelloMessage extends React.Component {
     return &lt;div&gt;Hello {this.props.name}&lt;/div&gt;;
   }
 }
-ReactDOM.render(&lt;HelloMessage name=&quot;Jane&quot; /&gt;, mountNode);
+ReactDOM.render(&lt;HelloMessage name="Jane" /&gt;, mountNode);
 </code></pre>
 <pre><code class="language-js">class HelloMessage extends React.Component {
   render() {
-    return React.createElement(&quot;div&quot;, null, &quot;Hello &quot;, this.props.name );
+    return React.createElement("div", null, "Hello ", this.props.name );
   }
 }
 
-ReactDOM.render(React.createElement(HelloMessage, { name: &quot;Jane&quot; }), mountNode);
+ReactDOM.render(React.createElement(HelloMessage, { name: "Jane" }), mountNode);
 </code></pre>
 <p>Props 속성- immutable- passed in from parent- can not change it- can be defaulted &amp; validated</p>
 <h2 id="state"><a class="header" href="#state">state</a></h2>
@@ -246,8 +225,8 @@ ReactDOM.render(React.createElement(HelloMessage, { name: &quot;Jane&quot; }), m
   );
 }
 내부 상태(state) 저장
-this.state.comment = &quot;hello&quot;;
-// Wrongthis.setState({comment: &quot;hello&quot;});
+this.state.comment = "hello";
+// Wrongthis.setState({comment: "hello"});
 //Correctthis.state =
 // only constructorstate와 props 는 비동기적으로 업데이트 됨으로
 </code></pre>
@@ -303,8 +282,8 @@ The child to be modified could be an instance of a React component, or it could 
   render() {
     return(
       &lt;div&gt;
-        &lt;inputtype=&quot;text&quot;ref={(input) =&gt; { this.textInput = input; }} /&gt;
-        &lt;inputtype=&quot;button&quot;value=&quot;Focus the text input&quot;onClick={this.focus}/&gt;
+        &lt;inputtype="text"ref={(input) =&gt; { this.textInput = input; }} /&gt;
+        &lt;inputtype="button"value="Focus the text input"onClick={this.focus}/&gt;
       &lt;/div&gt;
     );
   }
@@ -330,7 +309,7 @@ static typechecking</p>
 <li>state는 독립적인 컴포넌트의 상태고, prop은 외부(부모) 컴포넌트에게 받은 속성이다</li>
 <li>Redux 프로젝트에서 prop는 애플리케이션에서 전역으로 관리하는 상태라고 생각하면 된다.</li>
 <li>요약하면 컴포넌트 자체의 상태(색상, 애니메이션 등)는 state로 처리하고, 전체적으로 관리해야 하는 상태(서버와 동기화하는 데이터 등)는 부모 컴포넌트에서 prop으로 받아 처리한다. 물론 prop을 갱신하면 App 컴포넌트가 전반적으로 갱신되기 때문에 state를 갱신하는 것보다는 비교적 느리다. 효과적으로 state를 사용하면 좋지만, prop으로 처리해야 하는 작업을 state로 처리하면 오히려 코드 작성이 더 어려워진다.
-state와 prop의 차이에 관한 더 자세한 내용은 &quot;props vs state&quot;를 참고한다. React에서 구분하는 prop와 state의 차이에 관해서는 &quot;Thinking in React&quot;의 'Step 3: Identify The Minimal (but complete) Representation Of UI State'를 참고한다.</li>
+state와 prop의 차이에 관한 더 자세한 내용은 "props vs state"를 참고한다. React에서 구분하는 prop와 state의 차이에 관해서는 "Thinking in React"의 'Step 3: Identify The Minimal (but complete) Representation Of UI State'를 참고한다.</li>
 </ul>
 <h2 id="ref"><a class="header" href="#ref">Ref.</a></h2>
 <ul>

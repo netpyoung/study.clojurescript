@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html lang="kr" class="light" dir="ltr">
+<html lang="ko" class="light sidebar-visible" dir="ltr">
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
@@ -8,7 +8,7 @@
 
 
         <!-- Custom HTML head -->
-        
+
         <meta name="description" content="study.clojurescript">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="theme-color" content="#ffffff">
@@ -24,21 +24,23 @@
         <link rel="stylesheet" href="fonts/fonts.css">
 
         <!-- Highlight.js Stylesheets -->
-        <link rel="stylesheet" href="highlight.css">
-        <link rel="stylesheet" href="tomorrow-night.css">
-        <link rel="stylesheet" href="ayu-highlight.css">
+        <link rel="stylesheet" id="highlight-css" href="highlight.css">
+        <link rel="stylesheet" id="tomorrow-night-css" href="tomorrow-night.css">
+        <link rel="stylesheet" id="ayu-highlight-css" href="ayu-highlight.css">
 
         <!-- Custom theme stylesheets -->
 
-    </head>
-    <body class="sidebar-visible no-js">
-    <div id="body-container">
+
         <!-- Provide site root to javascript -->
         <script>
             var path_to_root = "";
             var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
         </script>
-
+        <!-- Start loading toc.js asap -->
+        <script src="toc.js"></script>
+    </head>
+    <body>
+    <div id="body-container">
         <!-- Work around some values being stored in localStorage wrapped in quotes -->
         <script>
             try {
@@ -60,19 +62,16 @@
             var theme;
             try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
             if (theme === null || theme === undefined) { theme = default_theme; }
-            var html = document.querySelector('html');
+            const html = document.documentElement;
             html.classList.remove('light')
             html.classList.add(theme);
-            var body = document.querySelector('body');
-            body.classList.remove('no-js')
-            body.classList.add('js');
+            html.classList.add("js");
         </script>
 
         <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
 
         <!-- Hide / unhide sidebar before it is displayed -->
         <script>
-            var body = document.querySelector('body');
             var sidebar = null;
             var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
             if (document.body.clientWidth >= 1080) {
@@ -82,45 +81,25 @@
                 sidebar = 'hidden';
             }
             sidebar_toggle.checked = sidebar === 'visible';
-            body.classList.remove('sidebar-visible');
-            body.classList.add("sidebar-" + sidebar);
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
         </script>
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
-            <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="index.html">들어가며</a></li><li class="chapter-item expanded "><a href="clojurescript/clojurescript.html">clojurescript</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="clojurescript/interop.html">interop</a></li><li class="chapter-item expanded "><a href="clojurescript/reference.html">reference</a></li><li class="spacer"></li></ol></li><li class="chapter-item expanded "><li class="part-title">Tool</li><li class="chapter-item expanded "><a href="tool/shadow-cljs/shadow-cljs.html">shadow-cljs</a></li><li class="spacer"></li><li class="chapter-item expanded affix "><li class="part-title">Web</li><li class="chapter-item expanded "><a href="web/html.html">html</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="library/hiccup.html">hiccup</a></li></ol></li><li class="chapter-item expanded "><a href="web/javascript.html">javascript</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="web/closure.html">google's closure</a></li><li class="chapter-item expanded "><a href="web/sourcemap.html">sourcemap</a></li><li class="chapter-item expanded "><a href="node/node.html">node</a></li></ol></li><li class="chapter-item expanded "><a href="web/css.html">css</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="library/tailwindcss.html">tailwindcss</a></li><li class="spacer"></li></ol></li><li class="chapter-item expanded "><li class="part-title">React</li><li class="chapter-item expanded "><a href="react/react.html">WIP react</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="library/reagent/reagent.html">reagent</a></li><li class="chapter-item expanded "><a href="library/re-frame/re-frame.html">re-frame</a></li><li class="spacer"></li></ol></li><li class="chapter-item expanded "><li class="part-title">Library</li><li class="spacer"></li><li class="chapter-item expanded affix "><li class="part-title">Deprecated</li><li class="chapter-item expanded "><a href="deprecated/boot.html">boot</a></li><li class="chapter-item expanded "><a href="deprecated/figwheel.html">figwheel</a></li></ol>
-            </div>
+            <!-- populated by js -->
+            <mdbook-sidebar-scrollbox class="sidebar-scrollbox"></mdbook-sidebar-scrollbox>
+            <noscript>
+                <iframe class="sidebar-iframe-outer" src="toc.html"></iframe>
+            </noscript>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle">
                 <div class="sidebar-resize-indicator"></div>
             </div>
         </nav>
 
-        <!-- Track and set sidebar scroll position -->
-        <script>
-            var sidebarScrollbox = document.querySelector('#sidebar .sidebar-scrollbox');
-            sidebarScrollbox.addEventListener('click', function(e) {
-                if (e.target.tagName === 'A') {
-                    sessionStorage.setItem('sidebar-scroll', sidebarScrollbox.scrollTop);
-                }
-            }, { passive: true });
-            var sidebarScrollTop = sessionStorage.getItem('sidebar-scroll');
-            sessionStorage.removeItem('sidebar-scroll');
-            if (sidebarScrollTop) {
-                // preserve sidebar scroll position when navigating via links within sidebar
-                sidebarScrollbox.scrollTop = sidebarScrollTop;
-            } else {
-                // scroll sidebar to current active section when navigating via "next/previous chapter" buttons
-                var activeSection = document.querySelector('#sidebar .active');
-                if (activeSection) {
-                    activeSection.scrollIntoView({ block: 'center' });
-                }
-            }
-        </script>
-
         <div id="page-wrapper" class="page-wrapper">
 
             <div class="page">
-                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar-hover-placeholder"></div>
                 <div id="menu-bar" class="menu-bar sticky">
                     <div class="left-buttons">
                         <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
@@ -260,7 +239,7 @@ https://opensource.zalando.com/tech-radar/</p>
 <li>karma + @testing-library/react</li>
 </ul>
 <h2 id="reitit"><a class="header" href="#reitit">reitit</a></h2>
-<p>&quot;reitit&quot;는 핀란드어로 &quot;routes&quot;을 뜻합니다.</p>
+<p>"reitit"는 핀란드어로 "routes"을 뜻합니다.</p>
 <ul>
 <li><a href="https://github.com/metosin/reitit">repo</a></li>
 <li><a href="https://cljdoc.org/d/metosin/reitit/">docs</a>
@@ -275,16 +254,16 @@ https://opensource.zalando.com/tech-radar/</p>
 (def arr (array 1 2 3))
 ;; #js [1 2 3]
 
-(def obj (js-obj &quot;x&quot; 1 &quot;y&quot; 2))
+(def obj (js-obj "x" 1 "y" 2))
 ;; #js {:x 1, :y 2}
 
 (aget arr 1)
-(aset obj &quot;z&quot; 3
+(aset obj "z" 3
 </code></pre>
 <pre><code class="language-clojure">(js/document.body.lastChild.innerHTML.chatAt 7)
 
-(js/Date &quot;2016-05-19&quot;)
-(js/Date. &quot;2016-05-19&quot;)
+(js/Date "2016-05-19")
+(js/Date. "2016-05-19")
 
 
 (clj-&gt;js )
@@ -312,7 +291,7 @@ There’s goog.object/get and goog.object/set, corresponding with aset and aget,
 <div style="break-before: page; page-break-before: always;"></div><h1 id="reference"><a class="header" href="#reference">reference</a></h1>
 <ul>
 <li><a href="https://clojurebridgelondon.github.io/">https://clojurebridgelondon.github.io/</a></li>
-<li><a href="https://www.youtube.com/watch?v=lvsAqVIeRAQ">&quot;Modern Frontend on ClojureScript and React in 2023&quot; by Yuri Khmelevsky</a></li>
+<li><a href="https://www.youtube.com/watch?v=lvsAqVIeRAQ">"Modern Frontend on ClojureScript and React in 2023" by Yuri Khmelevsky</a></li>
 </ul>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="shadow-cljs"><a class="header" href="#shadow-cljs">shadow-cljs</a></h1>
 <ul>
@@ -344,23 +323,23 @@ There’s goog.object/get and goog.object/set, corresponding with aset and aget,
 </li>
 </ul>
 <pre><code class="language-clojure">(defn ^:dev/before-load stop []
-  (js/console.log &quot;stop&quot;))
+  (js/console.log "stop"))
 
 (defn ^:dev/after-load start []
-  (js/console.log &quot;start&quot;))
+  (js/console.log "start"))
 
 (defn ^:dev/before-load-async stop [done]
-  (js/console.log &quot;stop&quot;)
+  (js/console.log "stop")
   (js/setTimeout
     (fn []
-      (js/console.log &quot;stop complete&quot;)
+      (js/console.log "stop complete")
       (done)))
 
 (defn ^:dev/after-load-async start [done]
-  (js/console.log &quot;start&quot;)
+  (js/console.log "start")
   (js/setTimeout
     (fn []
-      (js/console.log &quot;start complete&quot;)
+      (js/console.log "start complete")
       (done))))
 </code></pre>
 <h2 id="init"><a class="header" href="#init">init</a></h2>
@@ -372,30 +351,30 @@ There’s goog.object/get and goog.object/set, corresponding with aset and aget,
 </ul>
 <pre><code class="language-edn">;; file: deps.edn
 
-{:paths [&quot;src&quot; &quot;resources&quot;]
+{:paths ["src" "resources"]
 
  :deps
- {reagent/reagent {:mvn/version &quot;1.2.0&quot;}
-  re-frame/re-frame {:mvn/version &quot;1.4.2&quot;}
+ {reagent/reagent {:mvn/version "1.2.0"}
+  re-frame/re-frame {:mvn/version "1.4.2"}
 
-  markdown-clj/markdown-clj {:mvn/version &quot;1.11.7&quot;}
-  metosin/reitit {:mvn/version &quot;0.6.0&quot;}
-  org.babashka/sci {:mvn/version &quot;0.8.41&quot;}
-  thheller/shadow-cljs {:mvn/version &quot;2.26.2&quot;}
+  markdown-clj/markdown-clj {:mvn/version "1.11.7"}
+  metosin/reitit {:mvn/version "0.6.0"}
+  org.babashka/sci {:mvn/version "0.8.41"}
+  thheller/shadow-cljs {:mvn/version "2.26.2"}
   }
 
  :aliases
  {:dev
-  {:extra-deps {cider/cider-nrepl {:mvn/version &quot;0.44.0&quot;}}}}}
+  {:extra-deps {cider/cider-nrepl {:mvn/version "0.44.0"}}}}}
 </code></pre>
 <pre><code class="language-edn">;; file: shadow-cljs.edn
 
 {:deps {:aliases [:dev]}
- :dev-http {8080 &quot;resources/public&quot;}
+ :dev-http {8080 "resources/public"}
  :builds
   {:app {:target :browser
-         :output-dir &quot;resources/public/js&quot;
-         :asset-path &quot;/js&quot;
+         :output-dir "resources/public/js"
+         :asset-path "/js"
          :module-hash-names false
          :modules {:app {:entries [app.core]
                          :init-fn app.core/Main}}
@@ -403,23 +382,23 @@ There’s goog.object/get and goog.object/set, corresponding with aset and aget,
          :build-hooks [(shadow.cljs.build-report/hook)]}}}
 </code></pre>
 <pre><code class="language-json">{
-  &quot;//&quot;: [&quot;file: package.json&quot;],
-  &quot;name&quot;: &quot;helloworld&quot;,
-  &quot;version&quot;: &quot;0.0.1&quot;,
-  &quot;dependencies&quot;: {
-    &quot;react&quot;: &quot;^18.2.0&quot;,
-    &quot;react-dom&quot;: &quot;^18.2.0&quot;,
-    &quot;tailwindcss&quot;: &quot;^3.4.0&quot;
+  "//": ["file: package.json"],
+  "name": "helloworld",
+  "version": "0.0.1",
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "tailwindcss": "^3.4.0"
   },
-  &quot;devDependencies&quot;: {
-    &quot;shadow-cljs&quot;: &quot;2.26.2&quot;
+  "devDependencies": {
+    "shadow-cljs": "2.26.2"
   },
-  &quot;scripts&quot;: {
-    &quot;start&quot;: &quot;npx shadow-cljs --dependency cider/cider-nrepl:0.44.0 watch :app&quot;,
-    &quot;styles-watch&quot;: &quot;npx tailwindcss -i src/styles/styles.css -o resources/public/css/styles.css --watch&quot;,
-    &quot;styles&quot;: &quot;npx tailwindcss -i src/styles/styles.css -o resources/public/css/styles.css&quot;,
-    &quot;build&quot;: &quot;npx shadow-cljs release :app &amp;&amp; npm run styles&quot;,
-    &quot;test&quot;: &quot;echo \&quot;Error: no test specified\&quot; &amp;&amp; exit 1&quot;
+  "scripts": {
+    "start": "npx shadow-cljs --dependency cider/cider-nrepl:0.44.0 watch :app",
+    "styles-watch": "npx tailwindcss -i src/styles/styles.css -o resources/public/css/styles.css --watch",
+    "styles": "npx tailwindcss -i src/styles/styles.css -o resources/public/css/styles.css",
+    "build": "npx shadow-cljs release :app &amp;&amp; npm run styles",
+    "test": "echo \"Error: no test specified\" &amp;&amp; exit 1"
   }
 }
 </code></pre>
@@ -428,15 +407,15 @@ There’s goog.object/get and goog.object/set, corresponding with aset and aget,
 &lt;!doctype html&gt;
 &lt;html&gt;
   &lt;head&gt;
-    &lt;meta charset=&quot;utf-8&quot; /&gt;
+    &lt;meta charset="utf-8" /&gt;
     &lt;title&gt;Hello World&lt;/title&gt;
   &lt;/head&gt;
   &lt;body&gt;
-    &lt;div id=&quot;app&quot;&gt;
+    &lt;div id="app"&gt;
       Loading....
     &lt;/div&gt;
     &lt;!-- JS --&gt;
-    &lt;script type=&quot;text/javascript&quot; src=&quot;./js/app.js&quot;&gt;&lt;/script&gt;
+    &lt;script type="text/javascript" src="./js/app.js"&gt;&lt;/script&gt;
   &lt;/body&gt;
 &lt;/html&gt;
 </code></pre>
@@ -448,18 +427,18 @@ There’s goog.object/get and goog.object/set, corresponding with aset and aget,
 
 {:tasks
  {
-  hello {:doc &quot;helloworld&quot;
+  hello {:doc "helloworld"
          :requires ([babashka.process :as process])
          :task 
-         #_(process/shell &quot;clj -M -m app.core --interactive&quot;)
-         (process/shell &quot;clj -M -m app.core&quot;)}
+         #_(process/shell "clj -M -m app.core --interactive")
+         (process/shell "clj -M -m app.core")}
  }}
 </code></pre>
 <h2 id="example"><a class="header" href="#example">example</a></h2>
 <pre><code class="language-bash">npx shadow-cljs -d cider/cider-nrepl:0.44.0 watch :app
 
 shadow-cljs - config: /Users/pyoung/test-cljs/shadow-cljs.edn
-shadow-cljs - starting via &quot;clojure&quot;
+shadow-cljs - starting via "clojure"
 shadow-cljs - HTTP server available at http://localhost:8080
 shadow-cljs - server version: 2.26.2 running at http://localhost:9630
 shadow-cljs - nREPL server started on port 49953
@@ -471,7 +450,7 @@ shadow-cljs - watching build :app
 </ul>
 <pre><code class="language-edn">:repositories
 {
-  {&quot;google&quot; {:url &quot;https://maven-central-asia.storage-download.googleapis.com/repos/central/data/&quot;}}
+  {"google" {:url "https://maven-central-asia.storage-download.googleapis.com/repos/central/data/"}}
 }
 </code></pre>
 <h2 id="compile-option"><a class="header" href="#compile-option">compile option</a></h2>
@@ -484,17 +463,17 @@ shadow-cljs - watching build :app
 &lt;!doctype html&gt;
 &lt;html&gt;
   &lt;head&gt;
-    &lt;meta charset=&quot;utf-8&quot; /&gt;
+    &lt;meta charset="utf-8" /&gt;
     &lt;title&gt;Hello World&lt;/title&gt;
   &lt;/head&gt;
   &lt;body&gt;
 
-    &lt;div id=&quot;app&quot;&gt;
+    &lt;div id="app"&gt;
       Loading....
     &lt;/div&gt;
 
     &lt;!-- JS --&gt;
-    &lt;script type=&quot;text/javascript&quot; src=&quot;./js/app.js&quot;&gt;&lt;/script&gt;
+    &lt;script type="text/javascript" src="./js/app.js"&gt;&lt;/script&gt;
     &lt;/script&gt;
   &lt;/body&gt;
 &lt;/html&gt;
@@ -502,12 +481,12 @@ shadow-cljs - watching build :app
 <pre><code class="language-clojure">;; file: src/app/core.cljs
 
 (defn ^:export main []
-  (-&gt;&gt; &quot;app&quot;
+  (-&gt;&gt; "app"
     (js/document.getElementById)
     (render-app-element)))
 </code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="hiccup"><a class="header" href="#hiccup">hiccup</a></h1>
-<p>Fast library for rendering HTML in Clojure </p>
+<p>Fast library for rendering HTML in Clojure</p>
 <ul>
 <li><a href="https://github.com/weavejester/hiccup">repo</a></li>
 </ul>
@@ -543,7 +522,7 @@ shadow-cljs - watching build :app
 <pre><code class="language-clojure">(defn get-highlight-code [code]
   [:pre
     [:code {:dangerouslySetInnerHTML
-             {:__html (.-value (js/hljs.highlight &quot;clojure&quot; code))}}]])
+             {:__html (.-value (js/hljs.highlight "clojure" code))}}]])
 </code></pre>
 <ul>
 <li>dangerouslySetInnerHTML
@@ -555,10 +534,10 @@ shadow-cljs - watching build :app
 <pre><code class="language-txt">npm/cljsjs로 설치할 수 있긴한데, npm/cljsjs버전은 용량이 큰거같아 사이트에서 다운받고 작은거로 가자
 
 ## npm
-&quot;highlight.js&quot;: &quot;^11.9.0&quot;,
+"highlight.js": "^11.9.0",
 
 ## deps.edn
-cljsjs/highlight {:mvn/version &quot;11.7.0-0&quot;}
+cljsjs/highlight {:mvn/version "11.7.0-0"}
 </code></pre>
 <h3 id="codemirror"><a class="header" href="#codemirror">codemirror</a></h3>
 <ul>
@@ -726,22 +705,22 @@ ref: https://medium.com/zigbang/패키지-매니저-그것이-궁금하다-5bacc
 <h2 id="tailwindconfigjs"><a class="header" href="#tailwindconfigjs">tailwind.config.js</a></h2>
 <pre><code class="language-json">;; file: package.json
 {
-  &quot;name&quot;: &quot;app&quot;,
-  &quot;version&quot;: &quot;0.0.1&quot;,
-  &quot;scripts&quot;: {
-    &quot;start&quot;: &quot;npx shadow-cljs -d cider/cider-nrepl:0.44.0 watch :app&quot;,
-    &quot;styles-watch&quot;: &quot;npx tailwindcss -i src/styles/styles.css -o resources/public/css/styles.css --watch&quot;,
-    &quot;styles&quot;: &quot;npx tailwindcss -i src/styles/styles.css -o resources/public/css/styles.css&quot;,
-    &quot;build&quot;: &quot;npx shadow-cljs release :app &amp;&amp; npm run styles&quot;,
-    &quot;test&quot;: &quot;echo \&quot;Error: no test specified\&quot; &amp;&amp; exit 1&quot;
+  "name": "app",
+  "version": "0.0.1",
+  "scripts": {
+    "start": "npx shadow-cljs -d cider/cider-nrepl:0.44.0 watch :app",
+    "styles-watch": "npx tailwindcss -i src/styles/styles.css -o resources/public/css/styles.css --watch",
+    "styles": "npx tailwindcss -i src/styles/styles.css -o resources/public/css/styles.css",
+    "build": "npx shadow-cljs release :app &amp;&amp; npm run styles",
+    "test": "echo \"Error: no test specified\" &amp;&amp; exit 1"
   },
-  &quot;devDependencies&quot;: {
-    &quot;shadow-cljs&quot;: &quot;2.26.2&quot;
+  "devDependencies": {
+    "shadow-cljs": "2.26.2"
   },
-  &quot;dependencies&quot;: {
-    &quot;react&quot;: &quot;^18.2.0&quot;,
-    &quot;react-dom&quot;: &quot;^18.2.0&quot;,
-    &quot;tailwindcss&quot;: &quot;^3.4.0&quot;
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "tailwindcss": "^3.4.0"
   }
 }
 </code></pre>
@@ -802,15 +781,15 @@ class HelloMessage extends React.Component {
     return &lt;div&gt;Hello {this.props.name}&lt;/div&gt;;
   }
 }
-ReactDOM.render(&lt;HelloMessage name=&quot;Jane&quot; /&gt;, mountNode);
+ReactDOM.render(&lt;HelloMessage name="Jane" /&gt;, mountNode);
 </code></pre>
 <pre><code class="language-js">class HelloMessage extends React.Component {
   render() {
-    return React.createElement(&quot;div&quot;, null, &quot;Hello &quot;, this.props.name );
+    return React.createElement("div", null, "Hello ", this.props.name );
   }
 }
 
-ReactDOM.render(React.createElement(HelloMessage, { name: &quot;Jane&quot; }), mountNode);
+ReactDOM.render(React.createElement(HelloMessage, { name: "Jane" }), mountNode);
 </code></pre>
 <p>Props 속성- immutable- passed in from parent- can not change it- can be defaulted &amp; validated</p>
 <h2 id="state"><a class="header" href="#state">state</a></h2>
@@ -827,8 +806,8 @@ ReactDOM.render(React.createElement(HelloMessage, { name: &quot;Jane&quot; }), m
   );
 }
 내부 상태(state) 저장
-this.state.comment = &quot;hello&quot;;
-// Wrongthis.setState({comment: &quot;hello&quot;});
+this.state.comment = "hello";
+// Wrongthis.setState({comment: "hello"});
 //Correctthis.state =
 // only constructorstate와 props 는 비동기적으로 업데이트 됨으로
 </code></pre>
@@ -884,8 +863,8 @@ The child to be modified could be an instance of a React component, or it could 
   render() {
     return(
       &lt;div&gt;
-        &lt;inputtype=&quot;text&quot;ref={(input) =&gt; { this.textInput = input; }} /&gt;
-        &lt;inputtype=&quot;button&quot;value=&quot;Focus the text input&quot;onClick={this.focus}/&gt;
+        &lt;inputtype="text"ref={(input) =&gt; { this.textInput = input; }} /&gt;
+        &lt;inputtype="button"value="Focus the text input"onClick={this.focus}/&gt;
       &lt;/div&gt;
     );
   }
@@ -911,7 +890,7 @@ static typechecking</p>
 <li>state는 독립적인 컴포넌트의 상태고, prop은 외부(부모) 컴포넌트에게 받은 속성이다</li>
 <li>Redux 프로젝트에서 prop는 애플리케이션에서 전역으로 관리하는 상태라고 생각하면 된다.</li>
 <li>요약하면 컴포넌트 자체의 상태(색상, 애니메이션 등)는 state로 처리하고, 전체적으로 관리해야 하는 상태(서버와 동기화하는 데이터 등)는 부모 컴포넌트에서 prop으로 받아 처리한다. 물론 prop을 갱신하면 App 컴포넌트가 전반적으로 갱신되기 때문에 state를 갱신하는 것보다는 비교적 느리다. 효과적으로 state를 사용하면 좋지만, prop으로 처리해야 하는 작업을 state로 처리하면 오히려 코드 작성이 더 어려워진다.
-state와 prop의 차이에 관한 더 자세한 내용은 &quot;props vs state&quot;를 참고한다. React에서 구분하는 prop와 state의 차이에 관해서는 &quot;Thinking in React&quot;의 'Step 3: Identify The Minimal (but complete) Representation Of UI State'를 참고한다.</li>
+state와 prop의 차이에 관한 더 자세한 내용은 "props vs state"를 참고한다. React에서 구분하는 prop와 state의 차이에 관해서는 "Thinking in React"의 'Step 3: Identify The Minimal (but complete) Representation Of UI State'를 참고한다.</li>
 </ul>
 <h2 id="ref-4"><a class="header" href="#ref-4">Ref.</a></h2>
 <ul>
@@ -952,10 +931,10 @@ state와 prop의 차이에 관한 더 자세한 내용은 &quot;props vs state&q
 <li>cljsjs/react-dom</li>
 </ul>
 <pre><code class="language-clojure">(defn hello-component [name]
-  [:p &quot;Hello, &quot; name &quot;!&quot;])
+  [:p "Hello, " name "!"])
 
 (defn say-hello []
-  [hello-component &quot;world&quot;])
+  [hello-component "world"])
 </code></pre>
 <pre><code class="language-javascript">class Hello extends React.Component {
   render() {
@@ -965,7 +944,7 @@ state와 prop의 차이에 관한 더 자세한 내용은 &quot;props vs state&q
 
 class SayHello extends React.Component {
   render() {
-    return &lt;Hello name&quot;world&quot; /&gt;;
+    return &lt;Hello name"world" /&gt;;
   }
 }
 </code></pre>
@@ -1013,19 +992,19 @@ class SayHello extends React.Component {
 </ul>
 </li>
 </ul>
-<pre><code class="language-clojure">   (r/create-element &quot;div&quot;
-                     #js{:className &quot;foo&quot;}
-                     &quot;Hello &quot;
-                     (r/as-element [:strong &quot;world&quot;]))
+<pre><code class="language-clojure">   (r/create-element "div"
+                     #js{:className "foo"}
+                     "Hello "
+                     (r/as-element [:strong "world"]))
 </code></pre>
 <ul>
 <li><code>r/adapt-react-class</code></li>
 </ul>
-<pre><code class="language-clojure">(def div-adapter (r/adapt-react-class &quot;div&quot;))
+<pre><code class="language-clojure">(def div-adapter (r/adapt-react-class "div"))
 
 (defn adapted []
-  [div-adapter {:class &quot;foo&quot;}
-   &quot;Hello &quot; [:strong &quot;world&quot;]])
+  [div-adapter {:class "foo"}
+   "Hello " [:strong "world"]])
 </code></pre>
 <ul>
 <li><a href="https://reagent-project.github.io/news/news060-alpha.html">https://reagent-project.github.io/news/news060-alpha.html</a></li>
@@ -1318,21 +1297,21 @@ reg-interceptor
 <li><a href="https://github.com/Day8/re-frame/blob/master/docs/SubscriptionFlow.md">https://github.com/Day8/re-frame/blob/master/docs/SubscriptionFlow.md</a></li>
 <li><code>(ns re-frame.subs)</code></li>
 </ul>
-<pre><code class="language-clojure">{:name &quot;Bruce&quot;}
+<pre><code class="language-clojure">{:name "Bruce"}
 
 (rf/reg-sub
   :get-name
   (fn [db _]
-    (name db))) =&gt; &quot;Bruce&quot;
+    (name db))) =&gt; "Bruce"
 
 (rf/reg-sub
   :greeting
   (fn [db _]
     (rf/subscribe :get-name))
   (fn [name _]
-    (st &quot;Hello, &quot; name))) =&gt; &quot;Hello, Bruce&quot;
+    (st "Hello, " name))) =&gt; "Hello, Bruce"
 
-@(rf/subscribe :greeting) =&gt; &quot;Hello, Bruce&quot;
+@(rf/subscribe :greeting) =&gt; "Hello, Bruce"
 
   1. (reg-sub
        :test-sub

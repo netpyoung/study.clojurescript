@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html lang="kr" class="light" dir="ltr">
+<html lang="ko" class="light sidebar-visible" dir="ltr">
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
@@ -7,7 +7,7 @@
 
 
         <!-- Custom HTML head -->
-        
+
         <meta name="description" content="study.clojurescript">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="theme-color" content="#ffffff">
@@ -23,21 +23,23 @@
         <link rel="stylesheet" href="../../fonts/fonts.css">
 
         <!-- Highlight.js Stylesheets -->
-        <link rel="stylesheet" href="../../highlight.css">
-        <link rel="stylesheet" href="../../tomorrow-night.css">
-        <link rel="stylesheet" href="../../ayu-highlight.css">
+        <link rel="stylesheet" id="highlight-css" href="../../highlight.css">
+        <link rel="stylesheet" id="tomorrow-night-css" href="../../tomorrow-night.css">
+        <link rel="stylesheet" id="ayu-highlight-css" href="../../ayu-highlight.css">
 
         <!-- Custom theme stylesheets -->
 
-    </head>
-    <body class="sidebar-visible no-js">
-    <div id="body-container">
+
         <!-- Provide site root to javascript -->
         <script>
             var path_to_root = "../../";
             var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
         </script>
-
+        <!-- Start loading toc.js asap -->
+        <script src="../../toc.js"></script>
+    </head>
+    <body>
+    <div id="body-container">
         <!-- Work around some values being stored in localStorage wrapped in quotes -->
         <script>
             try {
@@ -59,19 +61,16 @@
             var theme;
             try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
             if (theme === null || theme === undefined) { theme = default_theme; }
-            var html = document.querySelector('html');
+            const html = document.documentElement;
             html.classList.remove('light')
             html.classList.add(theme);
-            var body = document.querySelector('body');
-            body.classList.remove('no-js')
-            body.classList.add('js');
+            html.classList.add("js");
         </script>
 
         <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
 
         <!-- Hide / unhide sidebar before it is displayed -->
         <script>
-            var body = document.querySelector('body');
             var sidebar = null;
             var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
             if (document.body.clientWidth >= 1080) {
@@ -81,45 +80,25 @@
                 sidebar = 'hidden';
             }
             sidebar_toggle.checked = sidebar === 'visible';
-            body.classList.remove('sidebar-visible');
-            body.classList.add("sidebar-" + sidebar);
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
         </script>
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
-            <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="../../index.html">들어가며</a></li><li class="chapter-item expanded "><a href="../../clojurescript/clojurescript.html">clojurescript</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../clojurescript/interop.html">interop</a></li><li class="chapter-item expanded "><a href="../../clojurescript/reference.html">reference</a></li><li class="spacer"></li></ol></li><li class="chapter-item expanded "><li class="part-title">Tool</li><li class="chapter-item expanded "><a href="../../tool/shadow-cljs/shadow-cljs.html" class="active">shadow-cljs</a></li><li class="spacer"></li><li class="chapter-item expanded affix "><li class="part-title">Web</li><li class="chapter-item expanded "><a href="../../web/html.html">html</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../library/hiccup.html">hiccup</a></li></ol></li><li class="chapter-item expanded "><a href="../../web/javascript.html">javascript</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../web/closure.html">google's closure</a></li><li class="chapter-item expanded "><a href="../../web/sourcemap.html">sourcemap</a></li><li class="chapter-item expanded "><a href="../../node/node.html">node</a></li></ol></li><li class="chapter-item expanded "><a href="../../web/css.html">css</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../library/tailwindcss.html">tailwindcss</a></li><li class="spacer"></li></ol></li><li class="chapter-item expanded "><li class="part-title">React</li><li class="chapter-item expanded "><a href="../../react/react.html">WIP react</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../library/reagent/reagent.html">reagent</a></li><li class="chapter-item expanded "><a href="../../library/re-frame/re-frame.html">re-frame</a></li><li class="spacer"></li></ol></li><li class="chapter-item expanded "><li class="part-title">Library</li><li class="spacer"></li><li class="chapter-item expanded affix "><li class="part-title">Deprecated</li><li class="chapter-item expanded "><a href="../../deprecated/boot.html">boot</a></li><li class="chapter-item expanded "><a href="../../deprecated/figwheel.html">figwheel</a></li></ol>
-            </div>
+            <!-- populated by js -->
+            <mdbook-sidebar-scrollbox class="sidebar-scrollbox"></mdbook-sidebar-scrollbox>
+            <noscript>
+                <iframe class="sidebar-iframe-outer" src="../../toc.html"></iframe>
+            </noscript>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle">
                 <div class="sidebar-resize-indicator"></div>
             </div>
         </nav>
 
-        <!-- Track and set sidebar scroll position -->
-        <script>
-            var sidebarScrollbox = document.querySelector('#sidebar .sidebar-scrollbox');
-            sidebarScrollbox.addEventListener('click', function(e) {
-                if (e.target.tagName === 'A') {
-                    sessionStorage.setItem('sidebar-scroll', sidebarScrollbox.scrollTop);
-                }
-            }, { passive: true });
-            var sidebarScrollTop = sessionStorage.getItem('sidebar-scroll');
-            sessionStorage.removeItem('sidebar-scroll');
-            if (sidebarScrollTop) {
-                // preserve sidebar scroll position when navigating via links within sidebar
-                sidebarScrollbox.scrollTop = sidebarScrollTop;
-            } else {
-                // scroll sidebar to current active section when navigating via "next/previous chapter" buttons
-                var activeSection = document.querySelector('#sidebar .active');
-                if (activeSection) {
-                    activeSection.scrollIntoView({ block: 'center' });
-                }
-            }
-        </script>
-
         <div id="page-wrapper" class="page-wrapper">
 
             <div class="page">
-                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar-hover-placeholder"></div>
                 <div id="menu-bar" class="menu-bar sticky">
                     <div class="left-buttons">
                         <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
@@ -208,23 +187,23 @@
 </li>
 </ul>
 <pre><code class="language-clojure">(defn ^:dev/before-load stop []
-  (js/console.log &quot;stop&quot;))
+  (js/console.log "stop"))
 
 (defn ^:dev/after-load start []
-  (js/console.log &quot;start&quot;))
+  (js/console.log "start"))
 
 (defn ^:dev/before-load-async stop [done]
-  (js/console.log &quot;stop&quot;)
+  (js/console.log "stop")
   (js/setTimeout
     (fn []
-      (js/console.log &quot;stop complete&quot;)
+      (js/console.log "stop complete")
       (done)))
 
 (defn ^:dev/after-load-async start [done]
-  (js/console.log &quot;start&quot;)
+  (js/console.log "start")
   (js/setTimeout
     (fn []
-      (js/console.log &quot;start complete&quot;)
+      (js/console.log "start complete")
       (done))))
 </code></pre>
 <h2 id="init"><a class="header" href="#init">init</a></h2>
@@ -236,30 +215,30 @@
 </ul>
 <pre><code class="language-edn">;; file: deps.edn
 
-{:paths [&quot;src&quot; &quot;resources&quot;]
+{:paths ["src" "resources"]
 
  :deps
- {reagent/reagent {:mvn/version &quot;1.2.0&quot;}
-  re-frame/re-frame {:mvn/version &quot;1.4.2&quot;}
+ {reagent/reagent {:mvn/version "1.2.0"}
+  re-frame/re-frame {:mvn/version "1.4.2"}
 
-  markdown-clj/markdown-clj {:mvn/version &quot;1.11.7&quot;}
-  metosin/reitit {:mvn/version &quot;0.6.0&quot;}
-  org.babashka/sci {:mvn/version &quot;0.8.41&quot;}
-  thheller/shadow-cljs {:mvn/version &quot;2.26.2&quot;}
+  markdown-clj/markdown-clj {:mvn/version "1.11.7"}
+  metosin/reitit {:mvn/version "0.6.0"}
+  org.babashka/sci {:mvn/version "0.8.41"}
+  thheller/shadow-cljs {:mvn/version "2.26.2"}
   }
 
  :aliases
  {:dev
-  {:extra-deps {cider/cider-nrepl {:mvn/version &quot;0.44.0&quot;}}}}}
+  {:extra-deps {cider/cider-nrepl {:mvn/version "0.44.0"}}}}}
 </code></pre>
 <pre><code class="language-edn">;; file: shadow-cljs.edn
 
 {:deps {:aliases [:dev]}
- :dev-http {8080 &quot;resources/public&quot;}
+ :dev-http {8080 "resources/public"}
  :builds
   {:app {:target :browser
-         :output-dir &quot;resources/public/js&quot;
-         :asset-path &quot;/js&quot;
+         :output-dir "resources/public/js"
+         :asset-path "/js"
          :module-hash-names false
          :modules {:app {:entries [app.core]
                          :init-fn app.core/Main}}
@@ -267,23 +246,23 @@
          :build-hooks [(shadow.cljs.build-report/hook)]}}}
 </code></pre>
 <pre><code class="language-json">{
-  &quot;//&quot;: [&quot;file: package.json&quot;],
-  &quot;name&quot;: &quot;helloworld&quot;,
-  &quot;version&quot;: &quot;0.0.1&quot;,
-  &quot;dependencies&quot;: {
-    &quot;react&quot;: &quot;^18.2.0&quot;,
-    &quot;react-dom&quot;: &quot;^18.2.0&quot;,
-    &quot;tailwindcss&quot;: &quot;^3.4.0&quot;
+  "//": ["file: package.json"],
+  "name": "helloworld",
+  "version": "0.0.1",
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "tailwindcss": "^3.4.0"
   },
-  &quot;devDependencies&quot;: {
-    &quot;shadow-cljs&quot;: &quot;2.26.2&quot;
+  "devDependencies": {
+    "shadow-cljs": "2.26.2"
   },
-  &quot;scripts&quot;: {
-    &quot;start&quot;: &quot;npx shadow-cljs --dependency cider/cider-nrepl:0.44.0 watch :app&quot;,
-    &quot;styles-watch&quot;: &quot;npx tailwindcss -i src/styles/styles.css -o resources/public/css/styles.css --watch&quot;,
-    &quot;styles&quot;: &quot;npx tailwindcss -i src/styles/styles.css -o resources/public/css/styles.css&quot;,
-    &quot;build&quot;: &quot;npx shadow-cljs release :app &amp;&amp; npm run styles&quot;,
-    &quot;test&quot;: &quot;echo \&quot;Error: no test specified\&quot; &amp;&amp; exit 1&quot;
+  "scripts": {
+    "start": "npx shadow-cljs --dependency cider/cider-nrepl:0.44.0 watch :app",
+    "styles-watch": "npx tailwindcss -i src/styles/styles.css -o resources/public/css/styles.css --watch",
+    "styles": "npx tailwindcss -i src/styles/styles.css -o resources/public/css/styles.css",
+    "build": "npx shadow-cljs release :app &amp;&amp; npm run styles",
+    "test": "echo \"Error: no test specified\" &amp;&amp; exit 1"
   }
 }
 </code></pre>
@@ -292,15 +271,15 @@
 &lt;!doctype html&gt;
 &lt;html&gt;
   &lt;head&gt;
-    &lt;meta charset=&quot;utf-8&quot; /&gt;
+    &lt;meta charset="utf-8" /&gt;
     &lt;title&gt;Hello World&lt;/title&gt;
   &lt;/head&gt;
   &lt;body&gt;
-    &lt;div id=&quot;app&quot;&gt;
+    &lt;div id="app"&gt;
       Loading....
     &lt;/div&gt;
     &lt;!-- JS --&gt;
-    &lt;script type=&quot;text/javascript&quot; src=&quot;./js/app.js&quot;&gt;&lt;/script&gt;
+    &lt;script type="text/javascript" src="./js/app.js"&gt;&lt;/script&gt;
   &lt;/body&gt;
 &lt;/html&gt;
 </code></pre>
@@ -312,18 +291,18 @@
 
 {:tasks
  {
-  hello {:doc &quot;helloworld&quot;
+  hello {:doc "helloworld"
          :requires ([babashka.process :as process])
          :task 
-         #_(process/shell &quot;clj -M -m app.core --interactive&quot;)
-         (process/shell &quot;clj -M -m app.core&quot;)}
+         #_(process/shell "clj -M -m app.core --interactive")
+         (process/shell "clj -M -m app.core")}
  }}
 </code></pre>
 <h2 id="example"><a class="header" href="#example">example</a></h2>
 <pre><code class="language-bash">npx shadow-cljs -d cider/cider-nrepl:0.44.0 watch :app
 
 shadow-cljs - config: /Users/pyoung/test-cljs/shadow-cljs.edn
-shadow-cljs - starting via &quot;clojure&quot;
+shadow-cljs - starting via "clojure"
 shadow-cljs - HTTP server available at http://localhost:8080
 shadow-cljs - server version: 2.26.2 running at http://localhost:9630
 shadow-cljs - nREPL server started on port 49953
@@ -335,7 +314,7 @@ shadow-cljs - watching build :app
 </ul>
 <pre><code class="language-edn">:repositories
 {
-  {&quot;google&quot; {:url &quot;https://maven-central-asia.storage-download.googleapis.com/repos/central/data/&quot;}}
+  {"google" {:url "https://maven-central-asia.storage-download.googleapis.com/repos/central/data/"}}
 }
 </code></pre>
 <h2 id="compile-option"><a class="header" href="#compile-option">compile option</a></h2>
