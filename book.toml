@@ -2,7 +2,7 @@
 title = "넷평의 Clojurescript 노트"
 description = "study.clojurescript"
 authors = ["netpyoung"]
-language = "kr"
+language = "ko"
 multilingual = false
 src = "src"
 
